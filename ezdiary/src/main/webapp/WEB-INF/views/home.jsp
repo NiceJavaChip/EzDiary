@@ -8,7 +8,8 @@
 <h1>
 	Hello world!  
 </h1>
-<!-- 테스트입니다. -->
+<!-- íì¤í¸ìëë¤. -->
+<!-- 한글 왜 깨지냐! -->
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
