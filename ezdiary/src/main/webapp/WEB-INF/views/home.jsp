@@ -10,6 +10,7 @@
 </h1>
 <!-- íì¤í¸ìëë¤. -->
 <!-- 한글 왜 깨지냐! -->
+<!-- 한글 깨지지 마라.... -->
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
