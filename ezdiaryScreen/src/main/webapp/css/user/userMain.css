@@ -12,6 +12,7 @@ body, html {
 }
 
 .usermain_wrapper {
+	overflow: hidden;
     color: white;
     height: 100%;
     width: 680px;
@@ -24,6 +25,13 @@ body, html {
 	padding: 10px;
 	width: 550px;
     margin: auto;
+}
+
+.content_wrapper2 {
+	border: solid 2px white;
+	padding: 10px;
+	width: 550px;
+    margin: auto;	
 }
 
 .upper_title {
