@@ -12,6 +12,7 @@ body, html {
 }
 
 .usermain_wrapper {
+	overflow: hidden;
     color: white;
     height: 100%;
     width: 680px;
@@ -19,28 +20,48 @@ body, html {
     margin: auto;
 }
 
+/* userSurvey.jsp */
+.usermain_wrapper {
+    color: white;
+    height: 100%;
+    width: 680px;
+    text-align: center;
+    margin: auto;
+}
+
+.survey {
+	overflow: hidden;
+}
+
 .content_wrapper {
-	border: solid 2px white;
+/* 	border: solid 2px white; */
 	padding: 10px;
 	width: 550px;
     margin: auto;
 }
 
+.content_wrapper2 {
+/* 	border: solid 2px white; */
+	padding: 10px;
+	width: 550px;
+    margin: auto;	
+}
+
 .upper_title {
-	border: solid 1px white;
+/* 	border: solid 1px white; */
 	font-size: 40px;
 	margin-top: 190px;
 	margin-bottom: 18px;
 }
 
 .main_title {
-	border: solid 1px white;
+/* 	border: solid 1px white; */
 	font-size: 50px;
 	margin-top: 50px;
 }
 
 .start {
-	border: solid 1px white;
+/* 	border: solid 1px white; */
 	margin-top: 50px;
 }
 
@@ -52,7 +73,7 @@ body, html {
 }
 
 .bottom_title {
-	border: solid 1px white;
+/* 	border: solid 1px white; */
 	font-size: 20px;
 	margin-top: 50px;
 }
@@ -79,6 +100,11 @@ input::placeholder {
 }
 
 /* ============================userSurvey.jsp css============================================ */
+
+#bar {
+	width: 100%;
+	height: 30px;
+}
 
 .select_items button {
 	border: solid 1px white;

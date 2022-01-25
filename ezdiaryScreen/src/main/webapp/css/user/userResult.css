@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.resultPage_wrapper {
+    color: white;
+    height: 100%;
+/*     width: 680px; */
+    text-align: center;
+    margin: auto;
+}
+
+.resultContent_wrapper {
+    height: 340px;
+    border: solid 2px white;
+    padding: 10px;
+    width: 1050px;
+    margin: auto;
+}
+
+.result_chart {   
+	width: 440px;
+    border: 1px solid white;
+    float: left;
+    margin: 41px;
+}
+
+.chart_title {
+	margin: 5px;
+    border: 1px solid white;
+    font-size: 20px;
+}
+
+.chart_field {
+    margin: 5px;
+    border: 1px solid white;
+    height: 200px;
+}
+}
