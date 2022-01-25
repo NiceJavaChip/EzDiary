@@ -10,12 +10,12 @@
 <!-- ============================================================================================ -->
 
 <!-- css파일 ===================================================================================== -->
-<link href="../../css/user/userMain.css" rel="stylesheet"/>
-<link href="../../css/user/userMsg.css" rel="stylesheet"/>
+<link href="../../css/user/userMain.css?after" rel="stylesheet"/>
+<link href="../../css/user/userMsg.css?after" rel="stylesheet"/>
 <!-- ============================================================================================ -->
 
 <!--js파일 ======================================================================================= -->
-<script type="text/javascript" src="../../js/user/userMain.js"></script>
+<script type="text/javascript" src="../../js/user/userMain.js?after"></script>
 <!-- ============================================================================================ -->
 
 <title>설문조사</title>
