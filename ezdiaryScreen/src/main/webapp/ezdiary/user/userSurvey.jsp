@@ -22,7 +22,7 @@
 <title>설문조사</title>
 </head>
 <body>
-	<div class="usermain_wrapper">
+	<div class="usermain_wrapper survey">
 		<div class="content_wrapper" id="divBox">
 			<div class="upper_title">
 				<p>취업이 안 되는 코로나 시기... 
@@ -72,8 +72,4 @@
 			</div>
 		</div>
 	</div>
-
-
-
-</body>
-</html>
+	<%@ include file="footer.jsp" %>
