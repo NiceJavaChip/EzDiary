@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+	background-color: #004f32;
+}
+
+.admin_wrapper{
+	border: 1px solid white;
+	color: white;
+    height: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+  	display: flex;
+    flex-direction: column;
+}
+
+
+
+.content_title{
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+.contents_warpper{
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: center;
+	margin-top: 60px;
+}
+
+.content{
+	background-color: white;
+	padding: 0px 20px;
+    height: 40px;
+    width: 300px;
+    border-radius: 15px;
+    color: black;
+    display: flex;
+}
+
+.login_icons{
+	color: #b5b5b5;
+	margin-top: 3px;
+	margin-left: 40px; 
+}
+
+.content input{
+	font-size: 16px;
+    border: none;
+    margin-left: 20px; 
+}
+
+.contents_warpper .content:nth-child(1){
+	margin-bottom: 20px;
+}
+
+.content_btn_wrapper{
+	margin-top: 40px;
+}
+
+.login_btn{
+	font-size: 16px;
+    height: 40px;
+    width: 300px;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 20px;
+}
+
