@@ -60,8 +60,8 @@
 				</div>
 			</div>
 			<div class="content_btn_wrapper right_align">
-				<button class="content_btn" onclick="location.href='ques_notice_list.jsp'">확인</button>
-				<button class="content_btn" onclick="location.href='ques_mod.jsp'">수정</button>
+				<button class="content_btn" onclick="location.href='adminQuesView.jsp'">확인</button>
+				<button class="content_btn color_change" onclick="location.href='adminQuesView.jsp'">수정</button>
 				<!-- 삭제 버튼은 삭제 처리 후 질문지 페이지로 이동 -->
 				<!-- <button class="content_btn delete_btn" onclick="location.href='ques_notice_list.jsp'">삭제</button> -->
 			</div>

@@ -18,7 +18,7 @@
             src="https://kit.fontawesome.com/6478f529f2.js"
             crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="../../js/admin/userMain.js"></script>
+    <script type="text/javascript" src="../../js/admin/adminSearch.js?after"></script>
 	<!-- ============================================================================================ -->
 	<title>EZ DIARY 질문지 LIST</title>
 </head>

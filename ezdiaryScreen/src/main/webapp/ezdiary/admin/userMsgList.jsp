@@ -18,7 +18,7 @@
             src="https://kit.fontawesome.com/6478f529f2.js"
             crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="../../js/admin/userMain.js"></script>
+    <script type="text/javascript" src="../../js/admin/adminSearch.js?after"></script>
 	<!-- ============================================================================================ -->
 	<title>EZ DIARY 수강생들의 이야기</title>
 </head>
@@ -38,7 +38,7 @@
 					</tr>
 					<tr>
 						<td>2</td>
-						<td>비대면 수업 개꿀!!!</td>
+						<td><a onclick="location.href='userMsgView.jsp'">비대면 수업 개꿀!!!</a></td>
 						<td>2022-02-18</td>
 						<td>닉네임</td>
 					</tr>
@@ -50,11 +50,11 @@
 					</tr>
 				</table>
 				<div class="pagging_tab">
-					<a><<</a>
-					<a><</a>
-					<a>1</a>
-					<a>></a>
-					<a>>></a>
+					<button><<</button>
+					<button><</button>
+					<button>1</button>
+					<button>></button>
+					<button>>></button>
 				</div>
 				<div class="search_wrapper">
 					<input type="text" class="search_input_box"

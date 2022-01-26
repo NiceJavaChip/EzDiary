@@ -62,11 +62,17 @@
     padding: 0px 20px;
 }
 
+.content_btn_wrapper .color_change{
+	background-color: red;
+    color: white;
+}
+
 .content_btn_wrapper .content_btn:nth-child(3){
-    background: red;
+    background-color: red;
     color: white;
 }
 
 .right_align{
 	margin-left: 180px;
 }
+

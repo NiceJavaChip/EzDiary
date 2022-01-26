@@ -13,8 +13,24 @@ th, td {
 	border-bottom: 1px solid white; 
 }
 
+tr td a{
+	cursor: pointer;
+}
+
+tr td a:hover{
+	text-decoration: underline;
+}
+
 .pagging_tab{
 	margin-top: 20px;
+}
+
+.pagging_tab button{
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	color: white;
+	margin: 0px 5px;
 }
 
 .search_wrapper{
