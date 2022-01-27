@@ -27,7 +27,7 @@
 </div>
 <button id="fadeInBtn">fadein</button>
 <button id="fadeOutBtn">fadeout</button>
-
+<!-- 테스트입니다. -->
 </div>
 </body>
 </html>
