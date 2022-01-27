@@ -11,14 +11,14 @@ body, html {
    background-color: #004f32;
 }
 
-.usermain_wrapper {
+/* .usermain_wrapper {
    overflow: hidden;
     color: white;
     height: 100%;
     width: 680px;
     text-align: center;
     margin: auto;
-}
+} */
 
 /* userSurvey.jsp */
 .usermain_wrapper {
@@ -118,13 +118,13 @@ input::placeholder {
     margin-bottom: 18px;
 }
 
-.items_btn {
-   transition-duration: 0.3s;
+.btn {
+	transition-duration: 0.3s;
 }
 
-.items_btn:hover {
-   background-color: white; 
-    color: #004f32;
+.btn:hover {
+    background-color: white; 
+    color: #004f32;	
 }
 
 .prev_btn button {
