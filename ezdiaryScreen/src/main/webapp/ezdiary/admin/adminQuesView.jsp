@@ -1,27 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- 제이쿼리 ===================================================================================== -->
-	<!-- ============================================================================================ -->
-	
-	<!-- css파일 ===================================================================================== -->
-	<link href="../../css/admin/adminComponent.css?after" rel="stylesheet"/>
-	<link href="../../css/admin/adminQuesViewAndMod.css?after" rel="stylesheet"/>
-	<!-- ============================================================================================ -->
-	
-	<!--js파일 ======================================================================================= -->
-	<script
-            src="https://kit.fontawesome.com/6478f529f2.js"
-            crossorigin="anonymous">
-    </script>
-	<!-- ============================================================================================ -->
-	<title>EZ DIARY 관리자 질문지 상세보기</title>
-</head>
-<body>
+<%@ include file="../layout/adminHeader.jsp" %>
 	<div class="admin_wrapper">
 		<div class="content_title">
 			<h1>상세보기</h1>
@@ -58,12 +37,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="content_btn_wrapper">
+		<div class="content_btn_wrapper right_align margin_right_add">
 			<button class="content_btn" onclick="location.href='adminQuesList.jsp'">확인</button>
-			<button class="content_btn" onclick="location.href='adminMod.jsp'">수정</button>
+			<button class="content_btn margin_right_less" onclick="location.href='adminMod.jsp'">수정</button>
 			<!-- 삭제 버튼은 삭제 처리 후 질문지 페이지로 이동 -->
-			<button class="content_btn" onclick="location.href='adminQuesList.jsp'">삭제</button>
+			<button class="content_btn color_change" onclick="location.href='adminQuesList.jsp'">삭제</button>
 		</div>
 	</div>
-</body>
-</html>
+<%@ include file="../layout/adminFooter.jsp" %>

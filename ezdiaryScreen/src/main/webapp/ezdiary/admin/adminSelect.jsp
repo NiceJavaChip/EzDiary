@@ -1,27 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- 제이쿼리 ===================================================================================== -->
-	<!-- ============================================================================================ -->
-	
-	<!-- css파일 ===================================================================================== -->
-	<link href="../../css/admin/adminComponent.css?after" rel="stylesheet"/>
-	<link href="../../css/admin/adminSelect.css?after" rel="stylesheet"/>
-	<!-- ============================================================================================ -->
-	
-	<!--js파일 ======================================================================================= -->
-	<script
-            src="https://kit.fontawesome.com/6478f529f2.js"
-            crossorigin="anonymous">
-    </script>
-	<!-- ============================================================================================ -->
-	<title>관리자 게시판</title>
-</head>
-<body>
+<%@ include file="../layout/adminHeader.jsp" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container">
 			<div class="content_title">
@@ -48,5 +27,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+<%@ include file="../layout/adminFooter.jsp" %>

@@ -1,28 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- 제이쿼리 ===================================================================================== -->
-	<!-- ============================================================================================ -->
-	
-	<!-- css파일 ===================================================================================== -->
-	<link href="../../css/admin/adminComponent.css?after" rel="stylesheet"/>
-	<link href="../../css/admin/listView.css?after" rel="stylesheet"/>
-	<!-- ============================================================================================ -->
-	
-	<!--js파일 ======================================================================================= -->
-	<script
-            src="https://kit.fontawesome.com/6478f529f2.js"
-            crossorigin="anonymous">
-    </script>
-    <script type="text/javascript" src="../../js/admin/adminSearch.js?after"></script>
-	<!-- ============================================================================================ -->
-	<title>EZ DIARY 질문지 LIST</title>
-</head>
-<body>
+<%@ include file="../layout/adminHeader.jsp" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container">
 			<div class="content_title">
@@ -47,22 +25,21 @@
 					</tr>
 				</table>
 				<div class="pagging_tab">
-					<a><<</a>
-					<a><</a>
-					<a>1</a>
-					<a>></a>
-					<a>>></a>
+					<button><<</button>
+					<button><</button>
+					<button>1</button>
+					<button>></button>
+					<button>>></button>
 				</div>
 				<div class="search_wrapper">
 					<input type="text" class="search_input_box"
 								placeholder="검색어 입력" name="searchText" onkeypress="search();"/>
 				</div>
-				<div class="content_btn_wrapper margin_top_less align_right">
-					<button class="content_btn" onclick="location.href='quesWrite.jsp'">질문추가</button>
+				<div class="content_btn_wrapper margin_top_less align_right list_view">
 					<button class="content_btn" onclick="location.href='adminSelect.jsp'">이전</button>
+					<button class="content_btn width_add" onclick="location.href='quesWrite.jsp'">질문추가</button>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+<%@ include file="../layout/adminFooter.jsp" %>

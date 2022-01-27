@@ -1,26 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- 제이쿼리 ===================================================================================== -->
-	<!-- ============================================================================================ -->
-	
-	<!-- css파일 ===================================================================================== -->
-	<link href="../../css/admin/adminComponent.css?after" rel="stylesheet"/>
-	<!-- ============================================================================================ -->
-	
-	<!--js파일 ======================================================================================= -->
-	<script
-            src="https://kit.fontawesome.com/6478f529f2.js"
-            crossorigin="anonymous">
-    </script>
-	<!-- ============================================================================================ -->
-	<title>EZ DIARY 관리자 로그인</title>
-</head>
-<body>
+
+<%@ include file="../layout/adminHeader.jsp" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container">
 			<div class="content_title">
@@ -39,11 +20,11 @@
 			</div>
 			<div class="content_btn_wrapper">
 				<div>
-					<input class="login_btn" type="button" value="LOGIN" onclick="location.href='noticeBoard.jsp'">
+					<input class="login_btn" type="button" value="LOGIN" onclick="location.href='adminSelect.jsp'">
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
-<!-- 테스트입니다. -->
+
+
+<%@ include file="../layout/adminFooter.jsp" %>

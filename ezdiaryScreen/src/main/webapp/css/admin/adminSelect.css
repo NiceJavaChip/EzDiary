@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/* adminSelect 단독사용 */
+
 .select_btns_wrapper{
 	display: flex;
 	justify-content: center;

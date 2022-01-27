@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/* adminLogin */
+.login_btn{
+	cursor: pointer;
+}
+
+/* adminSelect */
+.notice_btn{
+	cursor: pointer;
+}
+
+/* 상단 페이지 제외 모두 사용 */
+.content_btn{
+	cursor: pointer;
+}
