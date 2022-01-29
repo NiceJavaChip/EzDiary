@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+/* -List.jsp 공통사용 */
+.table {
+	border-top: 2px solid white;
+    width: 90%;
+    /* border-top: 1px solid #444444; */
+    border-collapse: collapse;
+}
+
+/* 12-24 line은 모두 사용될 수 있음. */
+th, td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid white; 
+}
+
+tr td a{
+	cursor: pointer;
+}
+
+tr td a:hover{
+	text-decoration: underline;
+}
+
+.pagging_tab{
+	margin-top: 20px;
+}
+
+.pagging_tab button{
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	color: white;
+	margin: 0px 5px;
+}
+
+.search_wrapper{
+	margin-top: 20px;
+	display: flex;
+}
+
+.search_input_box{
+	background-color: white;
+	padding: 0px 20px;
+    height: 30px;
+    width: 150px;
+    border-radius: 15px;
+    color: black;
+    display: flex;
+}
+
+.align_right{
+	width:100%;
+	display:flex;
+	justify-content: flex-end;
+}
+
+.list_view{
+	justify-content: space-between;
+}
+
+/* .content_btn{
+	background-color: white;
+	padding: 0px 20px;
+    height: 30px;
+    width: 70px;
+    border-radius: 15px;
+    color: black;
+    border: none;
+} */
+
+/* adminQuesList 단독사용 */
+.content_btn_wrapper .width_add{
+	width: 100px;
+}
+
+/* -List의 이전 버튼 */
+.content_btn:nth-child(1){
+	/* width: 100px; */
+	margin-left: 30px; 
+}
+
+/* adminQuesList의 질문추가
+	userMsgView, quesWrite, adminMod 에 해당  */
+.content_btn:nth-child(2){
+	margin-right: 30px;
+}
+
+
+.margin_top_less{
+	margin-top: 20px;
+}
+
+
+.content_btn_wrapper .margin_right_less{
+	margin-right: 0px;
+}

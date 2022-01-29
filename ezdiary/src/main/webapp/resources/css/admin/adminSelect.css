@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* adminSelect 단독사용 */
+
+.select_btns_wrapper{
+	display: flex;
+	justify-content: center;
+}
+
+.select_btn_img{
+	position: relative;
+}
+
+.select_btn_img img{
+	width: 150px;
+	height: 75px;
+}
+
+.notice_btn{
+	position: absolute;
+    border: none;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.select_btn_wrapper:nth-child(2) .notice_btn{
+	top: 30px;
+	left: 10px;
+}
+
+
+.select_btn_wrapper:nth-child(1) .notice_btn{
+	top: 30px;
+    left: 25px;
+}
+    
+.select_btn_wrapper:nth-child(2){
+	margin-left: 30px;
+}  

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+/* userMsgView 단독사용 */
+
+.msg_view_sub_title{
+	text-align: left;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.sub_content_wrapper{
+	margin-top: 15px;
+}
+
+.contents_warpper .sub_content_wrapper:first-child{
+	margin-top: 0px;
+}
+
+
+.user_msg_view_input {
+	font-size: 16px;
+    height: 40px;
+    width: 300px;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 20px;
+}
+
+.contents_warpper .sub_content_wrapper:last-child
+ input {
+	font-size: 16px;
+    height: 150px;
+    width: 300px;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 20px;
+}
