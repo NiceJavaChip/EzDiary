@@ -17,6 +17,7 @@
 	<button id="btnfadeIn"> Fade In</button>
 	<div id="img1">글자가 이쁘게 사라진다.</div>
 	<!-- TEST -->
+	<!-- TEST2 -->
 </body>
 
 <script type="text/javascript">

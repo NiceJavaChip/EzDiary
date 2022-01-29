@@ -1,4 +1,3 @@
-
 // 엔터키 이벤트(닉네임 페이지) && 유효성검사  userNick.jsp에서 사용
 function enter() {
 	if(event.keyCode==13) {	
