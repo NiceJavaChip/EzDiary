@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+/* login, select 제외 모두 사용 */
+
+.ques_wrapper{
+	text-align: left;
+}
+
+.ques_wrapper input{
+	font-size: 16px;
+    height: 40px;
+    width: 300px;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 20px;
+}
+
+.ques_content{
+	margin-bottom: 20px;
+}
+
+.ques_wrapper_title{
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+
+
+.answer_wrapper{
+	margin-top: 30px;
+	text-align: left;
+}
+
+.answer_wrapper input{
+	font-size: 16px;
+    height: 40px;
+    width: 300px;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 20px;
+}
+
+.answer_content{
+	margin-bottom: 20px;
+}
+
+.answer_wrapper h2{
+	margin-bottom: 10px;
+}
+
+.answer_wrapper_title{
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+
+.content_btn_wrapper .content_btn{
+	font-size: 15px;
+    height: 30px;
+    width: 70px;
+    border-radius: 10px;
+    border: none;
+    padding: 0px 20px;
+}
+
+
+/* adminQuesView, adminMod, quesWrite */
+.content_btn_wrapper .color_change{
+	background-color: red;
+    color: white;
+}
+
+/* adminLogin, select 제외 모두 사용 */
+.right_align{
+	text-align: right;
+}
+
+
+/* adminQuesView 단독사용 */
+.margin_right_add{
+	margin-right: 30px;
+}

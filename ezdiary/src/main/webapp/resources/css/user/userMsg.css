@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+.my_answer {
+    margin-top: 80px;
+    margin-bottom: 10px;
+}
+
+.my_answer span {
+	font-size:30px;
+}
+
+.my_questions {
+	margin-bottom: 10px;
+}
+
+.answer_btn {
+	border: solid 1px white;
+/* 	cursor: pointer; */
+	font-family: NanumSquare;
+	font-size: 20px;
+	color: white;
+    background-color: transparent;
+	width: 500px;
+    height: 40px;
+    margin-bottom: 18px;	
+}
+
+.answer_btn {
+	transition-duration: 0.3s;
+}
+
+.answer_btn:hover {
+	background-color: white; 
+    color: #004f32;
+}
+
+.msg {
+	margin-bottom: 10px;
+}
+
+textarea::placeholder {
+	text-align: center;
+	font-size: 15px;
+}
+
+.submit_btn {
+    border-radius: 10px;
+    width: 130px;
+    height: 40px;
+}
+
+.text_cnt {
+    text-align: right;
+    width: 532px;
+}
