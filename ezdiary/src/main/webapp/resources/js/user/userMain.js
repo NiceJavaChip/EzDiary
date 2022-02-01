@@ -5,9 +5,10 @@ function enter() {
 		if($("#nick").val() == "") {
 	 	    alert("닉네임을 입력해주세요.");
 	   	    $("#nick").focus();
-	  	  return false;	
+	  	  return false;
+	  	  //location.href="/user/regist";	
 		}
-		location.href="userSurvey.jsp";
+		location.href="/ezdiary/user/userSurvey.jsp";
 	}
 }
 

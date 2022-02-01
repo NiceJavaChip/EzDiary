@@ -24,7 +24,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis/model/modelConfig.xml" />
 		<property name="mapperLocations" value="classpath:mybatis/mappers/*.xml" />
-	</bean>	
+	</bean>
 	
 	<!-- SqlSessionTemplate 이용해 sqlSession 빈을 생성함 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
