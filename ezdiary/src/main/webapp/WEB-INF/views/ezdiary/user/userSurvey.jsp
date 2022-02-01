@@ -15,7 +15,7 @@
             <button class="btn items_btn" type="button" onclick="location.href='userResultloading.jsp'">더 나은 곳으로 이직을 위해 고민하는 재직자</button>
          </div>
          <div class="prev_btn" id="prev_btn_fadeout">
-            <button type="button" onclick="location.href='userNick.jsp'">이 전</button>
+            <button type="button" onclick="location.href='regist'">이 전</button>
          </div>
       </div>
       <div class="content_wrapper2" id="divBox2" style="display: none;">

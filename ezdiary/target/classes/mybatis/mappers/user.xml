@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.user">
+<!--         <resultMap type="userDTO" id="userMember">
+           <result property="user_idx" column="user_idx"/>
+           <result property="user_nick" column="user_nick"/>
+           <result property="status" column="status"/>
+           <result property="writer" column="writer"/>
+           <result property="write_date" column="write_date"/>
+           <result property="editor" column="editor"/>
+           <result property="edit_date" column="edit_date"/>
+        </resultMap> -->
+        
+<!--         <insert id="insertNick">
+			INSERT INTO 
+				 EZ_DIARY_USER
+					(user_idx, user_nick, status, writer, write_date, editor, edit_date)
+			VALUES
+					(#{user_idx}, #{user_nick}, #{status}, #{writer}, #{write_date}, #{editor}, #{edit_date})
+        </insert> -->
+        
+        <insert id="insertNick">
+        	INSERT INTO 
+				 EZ_DIARY_USER
+					(user_idx, user_nick, status, writer, write_date, editor, edit_date)
+				 VALUES
+					(#{user_idx}, #{user_nick}, #{status}, #{writer}, #{write_date}, #{editor}, #{edit_date})
+        </insert>
+        
+        <select id="surveyAskList" resultType="com.ezen.ezdiary.admin.dto.AdminAskDTO">
+        	SELECT ask_cntnt From EZ_DIARY_ASK
+        </select>
+</mapper>

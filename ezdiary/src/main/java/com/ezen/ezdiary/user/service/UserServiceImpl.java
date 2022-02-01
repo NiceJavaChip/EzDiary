@@ -1,10 +1,13 @@
 package com.ezen.ezdiary.user.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
+import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.user.dao.UserDAO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 
@@ -15,9 +18,27 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 
 	@Override
-	public int registNick(UserDTO userDTO) throws Exception {
+	public void registNick(UserDTO userDTO) throws Exception {
 		
-		return userDAO.insertNick(userDTO);
+		userDAO.insertNick(userDTO);
+	}
+
+//	@Override
+//	public int registNick(UserDTO userDTO) throws Exception {
+//		
+//		return userDAO.insertNick(userDTO);
+//	}
+	
+	@Override
+	public List<AdminAskDTO> askList() throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.askList();
+	}
+	
+	@Override
+	public List<AdminAnswerDTO> answerList() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -28,5 +49,8 @@ public class UserServiceImpl implements UserService {
 		
 		return msgNo;
 	}
+
+	
+
 	
 }
