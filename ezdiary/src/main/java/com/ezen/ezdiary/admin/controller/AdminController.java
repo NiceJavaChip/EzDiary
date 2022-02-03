@@ -1,25 +1,34 @@
 package com.ezen.ezdiary.admin.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
 
 public interface AdminController {
 	
 	//member
-	public String adminlogin();
-	public String adminlogout();
+	public String login(AdminMemberDTO adminMemberDTO, RedirectAttributes rttr,
+									HttpServletRequest request) throws Exception;
+	public String adminlogout() throws Exception;
 	
 	//board
 	//admin
-	public String adminselect();
-	public ModelAndView quesListArticles();
-	public ModelAndView quesWrite();
-	public ModelAndView quesWriteInsert();
-	public ModelAndView quesView();
-	public ModelAndView quesWriteUpdate();
-	public ModelAndView quesWriteRemove();
+	public String adminselect() throws Exception;
+	public ModelAndView quesListArticles() throws Exception;
+	public ModelAndView quesWrite() throws Exception;
+	public ModelAndView quesWriteInsert(AdminAskDTO askDTO, HttpServletRequest request) throws Exception;
+	public ModelAndView quesView() throws Exception;
+	public ModelAndView quesWriteUpdate() throws Exception;
+	public ModelAndView quesWriteRemove() throws Exception;
 
 	//user
-	public ModelAndView userMsgListArticles();
-	public ModelAndView userMsgView();
-	public ModelAndView userMsgRemove();
+	public ModelAndView userMsgListArticles() throws Exception;
+	public ModelAndView userMsgView() throws Exception;
+	public ModelAndView userMsgRemove() throws Exception;
 }

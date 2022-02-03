@@ -1,5 +1,16 @@
 package com.ezen.ezdiary.admin.sevice;
 
+import java.util.List;
+
+import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
+
 public interface AdminService {
+	
+	public AdminMemberDTO login(AdminMemberDTO adminMemberDTO) throws Exception;
+	
+	public List<AdminAskDTO> quseList() throws Exception;
+	
+	public void quesEnroll(AdminAskDTO askDTO) throws Exception;
 
 }
