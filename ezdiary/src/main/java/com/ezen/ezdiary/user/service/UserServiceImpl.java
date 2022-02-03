@@ -1,5 +1,6 @@
 package com.ezen.ezdiary.user.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<AdminAnswerDTO> answerList() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.answerList();
 	}
 
 	@Override

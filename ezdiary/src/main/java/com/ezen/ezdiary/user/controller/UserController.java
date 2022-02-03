@@ -1,7 +1,14 @@
 package com.ezen.ezdiary.user.controller;
 
-import org.springframework.ui.Model;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
+import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
@@ -19,10 +26,10 @@ public interface UserController {
 	public String registNick(UserDTO userDTO) throws Exception;
 	
 	/* 설문조사 페이지 */
-	public String surveyPage() throws Exception;
+//	public String surveyPage() throws Exception;
 	
 	/* 설문조사 질문리스트 가져오기 */
-	public String surveyAskList(Model model) throws Exception;
+	public String surveyAskList(Model model, AdminAnswerDTO answerDTO) throws Exception;
 	
 	/* 설문조사 답변리스트 가져오기 */
 	public String surveyAnswerList(Model model) throws Exception;

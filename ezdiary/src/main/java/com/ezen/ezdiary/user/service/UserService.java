@@ -1,5 +1,6 @@
 package com.ezen.ezdiary.user.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,6 @@ public interface UserService {
 	
 //	public int registNick(UserDTO userDTO) throws Exception;
 	public List<AdminAskDTO> askList() throws Exception;
-	
 	public List<AdminAnswerDTO> answerList() throws Exception;
 	
 	public int sendMsg(Map msgMap) throws Exception;
