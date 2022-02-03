@@ -24,10 +24,8 @@
 			</div>
 		</div>
 		<div class="content_btn_wrapper right_align">
-			<button class="content_btn" onclick="location.href='userMsgList.jsp'">확인</button>
-			<!-- 저장시 어느 페이지로 넘어가는 지. -->
-			<button class="content_btn color_change" onclick="location.href='userMsgList.jsp'">삭제</button>
-			<!-- 취소가 되면 질문지 LIST로 넘어가야 하는 것이 아닌지 -->
+			<button class="content_btn" onclick="location.href='${path}/userMsgList'">확인</button>
+			<button class="content_btn color_change" onclick="location.href='${path}/userMsgList'">삭제</button>
 		</div>
 		</div>
 	</div>

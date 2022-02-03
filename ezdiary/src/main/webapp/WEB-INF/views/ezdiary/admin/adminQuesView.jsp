@@ -38,10 +38,10 @@
 			</div>
 		</div>
 		<div class="content_btn_wrapper right_align margin_right_add">
-			<button class="content_btn" onclick="location.href='adminQuesList.jsp'">확인</button>
-			<button class="content_btn margin_right_less" onclick="location.href='adminMod.jsp'">수정</button>
+			<button class="content_btn" onclick="location.href='${path}/adminQuesList'">확인</button>
+			<button class="content_btn margin_right_less" onclick="location.href='${path}/adminQuesMod'">수정</button>
 			<!-- 삭제 버튼은 삭제 처리 후 질문지 페이지로 이동 -->
-			<button class="content_btn color_change" onclick="location.href='adminQuesList.jsp'">삭제</button>
+			<button class="content_btn color_change" onclick="location.href='${path}/adminQuesList'">삭제</button>
 		</div>
 	</div>
 <%@ include file="../layout/adminFooter.jsp" %>
