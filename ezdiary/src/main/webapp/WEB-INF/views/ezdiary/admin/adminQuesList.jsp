@@ -13,16 +13,23 @@
 						<th>질문</th>
 						<th>등록일</th>
 					</tr>
-					<tr>
+					<%-- <tr>
 						<td>2</td>
-						<td><a onclick="location.href='adminQuesView.jsp'">취업이 안 되는 코로나...</a></td>
+						<td><a onclick="location.href='${path}/adminQuesView'">취업이 안 되는 코로나...</a></td>
 						<td>2022-02-18</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>질문 1</td>
 						<td>2022-02-18</td>
-					</tr>
+					</tr> --%>
+					<c:forEach items="${quesList}" var="quesList">
+						<tr>
+							<td><c:out value="${quesList.ask_idx }" /></td>
+							<td><a onclick="location.href='${path}/adminQuesView'"><c:out value="${quesList.ask_cntnt }" /></a></td>
+							<td><c:out value="${quesList.write_date }" /></td>							
+						</tr>
+					</c:forEach>
 				</table>
 				<div class="pagging_tab">
 					<button><<</button>
@@ -36,8 +43,8 @@
 								placeholder="검색어 입력" name="searchText" onkeypress="search();"/>
 				</div>
 				<div class="content_btn_wrapper margin_top_less align_right list_view">
-					<button class="content_btn" onclick="location.href='adminSelect.jsp'">이전</button>
-					<button class="content_btn width_add" onclick="location.href='quesWrite.jsp'">질문추가</button>
+					<button class="content_btn" onclick="location.href='${path}/adminselect'">이전</button>
+					<button class="content_btn width_add" onclick="location.href='${path}/quesWrite'">질문추가</button>
 				</div>
 			</div>
 		</div>

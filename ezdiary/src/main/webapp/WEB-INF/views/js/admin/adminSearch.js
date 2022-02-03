@@ -3,3 +3,5 @@ function search(){
 		location.href="../user/userSurvey.jsp";
 	}
 }
+
+

@@ -85,6 +85,12 @@ public class AdminAskDTO {
 		this.edit_date = edit_date;
 	}
 	
+	@Override
+	public String toString() {
+		
+		return "AdminAskDTO [ask_idx=" + ask_idx + ", ask_cntnt=" + ask_cntnt + ", status=" + status + ", writer=" + writer + ", write_date="
+				+ write_date + ", editor=" + editor + ", edit_date=" + edit_date + "]";
+	}
 	
 	
 }

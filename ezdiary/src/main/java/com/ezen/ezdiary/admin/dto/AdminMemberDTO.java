@@ -75,6 +75,13 @@ public class AdminMemberDTO {
 		this.edit_date = edit_date;
 	}
 	
+	@Override
+	public String toString() {
+		
+		return "MemberDTO [memberId=" + admin_id + ", memberPw=" + admin_pw + ", memberName=" + admin_name
+				+ ", status=" + status + ", writer=" + writer + ", write_date=" + write_date
+				+ ", editor=" + editor + ", edit_date=" + edit_date +"]";
+	}
 	
 
 }

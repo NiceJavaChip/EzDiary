@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="mapper.admin">
+  		<resultMap type="adminMemberDTO" id="adminMember">
+  			<result property="admin_idx" column="admin_idx"/>
+  			<result property="admin_id" column="admin_id"/>
+  			<result property="admin_pw" column="admin_pw"/>
+  			<result property="admin_name" column="admin_name"/>
+  			<result property="status" column="status"/>
+  			<result property="writer" column="writer"/>
+  			<result property="write_date" column="write_date"/>
+  			<result property="editor" column="editor"/>
+  			<result property="edit_date" column="edit_date"/>
+  		</resultMap>
+  		<resultMap type="adminAskDTO" id="adminAsk">
+  			<result property="ask_idx" column="ask_idx"/>
+  			<result property="ask_cntnt" column="ask_cntnt"/>
+  			<result property="status" column="status"/>
+  			<result property="writer" column="writer"/>
+  			<result property="write_date" column="write_date"/>
+  			<result property="editor" column="editor"/>
+  			<result property="edit_date" column="edit_date"/>
+  		</resultMap>
+  		<resultMap type="adminAnswerDTO" id="adminAnswer">
+  			<result property="answer_idx" column="answer_idx"/>
+  			<result property="ask_idx" column="ask_idx"/>
+  			<result property="answer_cntnt" column="answer_cntnt"/>
+  			<result property="status" column="status"/>
+  			<result property="writer" column="writer"/>
+  			<result property="write_date" column="write_date"/>
+  			<result property="editor" column="editor"/>
+  			<result property="edit_date" column="edit_date"/>
+  		</resultMap>
+  		
+  		<select id="adminLogin" resultMap="adminMember">
+  		<![CDATA[
+  			SELECT * 
+			FROM EZ_DIARY_ADMIN eda WHERE ADMIN_ID = #{admin_id} AND ADMIN_PW = #{admin_pw}
+		]]>	
+  		</select>
+  		
+  		<select id="quesList" resultMap="adminAsk">
+  		<![CDATA[
+  			select * from EZ_DIARY_ASK ORDER BY ASK_IDX DESC
+		]]>	
+  		</select>
+  		
+  		<insert id="quesAdd">
+  		<![CDATA[
+  			INSERT INTO EZ_DIARY_ASK
+      		(ASK_CNTNT, STATUS) VALUES
+      		(#{ask_cntnt}, 'C')
+  		]]>	
+  		</insert>
+  		
+  </mapper>

@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<td>2</td>
-						<td><a onclick="location.href='userMsgView.jsp'">비대면 수업 개꿀!!!</a></td>
+						<td><a onclick="location.href='${path}/userMsgView'">비대면 수업 개꿀!!!</a></td>
 						<td>2022-02-18</td>
 						<td>닉네임</td>
 					</tr>
@@ -40,7 +40,7 @@
 								placeholder="검색어 입력" name="searchText" onkeypress="search();"/>
 				</div>
 				<div class="content_btn_wrapper margin_top_less align_right list_view">
-					<button class="content_btn" onclick="location.href='adminSelect.jsp'">이전</button>
+					<button class="content_btn" onclick="location.href='${path}/adminselect'">이전</button>
 				</div>
 			</div>
 		</div>

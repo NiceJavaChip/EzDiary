@@ -95,6 +95,11 @@ public class AdminAnswerDTO {
 		this.edit_date = edit_date;
 	}
 	
+	@Override
+	public String toString() {
 	
+		return "AdminAnswerDTO [answer_idx=" + answer_idx +", ask_idx=" + ask_idx + ", answer_cntnt=" + answer_cntnt + ", status=" + status + ", writer=" + writer + ", write_date="
+				+ write_date + ", editor=" + editor + ", edit_date=" + edit_date + "]";
+	}
 
 }
