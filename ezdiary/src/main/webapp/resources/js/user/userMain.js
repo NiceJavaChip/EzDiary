@@ -4,12 +4,13 @@ function enter() {
 	if(event.keyCode==13) {	
 		if($("#nick").val() == "") {
 	 	    alert("닉네임을 입력해주세요.");
-	   	    $("#nick").focus();
-	  	  return false;
-	  	  //location.href="/user/regist";	
+	   	    $("#nick").focus();   	    
+	  	  return false;	
+		} else {
+			 regist.submit();
+			//location.href="/ezdiary/survey";		
 		}
-		location.href="/ezdiary/user/userSurvey.jsp";
-	}
+	} 
 }
 
 function click() {

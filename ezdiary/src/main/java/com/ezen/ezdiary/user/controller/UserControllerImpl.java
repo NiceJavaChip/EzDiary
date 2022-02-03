@@ -1,7 +1,6 @@
 package com.ezen.ezdiary.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
@@ -24,11 +22,13 @@ public class UserControllerImpl implements UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserControllerImpl.class);
 	
 	@Autowired
-	private UserDTO userDTO;
-	
+	private UserDTO userDTO;	
 	@Autowired
-	private UserMsgDTO userMsgDTO;
-	
+	private UserMsgDTO userMsgDTO;	
+	@Autowired
+	private AdminAskDTO askDTO;
+	@Autowired
+	private AdminAnswerDTO answerDTO;
 	@Autowired
 	private UserService userService;
 	
@@ -76,18 +76,23 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	/* 설문조사 페이지 */
-	@Override
-	@RequestMapping(value = "/survey" , method = {RequestMethod.GET , RequestMethod.POST})
-	public String surveyPage() throws Exception {
-		
-		log.info("설문조사 페이지 진입!");
-		return "/ezdiary/user/userSurvey";
-	}
+//	@Override
+//	@RequestMapping(value = "/survey" , method = {RequestMethod.GET , RequestMethod.POST})
+//	public String surveyPage() throws Exception {
+//		
+//		log.info("설문조사 페이지 진입!");
+//		return "/ezdiary/user/userSurvey";
+//	}
 	
 	/* 설문조사 질문리스트 가져오기 */
 	@Override
-	@RequestMapping(value = "/ask" , method = RequestMethod.GET)
-	public String surveyAskList(Model model) throws Exception {
+	@RequestMapping(value = "/survey" , method = RequestMethod.GET)
+	public String surveyAskList(Model model, AdminAnswerDTO answerDTO) throws Exception {
+//		request.setCharacterEncoding("utf-8");
+		model.addAttribute("ask", userService.askList());	// askDTO에 담긴 내용을 "ask"라는 이름으로 model에 담는다
+		System.out.println("model : " + model);
+//		String askIdx = request.getParameter("answer");
+		model.addAttribute("answer", userService.answerList());
 		
 		return "/ezdiary/user/userSurvey";
 	}
@@ -125,7 +130,4 @@ public class UserControllerImpl implements UserController {
 		
 		return "redirect:/result";
 	}
-
-
-
 }

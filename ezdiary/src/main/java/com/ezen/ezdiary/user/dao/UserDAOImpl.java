@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 
@@ -17,17 +18,6 @@ public class UserDAOImpl implements UserDAO {
 	
     @Autowired 
     private SqlSession sqlSession;
-	 
-
-//	@Override
-//	public int insertNick(UserDTO userDTO) throws Exception {
-//		
-//		int result = sqlSession.insert("mapper.usermem", userDTO);
-//		
-//		return result;
-//	
-//
-//	}
 
     @Override
     public int insertNick(UserDTO userDTO) throws Exception {
@@ -39,8 +29,16 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<AdminAskDTO> askList() throws Exception {
     	
-    	return sqlSession.selectList(NAMESPACE, "surveyAskList");
+    	return sqlSession.selectList(NAMESPACE+"surveyAskList");
     }
+    
+    
+    @Override
+    public List<AdminAnswerDTO> answerList() throws Exception {
+    	
+    	return sqlSession.selectList(NAMESPACE+"surveyAnswerList");
+    }
+    
     
 	@Override
 	public int insertMsg(Map msgMap) throws Exception {

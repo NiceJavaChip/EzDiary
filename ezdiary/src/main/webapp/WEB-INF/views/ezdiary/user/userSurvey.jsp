@@ -4,16 +4,19 @@
    <div class="usermain_wrapper survey">
       <div class="content_wrapper" id="divBox">
          <div class="upper_title">
-            <p>취업이 안 되는 코로나 시기... 
-            아이러니 하게도 이 시기에 코딩 열풍이다
-            현재 내 상태는?</p>
+         			<!-- items = ${ask} ->컨트롤러에서 정한 model.addAttribute("ask", askDTO); 의 "ask" -->
+         <c:forEach var="ask" items="${ask}" begin="0" end="0" step="1">
+            <p><c:out value="${ask.ask_cntnt}"/></p>      
+         </c:forEach>
          </div>
-         <div class="select_items">
-            <button class="btn items_btn" id="start_btn1" type="button">코딩과 1도 관련 없는 비전공자 취준생</button>
-            <button class="btn items_btn" id="start_btn1" type="button">4년을 무사히 졸업한 컴광과 취준생</button>
-            <button class="btn items_btn" id="start_btn1" type="button">직무 전환을 위해 고민하는 재직자</button>
-            <button class="btn items_btn" type="button" onclick="location.href='userResultloading.jsp'">더 나은 곳으로 이직을 위해 고민하는 재직자</button>
-         </div>
+         <c:forEach var="answer" items="${answer}">
+	         <div class="select_items">
+	            <button class="btn items_btn" id="start_btn1" type="button"><c:out value="${answer.ask_cntnt}"/></button>
+<!-- 	            <button class="btn items_btn" id="start_btn1" type="button">4년을 무사히 졸업한 컴광과 취준생</button> -->
+<!--                 <button class="btn items_btn" id="start_btn1" type="button">직무 전환을 위해 고민하는 재직자</button> -->
+<!--                 <button class="btn items_btn" type="button" onclick="location.href='userResultloading.jsp'">더 나은 곳으로 이직을 위해 고민하는 재직자</button> -->
+	         </div>
+	     </c:forEach>
          <div class="prev_btn" id="prev_btn_fadeout">
             <button type="button" onclick="location.href='regist'">이 전</button>
          </div>

@@ -6,5 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.ezen.ezdiary.user.dto.UserDTO" alias="userDTO"/>
+		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminAskDTO" alias="askDTO"/>
+		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" alias="answerDTO"/>
 	</typeAliases>
 </configuration>  
