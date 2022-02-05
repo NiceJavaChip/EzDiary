@@ -51,9 +51,29 @@
   		<insert id="quesAdd">
   		<![CDATA[
   			INSERT INTO EZ_DIARY_ASK
-      		(ASK_CNTNT, STATUS) VALUES
-      		(#{ask_cntnt}, 'C')
+      		(ask_idx,ASK_CNTNT, STATUS, writer) VALUES
+      		(seq_ask_num.nextval,#{ask_cntnt}, 'C', #{writer})
   		]]>	
   		</insert>
+  		
+  		<select id="quesAddNO" resultType="int">
+  			<![CDATA[
+  			select nvl(max(ask_idx),0) from EZ_DIARY_ASK
+  			]]>
+  		</select>
+  		
+  		<insert id="answerAdd">
+  			<![CDATA[
+  			INSERT INTO EZ_DIARY_ASK_ANSWER
+      		(ANSWER_IDX, ask_idx, answer_cntnt, STATUS, writer) VALUES
+      		(#{answer_idx},#{ask_idx}, REGEXP_SUBSTR(#{answer_cntnt}, '[^,]+', 1, #{answer_idx}), 'C',#{writer})
+  			]]>
+  		</insert>
+  		
+  		<select id="getAskNO" resultType="adminAskDTO">
+  		<![CDATA[
+  			SELECT * FROM EZ_DIARY_ASK eda WHERE ASK_IDX = #{ask_idx}
+  		]]>
+  		</select>
   		
   </mapper>

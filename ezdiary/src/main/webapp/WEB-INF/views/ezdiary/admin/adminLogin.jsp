@@ -16,7 +16,7 @@
 					</div>
 					<div class="content contents_pwd">
 						<div class="login_icons"><i class="fas fa-lock fa-2x"></i></div>
-						<input type="text" name="admin_pw" placeholder="비밀번호">
+						<input type="password" name="admin_pw" placeholder="비밀번호">
 					</div>
 					<c:if test="${result == 0 }">
 						<div class="login_warn">사용자 ID 또는 비밀번호를 다시 입력해주세요.</div>

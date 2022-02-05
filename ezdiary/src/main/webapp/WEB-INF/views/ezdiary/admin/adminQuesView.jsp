@@ -10,12 +10,12 @@
 				<div class="ques_content">
 					<div class="ques_wrapper_title">질 문</div>
 					<!-- placeholder에 작성했던 질문 내용 삽입될 것 -->
-					<input type="text" placeholder="">
+					<input type="text" readonly="readonly" name="ask_cntnt" value='<c:out value="${askInfo.ask_cntnt}" />'>
 				</div>
 				<div class="write_date_content">
 					<div class="ques_wrapper_title">작성일</div>
 					<!-- placeholder에 질문을 작성했던 날짜 삽입될 것 -->
-					<input type="text" placeholder="">
+					<input type="text" readonly="readonly" name="write_date" value='<c:out value="${askInfo.write_date}" />'>
 				</div>
 			</div>
 			<div class="answer_wrapper">
