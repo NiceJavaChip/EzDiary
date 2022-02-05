@@ -1,5 +1,6 @@
 package com.ezen.ezdiary.admin.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,8 @@ public class AdminControllerImpl implements AdminController {
 	private AdminAnswerDTO answerDTO;
 	@Autowired
 	private AdminAskDTO askDTO;
+	@Autowired
+	private HttpSession session;
 	
 	@RequestMapping(value = "loginView", method = RequestMethod.GET)
 	public String adminlogin() {
@@ -46,7 +50,7 @@ public class AdminControllerImpl implements AdminController {
 		
 		System.out.println("login 메서드 진입");
 		
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		memberDTO = adminService.login(adminMemberDTO);
 		
 		if(memberDTO == null) {
@@ -56,6 +60,7 @@ public class AdminControllerImpl implements AdminController {
 		}
 		
 		session.setAttribute("member", memberDTO);
+		session.setAttribute("isLogOn", true);
 		
 		return "redirect:adminselect";	
 	}
@@ -99,17 +104,35 @@ public class AdminControllerImpl implements AdminController {
 	//질문지 추가 기능
 	@Override
 	@RequestMapping(value = "quesWriteInsert",method = RequestMethod.POST)
-	public ModelAndView quesWriteInsert(AdminAskDTO askDTO, HttpServletRequest request) throws Exception{
+	public ModelAndView quesWriteInsert(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		memberDTO = (AdminMemberDTO) session.getAttribute("member");
-		String writer = memberDTO.getAdmin_name();
-		System.out.println("전달된 writer " + writer);
-		askDTO.setWriter(writer);
+		String writer = memberDTO.getWriter();
 		
-		System.out.println("이름 설정 전 데이터 " + askDTO);
-		adminService.quesEnroll(askDTO);
+		if(writer != null) {
+			askDTO.setWriter(writer);
+			adminService.quesEnroll(askDTO);
+			int parentNO = adminService.lastAskNO(askDTO);
+			System.out.println("parentNO : "+ parentNO);
+			
+			if(parentNO != 0) {
+				
+				answerDTO.setAsk_idx(parentNO);
+				for(int i= 1; i<=3; i++) {
+					askDTO.getAsk_idx();
+					answerDTO.setAnswer_idx(i);
+					
+					String anwerWriter = memberDTO.getWriter();
+					
+					answerDTO.setWriter(anwerWriter);
+					adminService.answerEnroll(answerDTO);
+				}
+			}
+		}
+		
+		
 		mav.setViewName("redirect:/adminQuesList");
 		
 		return mav;
@@ -118,8 +141,12 @@ public class AdminControllerImpl implements AdminController {
 	//추가한 질문지 상세페이지
 	@Override
 	@RequestMapping(value = "adminQuesView", method = RequestMethod.GET) 
-	public ModelAndView quesView() throws Exception{
-		ModelAndView mav = new ModelAndView("ezdiary/admin/adminQuesView");
+	public ModelAndView quesView(int ask_idx) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("askInfo", adminService.getAskNO(ask_idx));
+		mav.setViewName("ezdiary/admin/adminQuesView");
+		
 		return mav;
 	}
 

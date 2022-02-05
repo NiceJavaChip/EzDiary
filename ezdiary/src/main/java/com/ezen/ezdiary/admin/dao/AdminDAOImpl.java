@@ -32,14 +32,38 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public void quesEnroll(AdminAskDTO askDTO) throws Exception {
-		
-		sqlSession.insert(NAMESPACE+"quesAdd",askDTO);
+		/* int quesNO = selectNewQuesNO(); */
+		sqlSession.insert(NAMESPACE+"quesAdd",askDTO);//
 	}
+	
+	/*
+	 * private int selectNewQuesNO() throws Exception{ return
+	 * sqlSession.selectOne(NAMESPACE+"quesAddNO"); }
+	 */
 
 	@Override
 	public void quesAnswerEnroll(AdminAnswerDTO answerDTO) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public int lastAskNO(AdminAskDTO askDTO) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"quesAddNO");
+	}
+
+	@Override
+	public void answerEnroll(AdminAnswerDTO answerDTO) throws Exception {
+		
+		sqlSession.insert(NAMESPACE+"answerAdd",answerDTO);
+	}
+
+	@Override
+	public AdminAskDTO getAskNO(int ask_idx) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getAskNO", ask_idx);
+	}
+
+	
 
 }

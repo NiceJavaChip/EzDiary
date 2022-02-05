@@ -19,4 +19,14 @@ function search(){
 	}
 }
 
+/*AdminQuesList 상세보기 페이지 넘어가기*/
+let moveForm = $("#moveForm");
+
+$(".move").on("click",function(e){
+	e.preventDefault();
+	
+	moveForm.append("<input type='hidden' name='ask_idx' value='"+ $(this).attr("href")+ "'>");
+	moveForm.attr("action", "${path}/adminQuesView");
+	moveForm.submit();
+});
 

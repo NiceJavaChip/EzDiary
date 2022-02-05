@@ -16,4 +16,10 @@ public interface AdminDAO {
 
 	public void quesAnswerEnroll(AdminAnswerDTO answerDTO) throws Exception;
 
+	public void answerEnroll(AdminAnswerDTO answerDTO) throws Exception;
+
+	public int lastAskNO(AdminAskDTO askDTO) throws Exception;
+	
+	public AdminAskDTO getAskNO(int ask_idx) throws Exception;
+
 }
