@@ -47,7 +47,10 @@
         	]]>
         </select>
         
-        <select id="surveyAnswerList" parameterType="_int" resultMap="answer">
-        		SELECT answer_cntnt from EZ_DIARY_ASK_ANSWER where ask_idx = #{ask_idx} order by answer_cntnt ASC
+        <select id="surveyAnswerList" parameterType="int" resultMap="answer">
+        	<![CDATA[ 
+			SELECT answer_cntnt FROM EZ_DIARY_ASK eda INNER JOIN 
+			EZ_DIARY_ASK_ANSWER edaa ON (eda.ASK_IDX = edaa.ASK_IDX) WHERE edaa.ASK_IDX = 1 ORDER BY edaa.ANSWER_CNTNT ASC
+        	]]>	
         </select>
 </mapper>
