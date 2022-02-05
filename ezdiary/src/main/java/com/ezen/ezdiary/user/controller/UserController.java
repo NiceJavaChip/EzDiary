@@ -3,9 +3,12 @@ package com.ezen.ezdiary.user.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
@@ -29,10 +32,10 @@ public interface UserController {
 //	public String surveyPage() throws Exception;
 	
 	/* 설문조사 질문리스트 가져오기 */
-	public String surveyAskList(Model model, AdminAnswerDTO answerDTO) throws Exception;
+	public String surveyAskList(Model model) throws Exception;
 	
 	/* 설문조사 답변리스트 가져오기 */
-	public String surveyAnswerList(Model model) throws Exception;
+	public ModelAndView surveyAnswerList(@RequestParam(value = "ask_idx") int ask_idx, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	/* 설문조사 결과 로딩페이지 */
 	public String loadingPage() throws Exception;

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.user">
-			<resultMap type="askDTO" id="ask">
+			<resultMap type="adminAskDTO" id="ask">
 				<result property="ask_idx" column="ask_idx"/>
 				<result property="ask_cntnt" column="ask_cntnt"/>
 				<result property="status" column="status"/>
@@ -13,7 +13,7 @@
 				<result property="editor" column="editor"/>
 				<result property="edit_date" column="edit_date"/>
 			</resultMap>
-			<resultMap type="answerDTO" id="answer">
+			<resultMap type="adminAnswerDTO" id="answer">
 				<result property="answer_idx" column="answer_idx"/>
 				<result property="ask_idx" column="ask_idx"/>
 				<result property="answer_cntnt" column="answer_cntnt"/>
@@ -47,7 +47,10 @@
         	]]>
         </select>
         
-        <select id="surveyAnswerList" parameterType="_int" resultMap="answer">
-        		SELECT answer_cntnt from EZ_DIARY_ASK_ANSWER where ask_idx = #{ask_idx} order by answer_cntnt ASC
+        <select id="surveyAnswerList" parameterType="int" resultMap="answer">
+        	<![CDATA[ 
+			SELECT answer_cntnt FROM EZ_DIARY_ASK eda INNER JOIN 
+			EZ_DIARY_ASK_ANSWER edaa ON (eda.ASK_IDX = edaa.ASK_IDX) WHERE edaa.ASK_IDX = 1 ORDER BY edaa.ANSWER_CNTNT ASC
+        	]]>	
         </select>
 </mapper>
