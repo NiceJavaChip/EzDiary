@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.user">
-			<resultMap type="askDTO" id="ask">
+			<resultMap type="adminAskDTO" id="ask">
 				<result property="ask_idx" column="ask_idx"/>
 				<result property="ask_cntnt" column="ask_cntnt"/>
 				<result property="status" column="status"/>
@@ -13,7 +13,7 @@
 				<result property="editor" column="editor"/>
 				<result property="edit_date" column="edit_date"/>
 			</resultMap>
-			<resultMap type="answerDTO" id="answer">
+			<resultMap type="adminAnswerDTO" id="answer">
 				<result property="answer_idx" column="answer_idx"/>
 				<result property="ask_idx" column="ask_idx"/>
 				<result property="answer_cntnt" column="answer_cntnt"/>

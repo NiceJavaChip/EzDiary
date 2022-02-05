@@ -26,11 +26,13 @@
 					<c:forEach items="${quesList}" var="quesList">
 						<tr>
 							<td><c:out value="${quesList.ask_idx }" /></td>
-							<td><a onclick="location.href='${path}/adminQuesView'"><c:out value="${quesList.ask_cntnt }" /></a></td>
+							<td><a class="move" href='${path}/adminQuesView?ask_idx=<c:out value="${quesList.ask_idx}" />'>
+								<c:out value="${quesList.ask_cntnt }" /></a></td>
 							<td><c:out value="${quesList.write_date }" /></td>							
 						</tr>
 					</c:forEach>
 				</table>
+				<form method="get" id="moveForm"></form>
 				<div class="pagging_tab">
 					<button><<</button>
 					<button><</button>

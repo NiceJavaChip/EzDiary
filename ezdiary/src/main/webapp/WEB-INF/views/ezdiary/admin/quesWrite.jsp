@@ -20,17 +20,17 @@
 						<div class="answer_content">
 							<div class="answer_wrapper_title">1 번</div>
 							<!-- placeholder에 작성했던 답변 내용 삽입될 것 -->
-							<input type="text" placeholder="">
+							<input type="text" placeholder="" name="answer_cntnt">
 						</div>
 						<div class="answer_content">
 							<div class="answer_wrapper_title">2 번</div>
 							<!-- placeholder에 작성했던 답변 내용 삽입될 것 -->
-							<input type="text" placeholder="">
+							<input type="text" placeholder="" name="answer_cntnt">
 						</div>
 						<div class="answer_content">
 							<div class="answer_wrapper_title">3 번</div>
 							<!-- placeholder에 작성했던 답변 내용 삽입될 것 -->
-							<input type="text" placeholder="">
+							<input type="text" placeholder="" name="answer_cntnt">
 						</div>
 					</div>
 				</div>

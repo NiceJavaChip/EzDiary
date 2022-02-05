@@ -96,3 +96,9 @@ tr td a:hover{
 .content_btn_wrapper .margin_right_less{
 	margin-right: 0px;
 }
+
+/* listView에서 제목에 대한 a 태그 */
+.move{
+	text-decoration: none;
+	color: white;
+}
