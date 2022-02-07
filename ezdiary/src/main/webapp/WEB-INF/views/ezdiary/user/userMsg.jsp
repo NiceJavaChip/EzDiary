@@ -30,14 +30,14 @@
 			<div class="answer_items">
 				<button class="answer_btn" type="button">코딩과 1도 관련 없는 비전공자 취준생</button>
 			</div>
-			<form action="">
+			<form action="msg" method="post">
 				<div class="msg">
 					<span>학원 & 강사님에게 하고 싶은 말</span>
 				</div>
 				<div>
-					<textarea id="test" name="test" maxlength="1000" rows="13" cols="70" placeholder="글자제한 1000자리"></textarea>
-					<div class="text_cnt" id="test_cnt">(0 / 1000)</div>	
-					<input class="submit_btn" type="button" value="전 송">
+					<textarea id="test" name="msg_cntnt" maxlength="1000" rows="13" cols="70" placeholder="글자제한 1000자리"></textarea>
+					<div class="text_cnt" id="test_cnt">(0 / 1000)</div>
+					<input class="submit_btn" type="submit" value="전 송">
 				</div>
 			</form>
 		</div>
