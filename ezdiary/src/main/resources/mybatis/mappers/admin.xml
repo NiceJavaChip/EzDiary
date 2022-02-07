@@ -72,8 +72,33 @@
   		
   		<select id="getAskNO" resultType="adminAskDTO">
   		<![CDATA[
-  			SELECT * FROM EZ_DIARY_ASK eda WHERE ASK_IDX = #{ask_idx}
+  			SELECT * FROM EZ_DIARY_ASK WHERE ASK_IDX = #{ask_idx}
   		]]>
   		</select>
+  		
+  		<!-- <select id="getAnswerInfo" resultType="adminAnswerDTO">
+  		<![CDATA[
+  			SELECT * FROM EZ_DIARY_ASK_ANSWER WHERE ASK_IDX = #{ask_idx} AND ANSWER_IDX = #{answer_idx}
+  		]]>
+  		</select>
+  		
+  		<select id="anwerInfoList" resultMap="adminAnswer">
+  		<![CDATA[
+  			select * from EZ_DIARY_ASK_ANSWER
+		]]>	
+  		</select> -->
+  		
+  		<select id="selectAnswerList" parameterType="int" resultMap="adminAnswer">
+  		<![CDATA[
+  			select * from EZ_DIARY_ASK_ANSWER where ASK_IDX = #{ask_idx} order by answer_idx
+		]]>	
+  		</select>
+  		
+  		<update id="modifyQues" parameterType="java.util.Map">
+  		<![CDATA[
+  			UPDATE EZ_DIARY_ASK SET status= 'U', ask_cntnt=#{ask_cntnt}, edit_date = SYSDATE, EDITOR = #{editor} 
+  			WHERE ask_idx = #{ask_idx}
+  		]]>	
+  		</update>
   		
   </mapper>

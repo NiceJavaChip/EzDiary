@@ -1,6 +1,7 @@
 package com.ezen.ezdiary.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,38 @@ public class AdminDAOImpl implements AdminDAO {
 	public AdminAskDTO getAskNO(int ask_idx) throws Exception {
 		
 		return sqlSession.selectOne(NAMESPACE+"getAskNO", ask_idx);
+	}
+
+	@Override
+	public AdminAnswerDTO getAnswerInfo(int answer_idx) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getAnswerInfo", answer_idx);
+	}
+
+	/*
+	 * @Override public List<AdminAnswerDTO> anwerInfoList() throws Exception { //
+	 * TODO Auto-generated method stub return
+	 * sqlSession.selectList(NAMESPACE+"anwerInfoList"); }
+	 */
+
+	@Override
+	public List<AdminAnswerDTO> selectAnswerList(int ask_idx) throws Exception {
+		
+		List<AdminAnswerDTO> selectAnswerList = sqlSession.selectList(NAMESPACE+"selectAnswerList", ask_idx);
+		
+		return selectAnswerList;
+	}
+
+	@Override
+	public int modifyQues(AdminAskDTO askDTO) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"modifyQues", askDTO);
+	}
+
+	@Override
+	public void modifyQues(Map<String, Object> articleMap) throws Exception {
+		
+		sqlSession.update(NAMESPACE+"modifyQues", articleMap); 
 	}
 
 	
