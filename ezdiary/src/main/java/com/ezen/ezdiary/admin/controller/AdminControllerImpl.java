@@ -1,6 +1,7 @@
 package com.ezen.ezdiary.admin.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -138,23 +140,75 @@ public class AdminControllerImpl implements AdminController {
 		return mav;
 	}
 
-	//추가한 질문지 상세페이지
+	//질문지 상세페이지
 	@Override
-	@RequestMapping(value = "adminQuesView", method = RequestMethod.GET) 
-	public ModelAndView quesView(int ask_idx) throws Exception{
+	@RequestMapping(value = "adminQuesView", method = {RequestMethod.GET,RequestMethod.POST}) 
+	public ModelAndView quesView(@RequestParam("ask_idx") int ask_idx) throws Exception{
+		
+		
+		Map<String, Object> articleMap = adminService.getAskNO(ask_idx);
+		
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("askInfo", adminService.getAskNO(ask_idx));
+//		mav.addObject("askInfo", adminService.getAskNO(ask_idx));
 		mav.setViewName("ezdiary/admin/adminQuesView");
+		mav.addObject("articleMap", articleMap);
+		return mav;
+	}
+	
+	//추가한 질문지 상세페이지의 수정 페이지
+	@Override
+	@RequestMapping(value = "adminQuesModPage", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView quesWriteUpdatePage(@RequestParam("ask_idx") int ask_idx) throws Exception {
+		
+		Map<String, Object> articleMap = adminService.getAskNO(ask_idx);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("ezdiary/admin/adminquesMod");
+		mav.addObject("articleMap", articleMap);
 		
 		return mav;
 	}
 
-	//추가한 질문지 상세페이지의 수정 페이지
+	//추가한 질문지 수정페이지의 수정하기
 	@Override
-	@RequestMapping(value = "adminQuesMod")
-	public ModelAndView quesWriteUpdate() throws Exception{
-		ModelAndView mav = new ModelAndView("ezdiary/admin/adminquesMod");
+	@RequestMapping(value = "adminQuesMod", method = RequestMethod.POST)
+	public ModelAndView quesWriteUpdate(AdminAskDTO askDTO, HttpServletRequest request, RedirectAttributes rttr) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		
+		session = request.getSession();
+		memberDTO = (AdminMemberDTO) session.getAttribute("member");
+		String writer = memberDTO.getWriter();
+		
+		if(writer != null) {
+			askDTO.setEditor(writer);
+			
+			Map<String, Object> articleMap = new HashMap<>();
+			
+			Enumeration enu = request.getParameterNames();
+			while(enu.hasMoreElements()) {
+				String name = (String) enu.nextElement();
+				
+				String value = request.getParameter(name);
+				articleMap.put(name, value);
+			}
+			
+			String ask_idx = (String) articleMap.get("ask_idx");
+			String ask_ask_cntnt = (String) articleMap.get("ask_ask_cntnt");
+			adminService.modifyQues(articleMap); 
+			
+			/*
+			 * if(ask_ask_cntnt != null) { askDTO.setAsk_cntnt(ask_ask_cntnt);
+			 * adminService.modifyQues(askDTO); rttr.addFlashAttribute("result",
+			 * "modify success"); System.out.println("수정 성공!"); }
+			 */
+			
+			mav.setViewName("redirect:/adminQuesView?ask_idx="+ask_idx);
+		}
+		
+//		mav.setViewName("redirect:/adminQuesView");
+		
+		
 		return mav;
 	}
 
@@ -189,6 +243,8 @@ public class AdminControllerImpl implements AdminController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 	
