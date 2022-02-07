@@ -1,6 +1,8 @@
 package com.ezen.ezdiary.admin.sevice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,11 +50,41 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public AdminAskDTO getAskNO(int ask_idx) throws Exception {
+	public Map<String, Object> getAskNO(int ask_idx) throws Exception {
 		
-		return adminDAO.getAskNO(ask_idx);
+		Map<String, Object> articleMap = new HashMap<>();
+		AdminAskDTO getAskInfo = adminDAO.getAskNO(ask_idx);
+		List<AdminAnswerDTO> answerInfoList = adminDAO.selectAnswerList(ask_idx); 
+		
+		articleMap.put("getAskInfo", getAskInfo);
+		articleMap.put("answerInfoList", answerInfoList);
+		
+		return articleMap;
 	}
 
+	@Override
+	public int modifyQues(AdminAskDTO askDTO) throws Exception {
+		
+		return adminDAO.modifyQues(askDTO);
+	}
+
+	@Override
+	public void modifyQues(Map<String, Object> articleMap) throws Exception {
+		
+		adminDAO.modifyQues(articleMap);
+		
+	}
+
+	/*
+	 * @Override public AdminAnswerDTO getAnswerInfo(int answer_idx) throws
+	 * Exception {
+	 * 
+	 * return adminDAO.getAnswerInfo(answer_idx); }//
+	 * 
+	 * @Override public List<AdminAnswerDTO> anwerInfoList() throws Exception {
+	 * 
+	 * return adminDAO.anwerInfoList(); }
+	 */
 	
 
 }

@@ -25,8 +25,18 @@ let moveForm = $("#moveForm");
 $(".move").on("click",function(e){
 	e.preventDefault();
 	
-	moveForm.append("<input type='hidden' name='ask_idx' value='"+ $(this).attr("href")+ "'>");
+	moveForm.append("<input type='hidden' name='ask_idx' value='"+ $(this).attr("href")+"'>");
 	moveForm.attr("action", "${path}/adminQuesView");
 	moveForm.submit();
+});
+
+let moveModForm = $("#moveModForm");
+
+$("#moveModFormBtn").on("click",function(e){
+	e.preventDefault();
+	
+	moveModForm.append("<input type='hidden' name='ask_idx' value='"+ $(this).attr("href")+"'>");
+	moveModForm.attr("action", "${path}/adminQuesModPage");
+	moveModForm.submit();
 });
 

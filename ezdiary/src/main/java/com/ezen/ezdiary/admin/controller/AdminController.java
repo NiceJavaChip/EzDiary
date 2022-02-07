@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,8 +25,9 @@ public interface AdminController {
 	public ModelAndView quesListArticles() throws Exception;
 	public ModelAndView quesWrite() throws Exception;
 	public ModelAndView quesWriteInsert(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request) throws Exception;
-	public ModelAndView quesView(int ask_idx) throws Exception;
-	public ModelAndView quesWriteUpdate() throws Exception;
+	public ModelAndView quesView(@RequestParam("ask_idx") int ask_idx) throws Exception;
+	public ModelAndView quesWriteUpdatePage(@RequestParam("ask_idx") int ask_idx) throws Exception;
+	public ModelAndView quesWriteUpdate(AdminAskDTO askDTO, HttpServletRequest request, RedirectAttributes rttr) throws Exception;
 	public ModelAndView quesWriteRemove() throws Exception;
 
 	//user

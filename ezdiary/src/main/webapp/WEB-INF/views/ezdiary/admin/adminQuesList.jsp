@@ -26,7 +26,11 @@
 					<c:forEach items="${quesList}" var="quesList">
 						<tr>
 							<td><c:out value="${quesList.ask_idx }" /></td>
-							<td><a class="move" href='${path}/adminQuesView?ask_idx=<c:out value="${quesList.ask_idx}" />'>
+							<td><a class="move" href='${path}/adminQuesView?ask_idx=
+													<c:out value="${quesList.ask_idx}"/>
+													<c:forEach items="${answerInfo}" var="answerInfo">
+													&answer_idx=<c:out value="${answerInfo.answer_idx}"/>
+													</c:forEach>'>
 								<c:out value="${quesList.ask_cntnt }" /></a></td>
 							<td><c:out value="${quesList.write_date }" /></td>							
 						</tr>
