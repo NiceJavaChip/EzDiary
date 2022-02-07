@@ -7,11 +7,14 @@ function enter() {
 	   	    $("#nick").focus();   	    
 	  	  return false;	
 		} else {
+			console.log(1);
 			 regist.submit();
-			//location.href="/ezdiary/survey";		
+			 console.log(2);
+			 //location.href='${path}/survey?ask_idx=<c:out value="${answer.ask_idx}" />'	
 		}
 	} 
 }
+
 
 function click() {
 	var link = 'userResultloading.jsp';

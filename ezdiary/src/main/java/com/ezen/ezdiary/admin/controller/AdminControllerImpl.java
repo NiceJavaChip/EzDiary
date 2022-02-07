@@ -145,6 +145,7 @@ public class AdminControllerImpl implements AdminController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("askInfo", adminService.getAskNO(ask_idx));
+		System.out.println("ask_idx : " + ask_idx);
 		mav.setViewName("ezdiary/admin/adminQuesView");
 		
 		return mav;

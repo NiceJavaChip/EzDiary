@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
+import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -26,33 +27,35 @@ public class UserDAOImpl implements UserDAO {
     	
     }
     
-    @Override
-    public List<AdminAskDTO> askList() throws Exception {
-    	
-    	return sqlSession.selectList(NAMESPACE+"surveyAskList");
-    }
-    
-    
-    @Override
-    public List<AdminAnswerDTO> answerList() throws Exception {
-    	
-    	return sqlSession.selectList(NAMESPACE+"surveyAnswerList");
-    }
-    
-    
 	@Override
-	public int insertMsg(Map msgMap) throws Exception {
-		
-		
-		  int msgNo = selectMsgNo(); 
-		  msgMap.put("msgNo", msgNo);
-		  
-		  sqlSession.insert("", msgMap);
-		 
-		
-		return 0;
-
+	public AdminAskDTO selectAsk() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectAsk");
 	}
+	
+	@Override
+	public AdminAnswerDTO selectAnswer() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectAnswer");
+	}
+    
+    @Override
+    public AdminAskDTO askList(int ask_idx) throws Exception {
+    	return sqlSession.selectOne(NAMESPACE+"surveyAskList", ask_idx);
+    }   
+    
+//    @Override
+//    public List<AdminAskDTO> askList(int ask_idx) throws Exception {
+//    	
+//    	return sqlSession.selectList(NAMESPACE+"surveyAskList", ask_idx);
+//    }
+
+    
+    @Override
+    public AdminAnswerDTO answerList(int answer_idx) throws Exception {
+    	
+    	return sqlSession.selectOne(NAMESPACE+"surveyAnswerList", answer_idx);
+    }
+    
+   
 	
 	private int selectMsgNo() throws Exception {
 	
@@ -60,5 +63,14 @@ public class UserDAOImpl implements UserDAO {
 		
 
 	}
+
+	@Override
+	public int insertMsg(UserMsgDTO msgDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"insertMsg", msgDTO);
+	}
+
+
+
+
 
 }

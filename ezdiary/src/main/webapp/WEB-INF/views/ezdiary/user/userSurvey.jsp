@@ -5,9 +5,9 @@
       <div class="content_wrapper" id="divBox">
          <div class="upper_title">
          			<!-- items = ${ask} ->컨트롤러에서 정한 model.addAttribute("ask", askDTO); 의 "ask" -->
-         <c:forEach var="ask" items="${ask}">
-            <p><c:out value="${ask.ask_cntnt}"/></p>      
-         </c:forEach>
+<%-- 	         <c:forEach var="ask" items="${ask}"> --%>
+	            <p><c:out value="${ask.ask_cntnt}"/></p>      
+<%-- 	         </c:forEach> --%>
          </div>
          <c:forEach var="answer" items="${answer}">
 	         <div class="select_items">
