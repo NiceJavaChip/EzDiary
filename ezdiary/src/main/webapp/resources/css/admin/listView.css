@@ -102,3 +102,21 @@ tr td a:hover{
 	text-decoration: none;
 	color: white;
 }
+
+.pageInfo{
+	list-style: none;
+}
+
+.pageInfo li{
+	display: inline-block;
+}
+
+.pageInfo li button:hover{
+	text-decoration: underline;
+}
+
+.active{
+	font-size : 15px;
+	font-weight: bold;
+	text-decoration: underline;
+}

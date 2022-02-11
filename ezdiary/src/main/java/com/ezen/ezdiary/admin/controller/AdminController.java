@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
 
 public interface AdminController {
@@ -22,16 +23,18 @@ public interface AdminController {
 	//board
 	//admin
 	public String adminselect() throws Exception;
-	public ModelAndView quesListArticles() throws Exception;
+	public ModelAndView quesListArticles(AdminBoardDTO boardDTO, HttpServletRequest request) throws Exception;
 	public ModelAndView quesWrite() throws Exception;
 	public ModelAndView quesWriteInsert(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request) throws Exception;
 	public ModelAndView quesView(@RequestParam("ask_idx") int ask_idx) throws Exception;
 	public ModelAndView quesWriteUpdatePage(@RequestParam("ask_idx") int ask_idx) throws Exception;
-	public ModelAndView quesWriteUpdate(AdminAskDTO askDTO, HttpServletRequest request, RedirectAttributes rttr) throws Exception;
-	public ModelAndView quesWriteRemove() throws Exception;
+	public ModelAndView quesWriteUpdate(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request, RedirectAttributes rttr) throws Exception;
+	public ModelAndView quesWriteRemove(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request) throws Exception;
 
 	//user
 	public ModelAndView userMsgListArticles() throws Exception;
 	public ModelAndView userMsgView() throws Exception;
 	public ModelAndView userMsgRemove() throws Exception;
+
 }
+

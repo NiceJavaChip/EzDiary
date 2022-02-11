@@ -23,9 +23,9 @@
 						<td>질문 1</td>
 						<td>2022-02-18</td>
 					</tr> --%>
-					<c:forEach items="${quesList}" var="quesList">
+					<c:forEach items="${quesList}" var="quesList" varStatus="status">
 						<tr>
-							<td><c:out value="${quesList.ask_idx }" /></td>
+							<td><c:out value="${quesList.ask_idx}" /></td>
 							<td><a class="move" href='${path}/adminQuesView?ask_idx=
 													<c:out value="${quesList.ask_idx}"/>
 													<c:forEach items="${answerInfo}" var="answerInfo">
@@ -36,17 +36,32 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<form method="get" id="moveForm"></form>
-				<div class="pagging_tab">
-					<button><<</button>
-					<button><</button>
-					<button>1</button>
-					<button>></button>
-					<button>>></button>
+				<form method="get" id="moveForm">
+					<input type="hidden" name="pageNum" value="${boardPage.boardDTO.pageNum}"> 
+					 <input type="hidden" name="search" value="${boardPage.boardDTO.search}">
+				</form>
+				<div class="pagging_box">
+					<div class="pagging_tab">
+						<ul id="pageInfo" class="pageInfo">
+						<c:if test="${boardPage.prev}">
+	                    	<li><button onclick="
+	                    	location.href='${path}/adminQuesList?pageNum=${boardPage.startPage-1}'"><</button></li>
+	                	</c:if>
+							<c:forEach var="num" begin="${boardPage.startPage}" end="${boardPage.endPage}">
+								<li>
+									<button class="${boardPage.boardDTO.pageNum == num ? 'active':''}" onclick="location.href='${path}/adminQuesList?pageNum=${num}'">${num}</button>
+								</li>
+							</c:forEach>
+						<c:if test="${boardPage.next}">
+	                    	<li><button onclick="
+	                    	location.href='${path}/adminQuesList?pageNum=${boardPage.endPage+1}'">></button></li>
+	                	</c:if>
+						</ul>
+					</div>
 				</div>
 				<div class="search_wrapper">
-					<input type="text" class="search_input_box"
-								placeholder="검색어 입력" name="searchText" onkeypress="search();"/>
+					<input id="search" type="text" class="search_input_box"
+								placeholder="검색어 입력" name="search" value="${boardPage.boardDTO.search}"/>
 				</div>
 				<div class="content_btn_wrapper margin_top_less align_right list_view">
 					<button class="content_btn" onclick="location.href='${path}/adminselect'">이전</button>

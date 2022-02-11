@@ -22,7 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
+import com.ezen.ezdiary.admin.dto.BoardPageDTO;
 import com.ezen.ezdiary.admin.sevice.AdminService;
 
 @Controller("adminController")
@@ -82,14 +84,46 @@ public class AdminControllerImpl implements AdminController {
 	
 	//jsp 페이지에서 .do를 붙였는데도 adminselect 페이지가 나왔다... 왜?
 
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value = "adminQuesList", method = RequestMethod.GET) public
+	 * ModelAndView quesListArticles() throws Exception{ ModelAndView mav = new
+	 * ModelAndView("ezdiary/admin/adminQuesList");
+	 * 
+	 * List<AdminAskDTO> askDTO = adminService.quseList();
+	 * System.out.println("전달된 데이터 " + askDTO); mav.addObject("quesList", askDTO);
+	 * 
+	 * return mav; }
+	 */
+	
 	@Override
 	@RequestMapping(value = "adminQuesList", method = RequestMethod.GET)
-	public ModelAndView quesListArticles() throws Exception{
-		ModelAndView mav = new ModelAndView("ezdiary/admin/adminQuesList");
+	public ModelAndView quesListArticles(AdminBoardDTO boardDTO, HttpServletRequest request) throws Exception{
+		ModelAndView mav = new ModelAndView();
+
+		  String search = request.getParameter("search");
+		  
+		  System.out.println("search = "+ search);
+		  
+		  boardDTO.setSearch(search);
+		  
+		  System.out.println("뭘까요? = "+boardDTO.getSearch());
 		
-		List<AdminAskDTO> askDTO = adminService.quseList();
-		System.out.println("전달된 데이터 " + askDTO);
-		mav.addObject("quesList", askDTO);
+		  mav.addObject("quesList", adminService.getQuesListPaging(boardDTO));
+		  System.out.println("전달된 데이터 " + boardDTO);
+		  
+		  int amount = adminService.getAmount(boardDTO);
+		  
+		  System.out.println(amount);
+		  
+		  BoardPageDTO pageDTO = new BoardPageDTO(boardDTO, amount);
+		  
+		  System.out.println(pageDTO);
+		  
+		  mav.addObject("boardPage", pageDTO);
+		  
+		  mav.setViewName("ezdiary/admin/adminQuesList");
 		
 		return mav;
 	}
@@ -116,6 +150,7 @@ public class AdminControllerImpl implements AdminController {
 		if(writer != null) {
 			askDTO.setWriter(writer);
 			adminService.quesEnroll(askDTO);
+			System.out.println("quesINFO Insert" + askDTO);
 			int parentNO = adminService.lastAskNO(askDTO);
 			System.out.println("parentNO : "+ parentNO);
 			
@@ -150,7 +185,7 @@ public class AdminControllerImpl implements AdminController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("askInfo", adminService.getAskNO(ask_idx));
+		/* mav.addObject("askInfo", adminService.getAskNO(ask_idx)); */
 		System.out.println("ask_idx : " + ask_idx);
 
 		mav.setViewName("ezdiary/admin/adminQuesView");
@@ -175,41 +210,56 @@ public class AdminControllerImpl implements AdminController {
 	//추가한 질문지 수정페이지의 수정하기
 	@Override
 	@RequestMapping(value = "adminQuesMod", method = RequestMethod.POST)
-	public ModelAndView quesWriteUpdate(AdminAskDTO askDTO, HttpServletRequest request, RedirectAttributes rttr) throws Exception{
+	public ModelAndView quesWriteUpdate(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request, RedirectAttributes rttr) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		
 		session = request.getSession();
 		memberDTO = (AdminMemberDTO) session.getAttribute("member");
 		String writer = memberDTO.getWriter();
 		
+
 		if(writer != null) {
-			askDTO.setEditor(writer);
 			
 			Map<String, Object> articleMap = new HashMap<>();
+			
+			askDTO.setEditor(writer);
+			
+			articleMap.put("editor", askDTO.getEditor());
 			
 			Enumeration enu = request.getParameterNames();
 			while(enu.hasMoreElements()) {
 				String name = (String) enu.nextElement();
 				
 				String value = request.getParameter(name);
+				
 				articleMap.put(name, value);
 			}
-			
+
 			String ask_idx = (String) articleMap.get("ask_idx");
-			String ask_ask_cntnt = (String) articleMap.get("ask_ask_cntnt");
+
 			adminService.modifyQues(articleMap); 
 			
-			/*
-			 * if(ask_ask_cntnt != null) { askDTO.setAsk_cntnt(ask_ask_cntnt);
-			 * adminService.modifyQues(askDTO); rttr.addFlashAttribute("result",
-			 * "modify success"); System.out.println("수정 성공!"); }
-			 */
+			
+			for(int i= 1; i<=3; i++) {
+				askDTO.getAsk_idx();
+				answerDTO.setAnswer_idx(i);
+				
+				articleMap.put("answer_idx", answerDTO.getAnswer_idx());
+				
+				String anwerWriter = memberDTO.getWriter();
+				answerDTO.setWriter(anwerWriter);
+				
+				articleMap.put("editor", answerDTO.getWriter());
+				
+				articleMap.put("answer_cntnt", answerDTO.getAnswer_cntnt());
+				adminService.modifyAnswer(articleMap);
+
+				System.out.println("answer_idx"  + articleMap.get("answer_idx"));
+				System.out.println("answer_cntnt"  + articleMap.get("answer_cntnt"));
+			}
 			
 			mav.setViewName("redirect:/adminQuesView?ask_idx="+ask_idx);
 		}
-		
-//		mav.setViewName("redirect:/adminQuesView");
-		
 		
 		return mav;
 	}
@@ -217,8 +267,51 @@ public class AdminControllerImpl implements AdminController {
 	
 	//추가한 질문지 상세페이지 삭제 기능
 	@Override
-	public ModelAndView quesWriteRemove() throws Exception{
-		ModelAndView mav = new ModelAndView("ezdiary/admin/adminQuesView");
+	@RequestMapping(value = "removeQues", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView quesWriteRemove(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		session = request.getSession();
+		memberDTO = (AdminMemberDTO) session.getAttribute("member");
+		String writer = memberDTO.getWriter();
+		
+
+		if(writer != null) {
+			
+			Map<String, Object> articleMap = new HashMap<>();
+			
+			askDTO.setEditor(writer);
+			
+			articleMap.put("editor", askDTO.getEditor());
+			
+			Enumeration enu = request.getParameterNames();
+			
+			while(enu.hasMoreElements()) {
+				String name = (String) enu.nextElement();
+				String value = request.getParameter(name);
+				articleMap.put(name, value);
+			}
+			
+			int askNOresult = askDTO.getAsk_idx();
+			
+			System.out.println(askNOresult);
+			
+			articleMap.put("ask_idx", askDTO.getAsk_idx());
+
+			adminService.removeQues(articleMap); 
+
+
+			askDTO.getAsk_idx();
+			  
+			String anwerWriter = memberDTO.getWriter();
+			answerDTO.setWriter(anwerWriter); 
+		    articleMap.put("editor",answerDTO.getWriter());  
+				  
+			adminService.removeAnswer(articleMap);
+
+			mav.setViewName("redirect:/adminQuesList");
+		}
+		
 		return mav;
 	}
 

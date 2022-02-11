@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ezen.ezdiary.admin.dao.AdminDAO;
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
 
 @Service
@@ -73,6 +74,36 @@ public class AdminServiceImpl implements AdminService{
 		
 		adminDAO.modifyQues(articleMap);
 		
+	}
+
+	@Override
+	public void modifyAnswer(Map<String, Object> articleMap) throws Exception {
+		
+		adminDAO.modifyAnswer(articleMap);
+	}
+
+	@Override
+	public void removeQues(Map<String, Object> articleMap) throws Exception {
+		
+		adminDAO.removeQues(articleMap);
+	}
+
+	@Override
+	public void removeAnswer(Map<String, Object> articleMap) throws Exception {
+		
+		adminDAO.removeAnswer(articleMap);
+	}
+
+	@Override
+	public List<AdminAskDTO> getQuesListPaging(AdminBoardDTO boardDTO) throws Exception {
+		
+		return adminDAO.getQuesListPaging(boardDTO);
+	}
+
+	@Override
+	public int getAmount(AdminBoardDTO boardDTO) throws Exception {
+		
+		return adminDAO.getAmount(boardDTO);
 	}
 
 	/*

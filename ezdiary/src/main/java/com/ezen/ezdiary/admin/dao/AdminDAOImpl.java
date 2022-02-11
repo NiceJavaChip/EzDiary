@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
 
 @Repository("adminDAO")
@@ -95,6 +96,36 @@ public class AdminDAOImpl implements AdminDAO {
 	public void modifyQues(Map<String, Object> articleMap) throws Exception {
 		
 		sqlSession.update(NAMESPACE+"modifyQues", articleMap); 
+	}
+
+	@Override
+	public void modifyAnswer(Map<String, Object> articleMap) throws Exception {
+		
+		sqlSession.update(NAMESPACE+"modifyAnswer", articleMap);
+	}
+
+	@Override
+	public void removeQues(Map<String, Object> articleMap) throws Exception {
+		
+		sqlSession.update(NAMESPACE+"removeQues", articleMap);
+	}
+
+	@Override
+	public void removeAnswer(Map<String, Object> articleMap) throws Exception {
+		
+		sqlSession.update(NAMESPACE+"removeAnswer", articleMap);
+	}
+
+	@Override
+	public List<AdminAskDTO> getQuesListPaging(AdminBoardDTO boardDTO) throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+"getQuesListPaging",boardDTO);
+	}
+
+	@Override
+	public int getAmount(AdminBoardDTO boardDTO) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getAmount");
 	}
 
 	

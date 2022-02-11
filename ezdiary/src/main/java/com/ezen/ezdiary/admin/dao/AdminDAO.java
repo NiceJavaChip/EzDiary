@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
 
 public interface AdminDAO {
@@ -33,4 +34,16 @@ public interface AdminDAO {
 
 	public void modifyQues(Map<String, Object> articleMap) throws Exception;
 
+	public void modifyAnswer(Map<String, Object> articleMap) throws Exception;
+
+	public void removeQues(Map<String, Object> articleMap) throws Exception;
+
+	public void removeAnswer(Map<String, Object> articleMap) throws Exception;
+
+	
+	public List<AdminAskDTO> getQuesListPaging(AdminBoardDTO boardDTO) throws Exception;
+	
+	public int getAmount(AdminBoardDTO boardDTO) throws Exception;
+	
+	
 }
