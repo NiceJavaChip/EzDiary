@@ -35,6 +35,19 @@
   			<result property="edit_date" column="edit_date"/>
   		</resultMap>
   		
+  		<resultMap type="adminBoardDTO" id="adminBoard">
+  			<result property="pageNum" column="pageNum"/>
+  			<result property="total" column="total"/>
+  		</resultMap>
+  		
+  		<resultMap type="boardPageDTO" id="boardPage">
+  			<result property="startPage" column="startPage"/>
+  			<result property="endPage" column="endPage"/>
+  			<result property="prev" column="prev"/>
+  			<result property="next" column="next"/>
+  			<result property="amount" column="amount"/>
+  		</resultMap>
+  		
   		<select id="adminLogin" resultMap="adminMember">
   		<![CDATA[
   			SELECT * 
@@ -44,7 +57,7 @@
   		
   		<select id="quesList" resultMap="adminAsk">
   		<![CDATA[
-  			select * from EZ_DIARY_ASK ORDER BY ASK_IDX DESC
+  			SELECT * FROM EZ_DIARY_ASK eda WHERE STATUS = 'U' OR STATUS = 'C' ORDER BY ASK_IDX DESC
 		]]>	
   		</select>
   		
@@ -100,5 +113,52 @@
   			WHERE ask_idx = #{ask_idx}
   		]]>	
   		</update>
+  		
+  		<update id="modifyAnswer" parameterType="java.util.Map">
+  		<![CDATA[
+  			UPDATE EZ_DIARY_ASK_ANSWER SET status= 'U', ANSWER_CNTNT=REGEXP_SUBSTR(#{answer_cntnt}, '[^,]+', 1, #{answer_idx}), edit_date = SYSDATE, EDITOR = #{editor} 
+  			WHERE ask_idx = #{ask_idx} and ANSWER_IDX = #{answer_idx}
+  		]]>	
+  		</update>
+  		
+  		<update id="removeQues" parameterType="java.util.Map">
+  		<![CDATA[
+  			UPDATE EZ_DIARY_ASK SET status= 'D', edit_date = SYSDATE, EDITOR = #{editor} 
+  			WHERE ask_idx = #{ask_idx}
+  		]]>	
+  		</update>
+  		
+  		<update id="removeAnswer" parameterType="java.util.Map">
+  		<![CDATA[
+  			UPDATE EZ_DIARY_ASK_ANSWER SET status= 'D', edit_date = SYSDATE, EDITOR = #{editor} 
+  			WHERE ask_idx = #{ask_idx}
+  		]]>	
+  		</update>
+  		
+  		<select id="getQuesListPaging" resultType="adminAskDTO">
+  		<![CDATA[	
+  			Select * from (select rownum num, aa.* from (select * from EZ_DIARY_ASK WHERE status != 'D' 
+  			]]>
+  			<if test="search != null">
+                    and ASK_CNTNT like '%'||#{search}||'%' 
+            </if>
+  			<![CDATA[
+  			order by ask_idx desc) aa)
+  			 where num > (#{pageNum} -1) * #{total} and num <= #{pageNum} * #{total} 
+  			 
+  		]]>
+  		</select>
+  		
+  		<select id="getAmount" resultType="int">
+  		<![CDATA[
+  			  SELECT count(*) FROM EZ_DIARY_ASK where status != 'D'
+  		]]>
+  			<if test="search != null">
+                    and ASK_CNTNT like '%'||#{search}||'%' 
+            </if>
+  		</select>
+  		
+  		
+  		
   		
   </mapper>

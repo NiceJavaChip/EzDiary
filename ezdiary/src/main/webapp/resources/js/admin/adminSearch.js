@@ -7,20 +7,39 @@ $(document).ready(function() {
     });
 });
 
-/*질문지 List 정보 가져오기 -> 이것은 무엇인가... */
-/*$(document).ready(function() {
-    let result = '<c:out value="${result}"/>';
-    checkAlert(result);
-});*/
+$(document).ready(function() {
+    $('.content input').on('keyup', function(key) {
+        if(key.keyCode == 13){
+       	$('#frmLogin').attr("action","login");
+        $('#frmLogin').submit();
+        }
+    });
+});
 
-function search(){
-	if(event.keyCode==13){
-		location.href="../user/userSurvey.jsp";
-	}
-}
+
 
 /*AdminQuesList 상세보기 페이지 넘어가기*/
+
 let moveForm = $("#moveForm");
+
+
+
+ $(document).ready(function() {
+ 
+ let moveForm = $("#moveForm");
+ 
+ $(".search_wrapper #search").keydown(function(key) {
+      if (key.keyCode == 13) {
+		
+        let val = $("input[name='search']").val();
+        console.log(val);
+        moveForm.find("input[name='search']").val(val);
+        moveForm.find("input[name='pageNum']").val(1);
+        moveForm.submit();
+                }
+            });
+	
+        });
 
 $(".move").on("click",function(e){
 	e.preventDefault();
@@ -31,6 +50,7 @@ $(".move").on("click",function(e){
 });
 
 let moveModForm = $("#moveModForm");
+let removeForm = $("#removeForm");
 
 $("#moveModFormBtn").on("click",function(e){
 	e.preventDefault();
@@ -39,4 +59,12 @@ $("#moveModFormBtn").on("click",function(e){
 	moveModForm.attr("action", "${path}/adminQuesModPage");
 	moveModForm.submit();
 });
+
+/*$("#quesRemoveBtn").on("click",function(e){
+	e.preventDefault();
+	
+	removeForm.append("<input type='hidden' name='ask_idx' value='"+ $(this).attr("href")+"'>");
+	removeForm.attr("action", "${path}/removeQues");
+	removeForm.submit();
+});*/
 

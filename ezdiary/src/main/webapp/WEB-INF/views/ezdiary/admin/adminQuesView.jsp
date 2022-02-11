@@ -7,9 +7,11 @@
 		<div class="content_title">
 			<h1>상세보기</h1>
 		</div>
+		<form action="removeQues" method="post">
 		<div class="contents_warpper">
 			<div class="ques_wrapper">
 				<div class="ques_content">
+					<input type="hidden" name="ask_idx" value="<c:out value='${askInfo.ask_idx}'/>">
 					<div class="ques_wrapper_title">질 문</div>
 					<!-- placeholder에 작성했던 질문 내용 삽입될 것 -->
 					<input type="text" readonly="readonly" name="ask_cntnt" value="<c:out value='${askInfo.ask_cntnt}'/>">
@@ -26,7 +28,7 @@
 					<div class="answer_content">
 					<div class="answer_wrapper_title">${status.count} 번</div>
 					<!-- placeholder에 작성했던 답변 내용 삽입될 것 -->
-					<input type="text" readonly="readonly" name="answer_idx" value='<c:out value="${answerInfo.answer_cntnt}"/>'>
+					<input type="text" readonly="readonly" name="answer_cntnt" value='<c:out value="${answerInfo.answer_cntnt}"/>'>
 				</div>
 				</c:forEach>
 				
@@ -48,8 +50,8 @@
 			</div>
 		</div>
 		<div class="content_btn_wrapper right_align margin_right_add">
-			<button class="content_btn" onclick="location.href='${path}/adminQuesList'">확인</button>
-			<button class="content_btn margin_right_less" id="moveModFormBtn"
+			<button type="button" class="content_btn" onclick="location.href='${path}/adminQuesList'">확인</button>
+			<button type="button" class="content_btn margin_right_less" id="moveModFormBtn"
 				onclick="location.href='${path}/adminQuesModPage?ask_idx=<c:out value="${askInfo.ask_idx}"/><c:forEach items="${answerInfo}" var="answerInfo">&answer_idx=<c:out value="${answerInfo.answer_idx}"/></c:forEach>'">
 						수정</button>
 			<%-- <a id="moveModFormBtn" href='${path}/adminQuesModPage?ask_idx=
@@ -64,8 +66,10 @@
 													&answer_idx=<c:out value="${answerInfo.answer_idx}"/>
 													</c:forEach>'>수정</a></button> --%>
 			<!-- 삭제 버튼은 삭제 처리 후 질문지 페이지로 이동 -->
-			<button class="content_btn color_change" onclick="location.href='${path}/adminQuesList'">삭제</button>
+			<button class="content_btn color_change" id="quesRemoveBtn">삭제</button>
 		</div>
+		</form>
 	</div>
 	<form method="get" id="moveModForm"></form>
+	<form method="post" id="removeForm"></form>
 <%@ include file="../layout/adminFooter.jsp" %>
