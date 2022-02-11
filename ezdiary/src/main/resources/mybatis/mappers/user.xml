@@ -52,25 +52,75 @@
         </insert>
   		
 		<select id="selectAsk" resultMap="ask">
-			SELECT ASK_IDX FROM EZ_DIARY_ASK WHERE ROWNUM = 1 ORDER BY ASK_IDX
+			SELECT * FROM (
+							SELECT 
+								ASK_IDX 
+							FROM 
+								EZ_DIARY_ASK 
+							ORDER BY 
+								ASK_IDX ASC
+						  )
+					WHERE
+						ROWNUM = 1
 		</select>
 		
 		<select id="selectAnswer" resultMap="answer">
 			<![CDATA[
-				SELECT ANSWER_IDX FROM EZ_DIARY_ASK_ANSWER ORDER BY ANSWER_IDX
+				SELECT 
+					ANSWER_IDX 
+				FROM 
+					EZ_DIARY_ASK_ANSWER 
+				WHERE 
+					ASK_IDX = 1 
+				ORDER BY 
+					ANSWER_IDX
 			]]>
 		</select>
   		      
-        <select id="surveyAskList" resultMap="ask">
+        <select id="surveyAskList" parameterType="com.ezen.ezdiary.admin.dto.AdminAskDTO" resultMap="ask">
         	<![CDATA[ 
-	        	SELECT * FROM EZ_DIARY_ASK WHERE ASK_IDX = #{ask_idx}
+	        	SELECT * FROM 
+	        		EZ_DIARY_ASK 
+        		WHERE 
+        			ASK_IDX = #{ask_idx}
         	]]>
         </select>
         
-        <select id="surveyAnswerList" resultMap="answer">
+        <select id="surveyAnswerList" parameterType="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" resultMap="answer">
         	<![CDATA[ 
-	        	SELECT ANSWER_CNTNT FROM EZ_DIARY_ASK_ANSWER WHERE ANSWER_IDX = #{answer_idx}
+	        	SELECT * FROM 
+	        		EZ_DIARY_ASK_ANSWER 
+        		WHERE 
+        			ASK_IDX = #{ask_idx} 
+       			ORDER BY 
+       				ANSWER_IDX ASC
         	]]>
+        </select>
+        
+        <select id="ajaxAskList" parameterType="com.ezen.ezdiary.admin.dto.AdminAskDTO" resultMap="ask">
+        	<![CDATA[ 
+				SELECT * FROM (
+					SELECT * FROM 
+						EZ_DIARY_ASK
+					ORDER BY 
+						ask_idx ASC 
+					) 
+				    WHERE 
+				    	rownum = 1
+				    AND 
+				    	ask_idx > #{ask_idx} 	
+        	]]>        	
+        </select>
+        
+        <select id="ajaxAnswerList" parameterType="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" resultMap="answer">
+        	<![CDATA[ 
+        		SELECT * FROM 
+        			EZ_DIARY_ASK_ANSWER
+        		WHERE
+        			ASK_IDX = #{ask_idx} + 1
+        		ORDER BY 
+        			ANSWER_CNTNT
+        	]]>        	
         </select>
 
 		<insert id="insertMsg">

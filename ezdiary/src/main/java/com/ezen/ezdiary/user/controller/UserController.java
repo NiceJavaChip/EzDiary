@@ -1,15 +1,13 @@
 package com.ezen.ezdiary.user.controller;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
@@ -34,9 +32,7 @@ public interface UserController {
 	/* 설문조사 페이지 */
 //	public String surveyPage() throws Exception;
 	/* 설문조사 질문리스트 가져오기 */
-	public String surveyAskList(@RequestParam(value = "ask_idx" ,required = false)int ask_idx,
-								@RequestParam(value = "answer_idx" , required = false)int answer_idx,
-								Model model, AdminAskDTO askDTO, AdminAnswerDTO answerDTO) throws Exception;
+	public String surveyAskList(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, Model model) throws Exception;
 	
 	/* 설문조사 답변리스트 가져오기 */
 //	public String surveyAnswerList(Model model, @RequestParam(value = "answer_idx" , required = false)int answer_idx, AdminAnswerDTO answerDTO) throws Exception;
@@ -52,4 +48,7 @@ public interface UserController {
 	
 	/* 하고싶은말 등록 */ 			
 	public String sendMsg(UserMsgDTO userMsgDTO, HttpSession session) throws Exception; 
+	
+	/* ajax 통신 */
+	public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception;
 }
