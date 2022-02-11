@@ -1,6 +1,9 @@
 package com.ezen.ezdiary.user.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,13 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
@@ -60,32 +63,21 @@ public class UserControllerImpl implements UserController {
 	}
 	
 	/* 닉네임 등록 */
-//	@Override
-//	@RequestMapping(value = "/regist" , method = RequestMethod.POST)
-//	public ModelAndView registNick(UserDTO userDTO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		/* UserDTO클래스에 데이터가 의도대로 저장되었는지 확인 */
-//		log.info("UserDTO : " + userDTO);
-		
-//		ModelAndView mav = new ModelAndView("redirect:/survey");
-//		userService.registNick(userDTO);
-		
-		
-//		return mav;
-//	}
-	
-	/* 닉네임 등록 */
+//	==/regist, method post 함수 역할==
+//			1. userNick에서 닉네임 입력 후 엔터를 누르면 
+//				1-1. 닉네임이 등록된다. 
+//					1-2. 첫 질문지 인덱스값을 조회한다.
+//						1-3. 그 값을(첫 질문지 인덱스값)을 /survey 주소로를 포함시켜서 이동한다.
 	@Override
 	@RequestMapping(value = "/regist" , method = RequestMethod.POST)
 	public String registNick(UserDTO userDTO, HttpServletRequest request) throws Exception {
 		
 		session = request.getSession();
+		List<AdminAskDTO> askDTO = userService.selectAsk();
+		System.out.println("askDTO : " + askDTO.get(0).getAsk_idx());
 		
-		AdminAskDTO askDTO = userService.selectAsk();
-		System.out.println("askDTO : " + askDTO.getAsk_idx());
-		System.out.println("ezdiary/user/userSurvey?ask_idx=+askDTO.getAsk_idx() : "  + askDTO);
-		
-		AdminAnswerDTO answerDTO = userService.selectAnswer();
-		System.out.println("answerDTO : " + answerDTO.getAnswer_idx());
+		List<AdminAnswerDTO> answerDTO = userService.selectAnswer();
+		System.out.println("answerDTO : " + answerDTO.get(0).getAsk_idx());
 		
 		userService.registNick(userDTO);
 		
@@ -94,65 +86,52 @@ public class UserControllerImpl implements UserController {
 		
 		session.setAttribute("nick", userDTO);
 		log.info("session : " + userDTO);
-//		return "ezdiary/user/userSurvey?ask_idx="+askDTO.getAsk_idx();
-		return "redirect:/survey?ask_idx="+askDTO.getAsk_idx()+"&answer_idx="+answerDTO.getAnswer_idx();
+		return "redirect:/survey?ask_idx="+askDTO.get(0).getAsk_idx();
 	}
-	
-//	@Override
-//	@RequestMapping(value="/survey")
-//	public String surveyPage() throws Exception {
-//		System.out.println("설문조사 페이지");
-//		return "/ezdiary/user/userSurvey";
-//	}
+
 	
 	/* 설문조사 질문리스트 가져오기 */
+//	==/survey, method get 함수 역할==	
+//			1. /regist, method post 함수에서 받아온 파라미터를 확인한다.
+//			2. 받아온 파라미터로 질문지를 조회한다.
+//			3. 받아온 파라미터로 선택지를 조회한다.(1,2번과 동일한 파라미터)
+//			4. jsp 페이지에서 확인한다.
 	@Override
 	@RequestMapping(value = "/survey" , method = RequestMethod.GET)
-	public String surveyAskList(@RequestParam(value = "ask_idx" , required = false)int ask_idx,
-								@RequestParam(value = "answer_idx" , required = false)int answer_idx, 
-								Model model, AdminAskDTO askDTO, AdminAnswerDTO answerDTO) throws Exception {
+	public String surveyAskList(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, Model model) throws Exception {
 		
 		log.info("survey페이지 진입");
-		model.addAttribute("ask", userService.askList(askDTO.getAsk_idx()));
+		List<AdminAskDTO> askListDTO = userService.askList(askDTO);
+		model.addAttribute("ask", askListDTO);	// 모델에 저장해준 "ask"는 jsp에서만 쓰인다.
 		
-		System.out.println("ask_idx : " + ask_idx);
+		System.out.println("ask_idx : " + askListDTO);
 		
-		model.addAttribute("answer", userService.answerList(answerDTO.getAnswer_idx()));
-		System.out.println("answer_cntnt : " + answerDTO.getAnswer_cntnt());
-		System.out.println("answer_idx : " + answer_idx);
+		List<AdminAnswerDTO> answerListDTO = userService.answerList(answerDTO);
+		model.addAttribute("answer", answerListDTO);
 		
-		log.info("model : " + model);
+		System.out.println("answer_idx : " + answerListDTO);
 		
 		return "/ezdiary/user/userSurvey";
 	}
-	
-	/* 설문조사 답변리스트 가져오기 */
-//	  @Override 
-//	  @RequestMapping(value = "/survey" , method = RequestMethod.GET) 
-//	  public String surveyAnswerList(Model model, @RequestParam(value = "answer_idx" , required = false)int answer_idx, AdminAnswerDTO answerDTO) throws Exception {
-//	  model.addAttribute("answer", userService.answerList(answerDTO.getAnswer_idx()));
-//	  System.out.println("answer_idx : " + answer_idx);
-//	  return "/ezdiary/user/userSurvey";
-//	  
-//	  }
-	
-	/* 설문조사 질문지 인덱스 조회하기 */
-//	@Override
-//	@RequestMapping(value = "/survey" , method = RequestMethod.GET)
-//	public String selectAsk(Model model) throws Exception {
-//		
-//		AdminAskDTO askDTO = userService.selectAsk();
-//		System.out.println("ezdiary/user/userSurvey?ask_idx=+askDTO.getAsk_idx() : "  + askDTO);
-//		System.out.println("askDTO : " + askDTO.getAsk_idx());
-//		model.addAttribute("ask", userService.selectAsk());
-//		
-//		return "ezdiary/user/userSurvey?ask_idx="+askDTO.getAsk_idx();
-//	}
 
-	
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/survey2" , method = RequestMethod.POST)
+	public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception {
+		
+		System.out.println("ajax 컨트롤러 접근");
+		
+		Map<String, Object> result = new HashMap<String,Object>();
+		
+		System.out.println(userService.ajaxAsk(askDTO));
+		System.out.println(userService.ajaxAnswer(answerDTO));
+		
+		result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+		result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
+		
+		return result;
+	}
 
-	 
-	 
 	
 	/* 결과 로딩페이지 */
 	@Override
@@ -194,9 +173,5 @@ public class UserControllerImpl implements UserController {
 		
 		return "redirect:/msgPage";
 	}
-
-
-
-
 
 }

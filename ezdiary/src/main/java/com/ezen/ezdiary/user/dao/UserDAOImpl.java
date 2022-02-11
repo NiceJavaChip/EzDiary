@@ -28,34 +28,35 @@ public class UserDAOImpl implements UserDAO {
     }
     
 	@Override
-	public AdminAskDTO selectAsk() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"selectAsk");
+	public List<AdminAskDTO> selectAsk() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"selectAsk");
 	}
 	
 	@Override
-	public AdminAnswerDTO selectAnswer() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"selectAnswer");
+	public List<AdminAnswerDTO> selectAnswer() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"selectAnswer");
 	}
     
     @Override
-    public AdminAskDTO askList(int ask_idx) throws Exception {
-    	return sqlSession.selectOne(NAMESPACE+"surveyAskList", ask_idx);
+    public List<AdminAskDTO> askList(AdminAskDTO askDTO) throws Exception {
+    	return sqlSession.selectList(NAMESPACE+"surveyAskList", askDTO);
     }   
-    
-//    @Override
-//    public List<AdminAskDTO> askList(int ask_idx) throws Exception {
-//    	
-//    	return sqlSession.selectList(NAMESPACE+"surveyAskList", ask_idx);
-//    }
-
-    
+  
     @Override
-    public AdminAnswerDTO answerList(int answer_idx) throws Exception {
+    public List<AdminAnswerDTO> answerList(AdminAnswerDTO answerDTO) throws Exception {
     	
-    	return sqlSession.selectOne(NAMESPACE+"surveyAnswerList", answer_idx);
+    	return sqlSession.selectList(NAMESPACE+"surveyAnswerList", answerDTO);
     }
     
+	@Override
+	public List<AdminAskDTO> ajaxAsk(AdminAskDTO askDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"ajaxAskList", askDTO);
+	}
    
+	@Override
+	public List<AdminAnswerDTO> ajaxAnswer(AdminAnswerDTO answerDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"ajaxAnswerList", answerDTO);
+	}
 	
 	private int selectMsgNo() throws Exception {
 	
@@ -68,6 +69,10 @@ public class UserDAOImpl implements UserDAO {
 	public int insertMsg(UserMsgDTO msgDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"insertMsg", msgDTO);
 	}
+
+
+
+
 
 
 

@@ -28,30 +28,44 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public AdminAskDTO selectAsk() throws Exception {
+	public List<AdminAskDTO> selectAsk() throws Exception {
 		return userDAO.selectAsk();
 	}
 	
 	@Override
-	public AdminAnswerDTO selectAnswer() throws Exception {
+	public List<AdminAnswerDTO> selectAnswer() throws Exception {
 		return userDAO.selectAnswer();
 	}
 	
 	@Override
-	public AdminAskDTO askList(int ask_idx) throws Exception {
+	public List<AdminAskDTO> askList(AdminAskDTO askDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return userDAO.askList(ask_idx);
+		return userDAO.askList(askDTO);
 	}
 	
 	@Override
-	public AdminAnswerDTO answerList(int answer_idx) throws Exception {
-		return userDAO.answerList(answer_idx);
+	public List<AdminAnswerDTO> answerList(AdminAnswerDTO answerDTO) throws Exception {
+		return userDAO.answerList(answerDTO);
 	}
-
+	
+	@Override
+	public List<AdminAskDTO> ajaxAsk(AdminAskDTO askDTO) throws Exception {
+		return userDAO.ajaxAsk(askDTO);
+	}
+	
+	@Override
+	public List<AdminAnswerDTO> ajaxAnswer(AdminAnswerDTO answerDTO) throws Exception {
+		return userDAO.ajaxAnswer(answerDTO);
+	}
+	
 	@Override
 	public void sendMsg(UserMsgDTO msgDTO) throws Exception {
 		userDAO.insertMsg(msgDTO);
 	}
+
+
+
+
 
 
 
