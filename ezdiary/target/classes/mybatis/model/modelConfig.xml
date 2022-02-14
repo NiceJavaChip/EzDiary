@@ -12,6 +12,7 @@
 		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" alias="adminAnswerDTO"/>
 		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminBoardDTO" alias="adminBoardDTO"/>
 		<typeAlias type="com.ezen.ezdiary.admin.dto.BoardPageDTO" alias="boardPageDTO"/>
+		<typeAlias type="com.ezen.ezdiary.admin.dto.UserJoinDTO" alias="userJoinDTO"/>
 	</typeAliases>
 </configuration>  
 

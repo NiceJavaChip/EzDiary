@@ -48,7 +48,7 @@
 				 EZ_DIARY_USER
 					(user_idx, user_nick, status, writer, write_date, editor, edit_date)
 				 VALUES
-					(user_idx_s.nextval, #{user_nick}, 'c', #{user_nick}, sysdate, #{user_nick}, sysdate)
+					(user_idx_s.nextval, #{user_nick}, 'C', #{user_nick}, sysdate, #{user_nick}, sysdate)
         </insert>
   		
 		<select id="selectAsk" resultMap="ask">

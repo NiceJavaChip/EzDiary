@@ -114,22 +114,36 @@ public class UserControllerImpl implements UserController {
 		return "/ezdiary/user/userSurvey";
 	}
 
+	/*
+	 * @Override
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/survey2" , method = RequestMethod.POST) public
+	 * Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO)
+	 * throws Exception {
+	 * 
+	 * System.out.println("ajax 컨트롤러 접근");
+	 * 
+	 * Map<String, Object> result = new HashMap<String,Object>();
+	 * 
+	 * System.out.println(userService.ajaxAsk(askDTO));
+	 * System.out.println(userService.ajaxAnswer(answerDTO));
+	 * 
+	 * result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+	 * result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
+	 * 
+	 * return result; }
+	 */
+	
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/survey2" , method = RequestMethod.POST)
-	public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception {
+	public void testAjax(@RequestParam("answer_idx") int answer_idx) throws Exception {
 		
-		System.out.println("ajax 컨트롤러 접근");
+		System.out.println(answer_idx);
 		
-		Map<String, Object> result = new HashMap<String,Object>();
-		
-		System.out.println(userService.ajaxAsk(askDTO));
-		System.out.println(userService.ajaxAnswer(answerDTO));
-		
-		result.put("ajaxAsk",userService.ajaxAsk(askDTO));
-		result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
-		
-		return result;
+
 	}
 
 	

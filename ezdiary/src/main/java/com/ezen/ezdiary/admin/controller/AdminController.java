@@ -12,6 +12,9 @@ import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
+import com.ezen.ezdiary.admin.dto.UserJoinDTO;
+import com.ezen.ezdiary.user.dto.UserDTO;
+import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
 public interface AdminController {
 	
@@ -32,9 +35,9 @@ public interface AdminController {
 	public ModelAndView quesWriteRemove(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request) throws Exception;
 
 	//user
-	public ModelAndView userMsgListArticles() throws Exception;
-	public ModelAndView userMsgView() throws Exception;
-	public ModelAndView userMsgRemove() throws Exception;
+	public ModelAndView userMsgListArticles(AdminBoardDTO boardDTO, HttpServletRequest request) throws Exception;
+	public ModelAndView userMsgView(@RequestParam("user_idx") int user_idx) throws Exception;
+	public ModelAndView userMsgRemove(UserDTO userDTO, UserMsgDTO msgDTO, HttpServletRequest request) throws Exception;
 
 }
 

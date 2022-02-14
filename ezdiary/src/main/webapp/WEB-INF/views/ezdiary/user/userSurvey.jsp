@@ -13,6 +13,8 @@
 
          <c:forEach var="answer" items="${answer}">
 	         <div class="select_items">
+	         	<input id="answer_idx" value="${answer.answer_idx }">
+	         	<%-- <input id="answer_cntnt" value="${answer.answer_cntnt }"> --%>
 	            <button class="btn items_btn" id="start_btn1" type="button"><c:out value="${answer.answer_cntnt }"/></button>
 	         </div>
 	     </c:forEach>
@@ -21,23 +23,65 @@
             <button type="button" onclick="location.href='regist'">이 전</button>
          </div>
          
-<%--          <input id="ask_idx" type="hidden" value="${ask[0].ask_idx }"/> --%>
+         <%-- <input id="ask_idx" type="hidden" value="${ask[0].ask_idx }"/> --%>
          
       </div>
    </div>
    
 <script type="text/javascript">
+
+/* const answer_cntnt = document.querySelector(".select_items #answer_cntnt");
+
+function loginButtonClick() {
+	
+	for (var i = 1; i <= 3; i++) {
+		console.log(answer_cntnt.value[i]);
+	  }
+
+};
+
+answer_cntnt.addEventListener("click", loginButtonClick); */
+
 $(document).ready(function(){
 $(".items_btn").click(function(){
+	
+	var form = {
+			answer_idx : $('#answer_cntnt').val(),
+	    };
+	
+	$.ajax({
+        type: "post", 
+        url: "survey2", 
+        dataType: "json", 
+        data: form,
+        success : function() {
+        	alert("success!");
+        },
+        error : function() {
+    		alert("error");
+    	}
+    });
+	
+	
+	
 
-        // json 형식으로 데이터 set
+        /* // json 형식으로 데이터 set
         var params = {
               ask_idx  : $('#ask_idx').val()
         }
-        console.log($('#ask_idx').val());		//1
+        console.log("ask_idx  = " + $('#ask_idx').val());		//1
         console.log("====================");
         console.log(ask_idx);
         console.log("====================");
+        
+        
+        
+        
+
+        var idx = $('answer_idx').val();
+        
+        console.log("answer_idx  = " +  $('answer_idx').val());
+        
         // ajax 통신
         $.ajax({
             type : "POST",            // HTTP method type(GET, POST) 형식이다.
@@ -98,8 +142,8 @@ $(".items_btn").click(function(){
                 alert("code = "+ XMLHttpRequest.textStatus + " message = " + XMLHttpRequest.responseText + " error = " + errorThrown); // 실패 시 처리
 
             }
-        });
+        }); */
     });
-});
+}); 
 </script>
 <%@ include file="../layout/userFooter.jsp" %>

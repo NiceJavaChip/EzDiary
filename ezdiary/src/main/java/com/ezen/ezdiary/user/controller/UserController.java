@@ -50,5 +50,9 @@ public interface UserController {
 	public String sendMsg(UserMsgDTO userMsgDTO, HttpSession session) throws Exception; 
 	
 	/* ajax 통신 */
-	public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception;
+	/*
+	 * public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO
+	 * askDTO) throws Exception;
+	 */
+	public void testAjax(@RequestParam("answer_idx") int answer_idx) throws Exception;
 }

@@ -57,7 +57,7 @@ $(document).ready(function() {
 });
 
 // userSurvey.jsp div fade in fade out 기능
-$(function () {
+/*$(function () {
 	$(".items_btn").on("click", function() { 
 		$("#divBox").fadeOut(2000);
 			if ($("#divBox2").css("display") == "none") {
@@ -76,7 +76,7 @@ $(function () {
 				$("#divBox4").delay(2000).fadeIn(2000);
 			}
 	});
-});
+});*/
 
 
 $(function() { 

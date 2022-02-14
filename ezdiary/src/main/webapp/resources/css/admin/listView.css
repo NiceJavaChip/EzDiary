@@ -120,3 +120,8 @@ tr td a:hover{
 	font-weight: bold;
 	text-decoration: underline;
 }
+
+.moveMsgView{
+	text-decoration: none;
+	color: white;
+}

@@ -11,6 +11,9 @@ import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
+import com.ezen.ezdiary.admin.dto.UserJoinDTO;
+import com.ezen.ezdiary.user.dto.UserDTO;
+import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
 @Repository("adminDAO")
 public class AdminDAOImpl implements AdminDAO {
@@ -128,6 +131,42 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectOne(NAMESPACE+"getAmount");
 	}
 
+	@Override
+	public List<UserJoinDTO> getUserMsgListPaging(AdminBoardDTO boardDTO) throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+"getUserMsgListPaging",boardDTO);
+	}
+
+	@Override
+	public int getMsgAmount(AdminBoardDTO boardDTO) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getMsgAmount");
+	}
+
+	@Override
+	public List<UserDTO> getUser(AdminBoardDTO boardDTO) throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+"getUser",boardDTO);
+	}
+
+	@Override
+	public UserJoinDTO getMsgIdx(int user_idx) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getMsgIdx",user_idx);
+	}
+
+	@Override
+	public void removeUser(Map<String, Object> articleMap) throws Exception {
+		
+		sqlSession.update(NAMESPACE+"removeUser", articleMap);
+	}
+
+	@Override
+	public void removeMsg(Map<String, Object> articleMap) throws Exception {
+	
+		sqlSession.update(NAMESPACE+"removeMsg", articleMap);
+	}
+	
 	
 
 }
