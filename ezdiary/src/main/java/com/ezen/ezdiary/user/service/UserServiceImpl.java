@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.user.dao.UserDAO;
+import com.ezen.ezdiary.user.dto.MyAnswerDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
@@ -25,6 +26,11 @@ public class UserServiceImpl implements UserService {
 	public void registNick(UserDTO userDTO) throws Exception {
 
 		userDAO.insertNick(userDTO);
+	}
+	
+	@Override
+	public int selectUser(UserDTO userDTO) throws Exception {
+		return userDAO.selectUser(userDTO);
 	}
 	
 	@Override
@@ -54,14 +60,36 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public List<AdminAnswerDTO> myAnswer(AdminAnswerDTO answerDTO) throws Exception {
+		return userDAO.myAnswer(answerDTO);
+	}
+	
+	@Override
 	public List<AdminAnswerDTO> ajaxAnswer(AdminAnswerDTO answerDTO) throws Exception {
 		return userDAO.ajaxAnswer(answerDTO);
+	}
+	
+	@Override
+	public int registMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception {
+		 return userDAO.insertMyAnswer(myAnswerDTO);
 	}
 	
 	@Override
 	public void sendMsg(UserMsgDTO msgDTO) throws Exception {
 		userDAO.insertMsg(msgDTO);
 	}
+
+
+
+
+
+//	@Override
+//	public UserDTO loginNick(UserDTO userDTO) throws Exception {
+//		
+//		return userDAO.loginNick(userDTO);
+//	}
+
+
 
 
 

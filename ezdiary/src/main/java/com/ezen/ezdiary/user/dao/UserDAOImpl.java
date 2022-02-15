@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.user.dto.MyAnswerDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
@@ -26,6 +27,11 @@ public class UserDAOImpl implements UserDAO {
     	return sqlSession.insert(NAMESPACE+"insertNick", userDTO);
     	
     }
+    
+    @Override
+	public int selectUser(UserDTO userDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectUser", userDTO);
+	}
     
 	@Override
 	public List<AdminAskDTO> selectAsk() throws Exception {
@@ -58,10 +64,19 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList(NAMESPACE+"ajaxAnswerList", answerDTO);
 	}
 	
+	@Override
+	public List<AdminAnswerDTO> myAnswer(AdminAnswerDTO answerDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"myAjaxAnswer",answerDTO);
+	}
+	
+	@Override
+	public int insertMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"insertMyAnswer", myAnswerDTO);
+	}
+	
 	private int selectMsgNo() throws Exception {
 	
 		return sqlSession.selectOne("");
-		
 
 	}
 
@@ -69,6 +84,20 @@ public class UserDAOImpl implements UserDAO {
 	public int insertMsg(UserMsgDTO msgDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"insertMsg", msgDTO);
 	}
+
+
+
+	
+
+//	@Override
+//	public UserDTO loginNick(UserDTO userDTO) throws Exception {
+//		
+//		UserDTO user = sqlSession.selectOne(NAMESPACE+"loginNick", userDTO);
+//		
+//		return user;
+//	}
+
+
 
 
 

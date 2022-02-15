@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <%@ include file="../layout/userHeader.jsp" %>
+
 	<form action="regist" method="post" name="regist" >
 		<div class="usermain_wrapper">
 			<div class="content_wrapper">
@@ -21,4 +23,7 @@
 	</form>
 <%-- 	<a style="visibility: hidden;" href='${path}/survey?ask_idx=<c:out value="${answer.ask_idx}" />'></a> --%>
 <!-- 	<form method="get" id="moveForm"></form> -->
+<script type="text/javascript">
+	
+</script>
 <%@ include file="../layout/userFooter.jsp" %>
