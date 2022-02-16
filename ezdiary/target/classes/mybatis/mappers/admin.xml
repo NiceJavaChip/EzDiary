@@ -196,7 +196,7 @@
   		
   		<select id="getUserMsgListPaging" resultMap="userJoin">
   		<![CDATA[	
-  			Select * from (select rownum num, aa.* from (select edum.*, edu.USER_NICK from EZ_DIARY_USER_MSG edum LEFT JOIN EZ_DIARY_USER edu ON edum.USER_IDX = edu.USER_IDX
+  			Select * from (select rownum num, aa.* from (select edum.* from EZ_DIARY_USER_MSG edum LEFT JOIN EZ_DIARY_USER edu ON edum.USER_IDX = edu.USER_IDX
 			WHERE edum.STATUS != 'D'and edum.USER_IDX = edu.USER_IDX 
   			]]>
   			<if test="search != null">
@@ -226,7 +226,7 @@
   		
   		<select id="getMsgIdx" resultMap="userJoin">
   		<![CDATA[	
-  			select edum.*, edu.USER_NICK from EZ_DIARY_USER_MSG edum JOIN EZ_DIARY_USER edu ON edum.USER_IDX = edu.USER_IDX
+  			select edum.* from EZ_DIARY_USER_MSG edum JOIN EZ_DIARY_USER edu ON edum.USER_IDX = edu.USER_IDX
 			WHERE edum.STATUS != 'D' and edum.USER_IDX = edu.USER_IDX AND edum.USER_IDX = #{user_idx}  
   		]]>
   		</select>
