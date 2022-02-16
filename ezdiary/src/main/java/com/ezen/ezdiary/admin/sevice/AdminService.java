@@ -7,6 +7,9 @@ import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
+import com.ezen.ezdiary.admin.dto.UserJoinDTO;
+import com.ezen.ezdiary.user.dto.UserDTO;
+import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
 public interface AdminService {
 	
@@ -41,4 +44,21 @@ public interface AdminService {
 	public List<AdminAskDTO> getQuesListPaging(AdminBoardDTO boardDTO) throws Exception;
 	
 	public int getAmount(AdminBoardDTO boardDTO) throws Exception;
+
+	
+	public List<UserJoinDTO> getUserMsgListPaging(AdminBoardDTO boardDTO) throws Exception;
+	 
+
+	public int getMsgAmount(AdminBoardDTO boardDTO) throws Exception;
+
+	public List<UserDTO> getUser(AdminBoardDTO boardDTO) throws Exception;
+
+	public UserJoinDTO getMsgIdx(int user_idx) throws Exception;
+
+
+	public void removeUser(Map<String, Object> articleMap) throws Exception;
+
+	public void removeMsg(Map<String, Object> articleMap) throws Exception;
+
+
 }

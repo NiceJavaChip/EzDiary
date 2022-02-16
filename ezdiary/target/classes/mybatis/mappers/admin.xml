@@ -48,12 +48,44 @@
   			<result property="amount" column="amount"/>
   		</resultMap>
   		
+  		<!--============ user resultMap ===================================================== -->
+  		
+ 		<resultMap type="userDTO" id="userMember">
+           <result property="user_idx" column="user_idx"/>
+           <result property="user_nick" column="user_nick"/>
+           <result property="status" column="status"/>
+           <result property="writer" column="writer"/>
+           <result property="write_date" column="write_date"/>
+           <result property="editor" column="editor"/>
+           <result property="edit_date" column="edit_date"/>
+        </resultMap>
+        
+        <resultMap type="userMsgDTO" id="userMsg">
+           <result property="msg_idx" column="msg_idx"/>
+           <result property="user_idx" column="user_idx"/>
+           <result property="msg_cntnt" column="msg_cntnt"/>
+           <result property="status" column="status"/>
+           <result property="writer" column="writer"/>
+           <result property="write_date" column="write_date"/>
+           <result property="editor" column="editor"/>
+           <result property="edit_date" column="edit_date"/>
+        </resultMap>
+        
+        <resultMap type="userJoinDTO" id="userJoin">
+        	<collection property="userDTO" resultMap="userMember" />
+        	<collection property="msgDTO" resultMap="userMsg" />
+        </resultMap>
+  		
+  		
   		<select id="adminLogin" resultMap="adminMember">
   		<![CDATA[
   			SELECT * 
 			FROM EZ_DIARY_ADMIN eda WHERE ADMIN_ID = #{admin_id} AND ADMIN_PW = #{admin_pw}
 		]]>	
   		</select>
+  		
+  		
+  		<!--============ ques Board ===================================================== -->
   		
   		<select id="quesList" resultMap="adminAsk">
   		<![CDATA[
@@ -83,7 +115,9 @@
   			]]>
   		</insert>
   		
-  		<select id="getAskNO" resultType="adminAskDTO">
+  		
+  		<!-- resultMap은 단지 컬럼명과 DTO의 변수명을 자동으로 연결? -->
+  		<select id="getAskNO" resultMap="adminAsk">
   		<![CDATA[
   			SELECT * FROM EZ_DIARY_ASK WHERE ASK_IDX = #{ask_idx}
   		]]>
@@ -144,8 +178,7 @@
             </if>
   			<![CDATA[
   			order by ask_idx desc) aa)
-  			 where num > (#{pageNum} -1) * #{total} and num <= #{pageNum} * #{total} 
-  			 
+  			 where num > (#{pageNum} -1) * #{total} and num <= #{pageNum} * #{total}  
   		]]>
   		</select>
   		
@@ -157,6 +190,58 @@
                     and ASK_CNTNT like '%'||#{search}||'%' 
             </if>
   		</select>
+  		
+  		
+  		<!--============ user Board ===================================================== -->
+  		
+  		<select id="getUserMsgListPaging" resultMap="userJoin">
+  		<![CDATA[	
+  			Select * from (select rownum num, aa.* from (select edum.*, edu.USER_NICK from EZ_DIARY_USER_MSG edum LEFT JOIN EZ_DIARY_USER edu ON edum.USER_IDX = edu.USER_IDX
+			WHERE edum.STATUS != 'D'and edum.USER_IDX = edu.USER_IDX 
+  			]]>
+  			<if test="search != null">
+                    and MSG_CNTNT like '%'||#{search}||'%' 
+            </if>
+  			<![CDATA[
+  			order by MSG_IDX desc) aa)
+  			 where num > (#{pageNum} -1) * #{total} and num <= #{pageNum} * #{total}  
+  		]]>
+  		</select>
+  		
+  		<select id="getMsgAmount" resultType="int">
+  		<![CDATA[
+  			  SELECT count(*) FROM EZ_DIARY_USER_MSG where status != 'D'
+  		]]>
+  			<if test="search != null">
+                    and MSG_CNTNT like '%'||#{search}||'%' 
+            </if>
+  		</select>
+  		
+  		<select id="getUser" resultMap="userMember">
+  		<![CDATA[	
+  			SELECT edu.USER_NICK, edum.MSG_CNTNT FROM EZ_DIARY_USER edu LEFT JOIN EZ_DIARY_USER_MSG edum
+  			 ON edu.USER_IDX = edum.USER_IDX WHERE edu.USER_IDX = edum.USER_IDX  
+  		]]>
+  		</select>
+  		
+  		<select id="getMsgIdx" resultMap="userJoin">
+  		<![CDATA[	
+  			select edum.*, edu.USER_NICK from EZ_DIARY_USER_MSG edum JOIN EZ_DIARY_USER edu ON edum.USER_IDX = edu.USER_IDX
+			WHERE edum.STATUS != 'D' and edum.USER_IDX = edu.USER_IDX AND edum.USER_IDX = #{user_idx}  
+  		]]>
+  		</select>
+  		
+  		<update id="removeUser" parameterType="java.util.Map">
+  		<![CDATA[
+  			UPDATE EZ_DIARY_USER SET status= 'D', edit_date = SYSDATE, EDITOR = #{editor} WHERE user_idx = #{user_idx}
+  		]]>	
+  		</update>
+  		
+  		<update id="removeMsg" parameterType="java.util.Map">
+  		<![CDATA[
+  			UPDATE EZ_DIARY_USER_MSG SET status= 'D', edit_date = SYSDATE, EDITOR = #{editor} WHERE user_idx = #{user_idx}
+  		]]>	
+  		</update>
   		
   		
   		

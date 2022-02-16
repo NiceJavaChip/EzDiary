@@ -1,6 +1,6 @@
 package com.ezen.ezdiary.user.controller;
 
-import java.util.Enumeration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
@@ -39,8 +39,6 @@ public class UserControllerImpl implements UserController {
 	private AdminAskDTO askDTO;
 	@Autowired
 	private AdminAnswerDTO answerDTO;
-	@Autowired
-	private MyAnswerDTO myAnswerDTO;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -73,31 +71,23 @@ public class UserControllerImpl implements UserController {
 //						1-3. 그 값을(첫 질문지 인덱스값)을 /survey 주소로를 포함시켜서 이동한다.
 	@Override
 	@RequestMapping(value = "/regist" , method = RequestMethod.POST)
-	public String registNick(UserDTO userDTO, MyAnswerDTO myAnswerDTO ,HttpServletRequest request,  RedirectAttributes rAttr) throws Exception {
+	public String registNick(UserDTO userDTO, HttpServletRequest request) throws Exception {
 		
-		session = request.getSession(); 
-		List<AdminAskDTO> askDTO = userService.selectAsk(); 
+		session = request.getSession();
+		List<AdminAskDTO> askDTO = userService.selectAsk();
 		System.out.println("askDTO : " + askDTO.get(0).getAsk_idx());
-		  
-		  List<AdminAnswerDTO> answerDTO = userService.selectAnswer();
-		  System.out.println("answerDTO : " + answerDTO.get(0).getAsk_idx());
-		  
-		  userService.registNick(userDTO);
-		  
-		  userDTO.setUser_idx(userService.selectUser(userDTO));
-		  
-//		  userService.selectUser(userDTO);
-//		  System.out.println("userDTO : " + userDTO);
-		  
-		  
-		  log.info("UserDTO : " + userDTO); log.info("닉네임 등록 성공");
-		  
-		  session.setAttribute("nick", userDTO);
-		  
-		  
 		
-		return "redirect:/survey?ask_idx="+askDTO.get(0).getAsk_idx()+"&user_idx="+userDTO.getUser_idx();
+		List<AdminAnswerDTO> answerDTO = userService.selectAnswer();
+		System.out.println("answerDTO : " + answerDTO.get(0).getAsk_idx());
 		
+		userService.registNick(userDTO);
+		
+		log.info("UserDTO : " + userDTO);
+		log.info("닉네임 등록 성공");
+		
+		session.setAttribute("nick", userDTO);
+		log.info("session : " + userDTO);
+		return "redirect:/survey?ask_idx="+askDTO.get(0).getAsk_idx();
 	}
 
 	
@@ -109,58 +99,94 @@ public class UserControllerImpl implements UserController {
 //			4. jsp 페이지에서 확인한다.
 	@Override
 	@RequestMapping(value = "/survey" , method = RequestMethod.GET)
-	public String surveyAskList(MyAnswerDTO myAnswerDTO, UserDTO userDTO, AdminAskDTO askDTO, AdminAnswerDTO answerDTO, Model model, HttpServletRequest request) throws Exception {
+	public String surveyAskList(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, Model model) throws Exception {
 		
 		log.info("survey페이지 진입");
-		
-		session = request.getSession();
-		userDTO = (UserDTO) session.getAttribute("nick");
-		
-		int nickIdx = userDTO.getUser_idx();
-		String userInfo = userDTO.getUser_nick();
-		int answerIdx = answerDTO.getAnswer_idx();
-		
-		myAnswerDTO.setUser_nick(userInfo);
-		myAnswerDTO.setUser_idx(nickIdx);
-		myAnswerDTO.setAnswer_idx(answerIdx);
-		
-		System.out.println("user session확인 : " + nickIdx);
-		System.out.println("myAnswerDTO : " + myAnswerDTO);
-		
 		List<AdminAskDTO> askListDTO = userService.askList(askDTO);
 		model.addAttribute("ask", askListDTO);	// 모델에 저장해준 "ask"는 jsp에서만 쓰인다.
+		
 		System.out.println("ask_idx : " + askListDTO);
 		
 		List<AdminAnswerDTO> answerListDTO = userService.answerList(answerDTO);
 		model.addAttribute("answer", answerListDTO);
+		
 		System.out.println("answer_idx : " + answerListDTO);
-		
-		
-		System.out.println("myAnswerDTO 정보 : " + myAnswerDTO);
 		
 		return "/ezdiary/user/userSurvey";
 	}
+
 	
-	/*ajax 통신*/
+	  @Override
+	  @ResponseBody
+	  @RequestMapping(value = "/survey2" , method = RequestMethod.POST) 
+	  public Map<String, Object> testAjax(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO)
+	  throws Exception {
+		  
+		System.out.println("ask_idx : "+ ask_idx);  
+	  
+	  System.out.println("ajax 컨트롤러 접근");
+	  
+	  Map<String, Object> result = new HashMap<String,Object>();
+	  
+	  System.out.println(userService.ajaxAsk(askDTO));
+	  System.out.println(userService.ajaxAnswer(answerDTO));
+	  
+	  result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+	  result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
+	  
+	  return result; 
+	  
+	  }
+	  @ResponseBody
+	  @RequestMapping(value = "/survey3" , method = RequestMethod.POST) 
+	  public Map<String, Object> testAjax7(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO)
+			  throws Exception {
+		  
+		  System.out.println("ask_idx : "+ ask_idx);  
+		  
+		  System.out.println("ajax 컨트롤러 접근");
+		  
+		  Map<String, Object> result = new HashMap<String,Object>();
+		  
+		  System.out.println(userService.ajaxAsk(askDTO));
+		  System.out.println(userService.ajaxAnswer(answerDTO));
+		  
+		  result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+		  result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
+		  
+		  return result; 
+		  
+	  }
+	 
+	
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "/survey2" , method = RequestMethod.POST)
-	public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO, UserDTO userDTO) throws Exception {
+	@RequestMapping(value = "/survey5" , method = RequestMethod.POST)
+	public void testAjax4(@RequestParam("answer_idx") int answer_idx) throws Exception {
 		
-		System.out.println("ajax 컨트롤러 접근");
+		System.out.println("survey2");
 		
-		Map<String, Object> result = new HashMap<String,Object>();
-		
-		System.out.println(userService.ajaxAsk(askDTO));
-		System.out.println(userService.ajaxAnswer(answerDTO));
-		
-		System.out.println("myAnswerDTO 정보 : " + myAnswerDTO);
-		
-		result.put("ajaxAsk",userService.ajaxAsk(askDTO));
-		result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
-		
-		return result;
+
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/survey6" , method = RequestMethod.POST)
+	public void testAjax1(@RequestParam("answer_idx") int answer_idx) throws Exception {
+		
+		System.out.println("survey3");
+		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/survey7" , method = RequestMethod.POST)
+	public void testAjax2(@RequestParam("answer_idx") int answer_idx) throws Exception {
+		
+		System.out.println("survey4");
+		
+		
+	}
+
 	
 	/* 결과 로딩페이지 */
 	@Override
@@ -174,7 +200,57 @@ public class UserControllerImpl implements UserController {
 	/* 결과페이지 */
 	@Override
 	@RequestMapping(value = "/result" , method = RequestMethod.GET)
-	public String resultPage() throws Exception {
+	public String resultPage(Model model) throws Exception {
+		
+		
+  		List<MyAnswerDTO> answerDTO =  userService.getUserAnswer();	
+  		
+  		System.out.println("answerDTO.size : " + answerDTO.size());
+  		System.out.println("answerDTO : " + answerDTO);
+  		answerDTO.get(0).getAsk_idx();
+  		
+  		int lastAskNO = userService.lastAskNO();
+  		
+  		List<Integer> getAnswerCnt = new ArrayList<>();
+  		
+  		Map answerInfo = new HashMap<>();
+  		
+  		for(int i = 0; i<lastAskNO; i++) {
+  			
+  			int ask_idx = answerDTO.get(i).getAnswer_idx();
+  			
+  			System.out.println(1);
+  			System.out.println(ask_idx);
+  			
+  			for(int j = 0; j<3; j++) {
+
+  			  int answer_idx = answerDTO.get(j).getAnswer_idx();
+  			  
+  			  System.out.println(2);
+  			  System.out.println("answer_idx : " + answer_idx);
+  			  
+  			  answerInfo.put("ask_idx", ask_idx);
+  			  answerInfo.put("answer_idx", answer_idx);
+  			  
+  			  System.out.println(3);
+  			  System.out.println("answerInfo : "+answerInfo);
+  			  
+  			  int answerCount = userService.getAnswerCount(answerInfo);
+  			  
+  			  System.out.println(4);
+  			  System.out.println("answerCount" + answerCount);
+  			  
+  			  getAnswerCnt.add(answerCount);
+  			  System.out.println(5);
+  			  System.out.println("answerCnt : "+getAnswerCnt);
+  			}
+			 
+  		}
+
+		System.out.println(getAnswerCnt);
+  		
+		model.addAttribute("answerInfo", answerDTO); 
+		model.addAttribute("answerCnt", getAnswerCnt); 
 		
 		log.info("결과페이지 진입!");
 		return "/ezdiary/user/userResult";
@@ -183,160 +259,24 @@ public class UserControllerImpl implements UserController {
 	/* 하고싶은말 등록 페이지 */
 	@Override
 	@RequestMapping(value = "/msgPage" , method = RequestMethod.GET)
-	public String msgPage(MyAnswerDTO myAnswerDTO, Model model, HttpServletRequest request) throws Exception {
+	public String msgPage() throws Exception {
 		
 		log.info("하고싶은말 등록 페이지 진입");
-		
-		session = request.getSession();
-		userDTO = (UserDTO)session.getAttribute("nick");
-		
-		int userIdx = userDTO.getUser_idx();
-		
-		System.out.println("=======하고싶은말 등록 페이지 userIdx======= : " + userIdx);
-		
-		myAnswerDTO.setUser_idx(userIdx);
-		
-		List<MyAnswerDTO> mySurveyList = userService.mySurveyList(myAnswerDTO);
-		System.out.println("=======mySurveyList======= : " + mySurveyList);
-		model.addAttribute("mySurveyList", mySurveyList);
-		
-		
 		return "/ezdiary/user/userMsg";
 	}
 	
 	/* 하고싶은말 작성 */
 	@Override
 	@RequestMapping(value = "/msg" , method = RequestMethod.POST)
-	public String sendMsg(UserMsgDTO userMsgDTO , HttpServletRequest request) throws Exception {
+	public String sendMsg(UserMsgDTO userMsgDTO , HttpSession session) throws Exception {
 		
 		log.info("userMsgDTO : " + userMsgDTO );
-		session = request.getSession();
-		userDTO = (UserDTO)session.getAttribute("nick");
-		
-		int userIdx = userDTO.getUser_idx();
-		String userNick = userDTO.getUser_nick();
-		
-		System.out.println("메세지 작성 useridx : " + userIdx);
-		userMsgDTO.setUser_idx(userIdx);
-		userMsgDTO.setUser_nick(userNick);
-		
+		String writer = (String)session.getAttribute("nick");
+		userMsgDTO.setWriter(writer);
+		log.info("writer : " + writer );
 		userService.sendMsg(userMsgDTO);
 		
-		System.out.println(userMsgDTO);
-		
-		return "redirect:/result";
+		return "redirect:/msgPage";
 	}
-	
-	/* ajax 답변 1 */
-	@Override
-	@ResponseBody
-	@RequestMapping(value = "/answer1" , method = RequestMethod.POST)
-	public int myAnswerRegist1(@RequestParam("ask_idx")int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO,
-			HttpServletRequest request) throws Exception {
-		
-		System.out.println("ajax answer1");
-		System.out.println("===========ask_idx========= : "+ask_idx);
-		
-		
-		session = request.getSession();
-		userDTO = (UserDTO)session.getAttribute("nick");
-		
-		List<AdminAnswerDTO> answerIdx = userService.myAnswer(answerDTO);
-		List<AdminAskDTO> askIdx = userService.selectAsk();
-//		List<AdminAskDTO> askCntnt = userService.askList(askDTO);
-		List<AdminAnswerDTO> answerCntnt = userService.myAnswer(answerDTO);
-		
-		int userIdx = userDTO.getUser_idx();
-		answerIdx.get(0).getAnswer_idx();
-//		askCntnt.get(0).getAsk_cntnt();
-		System.out.println("============================");
-		System.out.println("answerCntnt값 : " + answerCntnt.get(0).getAnswer_cntnt());
-		answerCntnt.get(0).getAnswer_cntnt();
-		
-		
-		myAnswerDTO.setUser_idx(userIdx);
-		myAnswerDTO.setAnswer_idx(answerIdx.get(0).getAnswer_idx());
-		myAnswerDTO.setAsk_idx(ask_idx);
-//		myAnswerDTO.setAsk_cntnt(askCntnt.get(0).getAsk_cntnt());
-		myAnswerDTO.setAnswer_cntnt(answerCntnt.get(0).getAnswer_cntnt());
-		
-		
-		
-		int result = userService.registMyAnswer(myAnswerDTO);
-		
-		System.out.println("351252151521myAnswerDTO : " + myAnswerDTO);
-		
-		return result;
-		
-	}
-	
-	/* ajax 답변 2 */
-	@Override
-	@ResponseBody
-	@RequestMapping(value = "/answer2" , method = RequestMethod.POST)
-	public int myAnswerRegist2(@RequestParam("ask_idx")int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO,
-			HttpServletRequest request) throws Exception {
-		
-		System.out.println("ajax answer2");
-		System.out.println("===========ask_idx========= : "+ask_idx);
-		session = request.getSession();
-		userDTO = (UserDTO)session.getAttribute("nick");
-		
-		List<AdminAnswerDTO> answerIdx = userService.myAnswer(answerDTO);
-		List<AdminAskDTO> askIdx = userService.selectAsk();
-//		List<AdminAskDTO> askCntnt = userService.askList(askDTO);
-		List<AdminAnswerDTO> answerCntnt = userService.myAnswer(answerDTO);
-		
-		int userIdx = userDTO.getUser_idx();
-		answerIdx.get(1).getAnswer_idx();
-//		askCntnt.get(0).getAsk_cntnt();
-		answerCntnt.get(1).getAnswer_cntnt();
-		
-		myAnswerDTO.setUser_idx(userIdx);
-		myAnswerDTO.setAnswer_idx(answerIdx.get(1).getAnswer_idx());
-		myAnswerDTO.setAsk_idx(ask_idx);
-//		myAnswerDTO.setAsk_cntnt(askCntnt.get(0).getAsk_cntnt());
-		myAnswerDTO.setAnswer_cntnt(answerCntnt.get(1).getAnswer_cntnt());
-		
-		int result = userService.registMyAnswer(myAnswerDTO);
-		System.out.println("351252151521myAnswerDTO : " + myAnswerDTO);
-		
-		return result;
-	}
-	
-	/* ajax 답변 3 */
-	@Override
-	@ResponseBody
-	@RequestMapping(value = "/answer3" , method = RequestMethod.POST)
-	public int myAnswerRegist3(@RequestParam("ask_idx")int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO,
-			HttpServletRequest request) throws Exception {
-		
-		System.out.println("ajax answer3");
-		System.out.println("===========ask_idx========= : "+ask_idx);
-		session = request.getSession();
-		userDTO = (UserDTO)session.getAttribute("nick");
-		
-		List<AdminAnswerDTO> answerIdx = userService.myAnswer(answerDTO);
-//		List<AdminAskDTO> askCntnt = userService.askList(askDTO);
-		List<AdminAnswerDTO> answerCntnt = userService.myAnswer(answerDTO);
-		
-		int userIdx = userDTO.getUser_idx();
-		answerIdx.get(2).getAnswer_idx();
-//		askCntnt.get(0).getAsk_cntnt();
-		answerCntnt.get(2).getAnswer_cntnt();
-		
-		myAnswerDTO.setUser_idx(userIdx);
-		myAnswerDTO.setAnswer_idx(answerIdx.get(2).getAnswer_idx());
-		myAnswerDTO.setAsk_idx(ask_idx);
-//		myAnswerDTO.setAsk_cntnt(askCntnt.get(0).getAsk_cntnt());
-		myAnswerDTO.setAnswer_cntnt(answerCntnt.get(2).getAnswer_cntnt());
-		
-		int result = userService.registMyAnswer(myAnswerDTO);
-		System.out.println("351252151521myAnswerDTO : " + myAnswerDTO);
-		
-		return result;
-	}
-
-
 
 }

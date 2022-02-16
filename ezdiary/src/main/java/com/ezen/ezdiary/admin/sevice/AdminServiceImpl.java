@@ -12,6 +12,9 @@ import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.admin.dto.AdminBoardDTO;
 import com.ezen.ezdiary.admin.dto.AdminMemberDTO;
+import com.ezen.ezdiary.admin.dto.UserJoinDTO;
+import com.ezen.ezdiary.user.dto.UserDTO;
+import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -106,16 +109,43 @@ public class AdminServiceImpl implements AdminService{
 		return adminDAO.getAmount(boardDTO);
 	}
 
-	/*
-	 * @Override public AdminAnswerDTO getAnswerInfo(int answer_idx) throws
-	 * Exception {
-	 * 
-	 * return adminDAO.getAnswerInfo(answer_idx); }//
-	 * 
-	 * @Override public List<AdminAnswerDTO> anwerInfoList() throws Exception {
-	 * 
-	 * return adminDAO.anwerInfoList(); }
-	 */
 	
+	@Override public List<UserJoinDTO> getUserMsgListPaging(AdminBoardDTO boardDTO) throws Exception {
+	  
+	  return adminDAO.getUserMsgListPaging(boardDTO);
+	  
+	}
+	 
+
+	@Override
+	public int getMsgAmount(AdminBoardDTO boardDTO) throws Exception {
+		
+		return adminDAO.getMsgAmount(boardDTO);
+	}
+
+	@Override
+	public List<UserDTO> getUser(AdminBoardDTO boardDTO) throws Exception {
+		
+		return adminDAO.getUser(boardDTO);
+	}
+
+	@Override
+	public UserJoinDTO getMsgIdx(int user_idx) throws Exception {
+		
+		return adminDAO.getMsgIdx(user_idx);
+	}
+
+	@Override
+	public void removeUser(Map<String, Object> articleMap) throws Exception {
+		
+		adminDAO.removeUser(articleMap);
+	}
+
+	@Override
+	public void removeMsg(Map<String, Object> articleMap) throws Exception {
+		
+		adminDAO.removeMsg(articleMap);
+	}
+
 
 }

@@ -29,11 +29,6 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public int selectUser(UserDTO userDTO) throws Exception {
-		return userDAO.selectUser(userDTO);
-	}
-	
-	@Override
 	public List<AdminAskDTO> selectAsk() throws Exception {
 		return userDAO.selectAsk();
 	}
@@ -60,29 +55,47 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<AdminAnswerDTO> myAnswer(AdminAnswerDTO answerDTO) throws Exception {
-		return userDAO.myAnswer(answerDTO);
-	}
-	
-	@Override
 	public List<AdminAnswerDTO> ajaxAnswer(AdminAnswerDTO answerDTO) throws Exception {
 		return userDAO.ajaxAnswer(answerDTO);
-	}
-	
-	@Override
-	public List<MyAnswerDTO> mySurveyList(MyAnswerDTO myAsnwerDTO) throws Exception {
-		return userDAO.mySurveyList(myAsnwerDTO);
-	}
-	
-	@Override
-	public int registMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception {
-		 return userDAO.insertMyAnswer(myAnswerDTO);
 	}
 	
 	@Override
 	public void sendMsg(UserMsgDTO msgDTO) throws Exception {
 		userDAO.insertMsg(msgDTO);
 	}
+
+	@Override
+	public List<MyAnswerDTO> getUserAnswer() throws Exception {
+	
+		return userDAO.getUserAnswer();
+	}
+
+	@Override
+	public int getAnswerCount(int ask_idx,int answer_idx) throws Exception {
+		
+		return userDAO.getAnswerCount(ask_idx,answer_idx);
+	}
+
+	@Override
+	public int getAnswerCount(Map answerInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getAnswerCount(answerInfo);
+	}
+
+	@Override
+	public int lastAskNO() throws Exception {
+		
+		return userDAO.lastAskNO();
+	}
+
+
+
+
+
+
+
+
+
 
 
 
