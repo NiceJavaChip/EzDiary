@@ -23,6 +23,7 @@ public interface UserService {
 	public List<AdminAnswerDTO> ajaxAnswer(AdminAnswerDTO answerDTO) throws Exception;
 	
 	public List<AdminAnswerDTO> myAnswer(AdminAnswerDTO answerDTO) throws Exception;
+	public List<MyAnswerDTO> mySurveyList(MyAnswerDTO myAsnwerDTO) throws Exception;
 	
 	public int registMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception;
 	

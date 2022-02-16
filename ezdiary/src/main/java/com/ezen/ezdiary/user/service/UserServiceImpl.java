@@ -70,6 +70,11 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public List<MyAnswerDTO> mySurveyList(MyAnswerDTO myAsnwerDTO) throws Exception {
+		return userDAO.mySurveyList(myAsnwerDTO);
+	}
+	
+	@Override
 	public int registMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception {
 		 return userDAO.insertMyAnswer(myAnswerDTO);
 	}
@@ -78,27 +83,6 @@ public class UserServiceImpl implements UserService {
 	public void sendMsg(UserMsgDTO msgDTO) throws Exception {
 		userDAO.insertMsg(msgDTO);
 	}
-
-
-
-
-
-//	@Override
-//	public UserDTO loginNick(UserDTO userDTO) throws Exception {
-//		
-//		return userDAO.loginNick(userDTO);
-//	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 

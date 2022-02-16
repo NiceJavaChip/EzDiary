@@ -44,6 +44,28 @@ $("#request").click(function(){
         });
     });
 
+// userSurvey.jsp div fade in fade out 기능
+$(function () {
+   $(".items_btn").on("click", function() { 
+      $("#divBox").fadeOut(2000);
+         if ($("#divBox2").css("display") == "none") {
+            $("#divBox2").delay(2000).fadeIn(2000);
+         }
+   });
+   $(".items_btn2").on("click", function() { 
+      $("#divBox2").fadeOut(2000);
+         if ($("#divBox3").css("display") == "none") {
+            $("#divBox3").delay(2000).fadeIn(2000);
+         }
+   });
+   $(".items_btn3").on("click", function() { 
+      $("#divBox3").fadeOut(2000);
+         if ($("#divBox4").css("display") == "none") {
+            $("#divBox4").delay(2000).fadeIn(2000);
+         }
+   });
+});
+
 // 글자 수 세기
 $(document).ready(function() {
     $('#test').on('keyup', function() {

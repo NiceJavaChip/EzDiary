@@ -22,8 +22,9 @@ public interface UserDAO {
 	public List<AdminAnswerDTO> ajaxAnswer(AdminAnswerDTO answerDTO) throws Exception;
 	
 	public List<AdminAnswerDTO> myAnswer(AdminAnswerDTO answerDTO) throws Exception;
-	
 	public int insertMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception;
+
+	public List<MyAnswerDTO> mySurveyList(MyAnswerDTO myAnswerDTO) throws Exception;
 	
 	public int insertMsg(UserMsgDTO msgDTO) throws Exception;
 	

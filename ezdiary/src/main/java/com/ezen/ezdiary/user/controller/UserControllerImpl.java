@@ -136,7 +136,6 @@ public class UserControllerImpl implements UserController {
 		System.out.println("answer_idx : " + answerListDTO);
 		
 		
-//		userService.registMyAnswer(myAnswerDTO);
 		System.out.println("myAnswerDTO 정보 : " + myAnswerDTO);
 		
 		return "/ezdiary/user/userSurvey";
@@ -163,65 +162,6 @@ public class UserControllerImpl implements UserController {
 		return result;
 	}
 	
-	/* 내가 선택한 선택지 */
-//	@Override
-//	@RequestMapping(value = "/myAsk" , method = RequestMethod.POST)
-//	public String myAnswer(AdminAskDTO askDTO, AdminAnswerDTO answerDTO , MyAnswerDTO myAnswerDTO, HttpServletRequest request, Model model) throws Exception {
-//		
-//		session = request.getSession();
-//		userDTO = (UserDTO) session.getAttribute("nick");
-//		
-//		int userIdx = userDTO.getUser_idx();
-//		myAnswerDTO.setUser_idx(userIdx);
-//		userService.registMyAnswer(myAnswerDTO);
-//		
-//		
-//		return "redirect:/survey";
-//	}
-	
-	/*ajax 통신2*/
-//	@Override
-//	@ResponseBody
-//	@RequestMapping(value = "/myAsk2" , method = RequestMethod.POST)
-//	public int myAnswerRegist(AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO,HttpServletRequest request) throws Exception {
-//		
-//		System.out.println("myAsk2 ajax 컨트롤러 접근");
-//		
-//		session = request.getSession();
-//		userDTO = (UserDTO)session.getAttribute("nick");
-//		
-//		int userIdx = userDTO.getUser_idx();
-//		
-//		List<AdminAnswerDTO> answerIdx = userService.selectAnswer();
-//		
-//		System.out.println(userIdx);
-//		System.out.println(answerIdx.get(0).getAnswer_idx());
-//		System.out.println(answerIdx.get(1).getAnswer_idx());
-//		System.out.println(answerIdx.get(2).getAnswer_idx());
-//		
-//		myAnswerDTO.setUser_idx(userIdx);
-//		myAnswerDTO.setAnswer_idx(answerIdx.get(0).getAnswer_idx());
-//		
-//		if(answerIdx.get(0).getAnswer_idx() == 1 ) {
-//			
-//			myAnswerDTO.setAnswer_idx(answerIdx.get(0).getAnswer_idx());
-//			
-//		} else if(answerIdx.get(1).getAnswer_idx() == 2) {
-//			
-//			myAnswerDTO.setAnswer_idx(answerIdx.get(1).getAnswer_idx());
-//			
-//		} else if(answerIdx.get(2).getAnswer_idx() == 3) {
-//			
-//			myAnswerDTO.setAnswer_idx(answerIdx.get(2).getAnswer_idx());
-//			
-//		}
-//		
-//		int result = userService.registMyAnswer(myAnswerDTO);
-//		
-//		System.out.println(myAnswerDTO);
-//		return result;
-//	}
-	
 	/* 결과 로딩페이지 */
 	@Override
 	@RequestMapping(value = "/loading" , method = RequestMethod.GET)
@@ -243,26 +183,51 @@ public class UserControllerImpl implements UserController {
 	/* 하고싶은말 등록 페이지 */
 	@Override
 	@RequestMapping(value = "/msgPage" , method = RequestMethod.GET)
-	public String msgPage() throws Exception {
+	public String msgPage(MyAnswerDTO myAnswerDTO, Model model, HttpServletRequest request) throws Exception {
 		
 		log.info("하고싶은말 등록 페이지 진입");
+		
+		session = request.getSession();
+		userDTO = (UserDTO)session.getAttribute("nick");
+		
+		int userIdx = userDTO.getUser_idx();
+		
+		System.out.println("=======하고싶은말 등록 페이지 userIdx======= : " + userIdx);
+		
+		myAnswerDTO.setUser_idx(userIdx);
+		
+		List<MyAnswerDTO> mySurveyList = userService.mySurveyList(myAnswerDTO);
+		System.out.println("=======mySurveyList======= : " + mySurveyList);
+		model.addAttribute("mySurveyList", mySurveyList);
+		
+		
 		return "/ezdiary/user/userMsg";
 	}
 	
 	/* 하고싶은말 작성 */
 	@Override
 	@RequestMapping(value = "/msg" , method = RequestMethod.POST)
-	public String sendMsg(UserMsgDTO userMsgDTO , HttpSession session) throws Exception {
+	public String sendMsg(UserMsgDTO userMsgDTO , HttpServletRequest request) throws Exception {
 		
 		log.info("userMsgDTO : " + userMsgDTO );
-		String writer = (String)session.getAttribute("nick");
-		userMsgDTO.setWriter(writer);
-		log.info("writer : " + writer );
+		session = request.getSession();
+		userDTO = (UserDTO)session.getAttribute("nick");
+		
+		int userIdx = userDTO.getUser_idx();
+		String userNick = userDTO.getUser_nick();
+		
+		System.out.println("메세지 작성 useridx : " + userIdx);
+		userMsgDTO.setUser_idx(userIdx);
+		userMsgDTO.setUser_nick(userNick);
+		
 		userService.sendMsg(userMsgDTO);
 		
-		return "redirect:/msgPage";
+		System.out.println(userMsgDTO);
+		
+		return "redirect:/result";
 	}
-
+	
+	/* ajax 답변 1 */
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/answer1" , method = RequestMethod.POST)
@@ -278,11 +243,12 @@ public class UserControllerImpl implements UserController {
 		
 		List<AdminAnswerDTO> answerIdx = userService.myAnswer(answerDTO);
 		List<AdminAskDTO> askIdx = userService.selectAsk();
+//		List<AdminAskDTO> askCntnt = userService.askList(askDTO);
 		List<AdminAnswerDTO> answerCntnt = userService.myAnswer(answerDTO);
 		
 		int userIdx = userDTO.getUser_idx();
 		answerIdx.get(0).getAnswer_idx();
-//		askIdx.get(0).getAsk_idx();
+//		askCntnt.get(0).getAsk_cntnt();
 		System.out.println("============================");
 		System.out.println("answerCntnt값 : " + answerCntnt.get(0).getAnswer_cntnt());
 		answerCntnt.get(0).getAnswer_cntnt();
@@ -290,8 +256,8 @@ public class UserControllerImpl implements UserController {
 		
 		myAnswerDTO.setUser_idx(userIdx);
 		myAnswerDTO.setAnswer_idx(answerIdx.get(0).getAnswer_idx());
-//		myAnswerDTO.setAsk_idx(askIdx.get(0).getAsk_idx());
 		myAnswerDTO.setAsk_idx(ask_idx);
+//		myAnswerDTO.setAsk_cntnt(askCntnt.get(0).getAsk_cntnt());
 		myAnswerDTO.setAnswer_cntnt(answerCntnt.get(0).getAnswer_cntnt());
 		
 		
@@ -303,7 +269,8 @@ public class UserControllerImpl implements UserController {
 		return result;
 		
 	}
-
+	
+	/* ajax 답변 2 */
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/answer2" , method = RequestMethod.POST)
@@ -317,17 +284,18 @@ public class UserControllerImpl implements UserController {
 		
 		List<AdminAnswerDTO> answerIdx = userService.myAnswer(answerDTO);
 		List<AdminAskDTO> askIdx = userService.selectAsk();
+//		List<AdminAskDTO> askCntnt = userService.askList(askDTO);
 		List<AdminAnswerDTO> answerCntnt = userService.myAnswer(answerDTO);
 		
 		int userIdx = userDTO.getUser_idx();
 		answerIdx.get(1).getAnswer_idx();
-//		askIdx.get(0).getAsk_idx();
+//		askCntnt.get(0).getAsk_cntnt();
 		answerCntnt.get(1).getAnswer_cntnt();
 		
 		myAnswerDTO.setUser_idx(userIdx);
 		myAnswerDTO.setAnswer_idx(answerIdx.get(1).getAnswer_idx());
-//		myAnswerDTO.setAsk_idx(askIdx.get(0).getAsk_idx());
 		myAnswerDTO.setAsk_idx(ask_idx);
+//		myAnswerDTO.setAsk_cntnt(askCntnt.get(0).getAsk_cntnt());
 		myAnswerDTO.setAnswer_cntnt(answerCntnt.get(1).getAnswer_cntnt());
 		
 		int result = userService.registMyAnswer(myAnswerDTO);
@@ -335,7 +303,8 @@ public class UserControllerImpl implements UserController {
 		
 		return result;
 	}
-
+	
+	/* ajax 답변 3 */
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/answer3" , method = RequestMethod.POST)
@@ -348,18 +317,18 @@ public class UserControllerImpl implements UserController {
 		userDTO = (UserDTO)session.getAttribute("nick");
 		
 		List<AdminAnswerDTO> answerIdx = userService.myAnswer(answerDTO);
-//		List<AdminAskDTO> askIdx = userService.selectAsk();
+//		List<AdminAskDTO> askCntnt = userService.askList(askDTO);
 		List<AdminAnswerDTO> answerCntnt = userService.myAnswer(answerDTO);
 		
 		int userIdx = userDTO.getUser_idx();
 		answerIdx.get(2).getAnswer_idx();
-//		askIdx.get(0).getAsk_idx();
+//		askCntnt.get(0).getAsk_cntnt();
 		answerCntnt.get(2).getAnswer_cntnt();
 		
 		myAnswerDTO.setUser_idx(userIdx);
 		myAnswerDTO.setAnswer_idx(answerIdx.get(2).getAnswer_idx());
-//		myAnswerDTO.setAsk_idx(askIdx.get(0).getAsk_idx());
 		myAnswerDTO.setAsk_idx(ask_idx);
+//		myAnswerDTO.setAsk_cntnt(askCntnt.get(0).getAsk_cntnt());
 		myAnswerDTO.setAnswer_cntnt(answerCntnt.get(2).getAnswer_cntnt());
 		
 		int result = userService.registMyAnswer(myAnswerDTO);

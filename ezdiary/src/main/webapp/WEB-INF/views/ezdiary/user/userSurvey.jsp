@@ -48,7 +48,6 @@ $(document).ready(function(){
 		        dataType: "json", 
 		        data: form,
 		        success : function() {
-		           alert("success!");
 		        },
 		        error : function() {
 		          alert("error발생1");
@@ -71,7 +70,6 @@ $(document).ready(function(){
 		        dataType: "json", 
 		        data: form,
 		        success : function() {
-		           alert("success!");
 		        },
 		        error : function() {
 		          alert("error발생2");
@@ -94,7 +92,7 @@ $(document).ready(function(){
 		        dataType: "json", 
 		        data: form,
 		        success : function() {
-		           alert("success!");
+		        	
 		        },
 		        error : function() {
 		          alert("error발생3");

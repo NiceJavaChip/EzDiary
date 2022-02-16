@@ -64,21 +64,26 @@
   		
   		<select id="selectUser" resultType="int">
   			<![CDATA[
-         	  select nvl(max(user_idx),0) from EZ_DIARY_USER
+         	  select 
+         	  	nvl(max(user_idx),0) 
+         	  from 
+         	  	EZ_DIARY_USER
            ]]>
   		</select>
   		
 		<select id="selectAsk" resultMap="ask">
-			SELECT * FROM (
-							SELECT 
-								ASK_IDX 
-							FROM 
-								EZ_DIARY_ASK 
-							ORDER BY 
-								ASK_IDX ASC
-						  )
-					WHERE
-						ROWNUM = 1
+			SELECT 
+				* 
+			FROM (
+					SELECT 
+						ASK_IDX 
+					FROM 
+						EZ_DIARY_ASK 
+					ORDER BY 
+						ASK_IDX ASC
+				  )
+			WHERE
+				ROWNUM = 1
 		</select>
 		
 		<select id="selectAnswer" resultMap="answer">
@@ -96,7 +101,9 @@
   		      
         <select id="surveyAskList" parameterType="com.ezen.ezdiary.admin.dto.AdminAskDTO" resultMap="ask">
         	<![CDATA[ 
-	        	SELECT * FROM 
+	        	SELECT 
+	        		* 
+	        	FROM 
 	        		EZ_DIARY_ASK 
         		WHERE 
         			ASK_IDX = #{ask_idx}
@@ -105,7 +112,9 @@
         
         <select id="surveyAnswerList" parameterType="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" resultMap="answer">
         	<![CDATA[ 
-	        	SELECT * FROM 
+	        	SELECT 
+	        		* 
+	        	FROM 
 	        		EZ_DIARY_ASK_ANSWER 
         		WHERE 
         			ASK_IDX = #{ask_idx} 
@@ -116,7 +125,9 @@
         
         <select id="ajaxAskList" parameterType="com.ezen.ezdiary.admin.dto.AdminAskDTO" resultMap="ask">
         	<![CDATA[ 
-				SELECT * FROM (
+				SELECT 
+					* 
+				FROM (
 					SELECT * FROM 
 						EZ_DIARY_ASK
 					ORDER BY 
@@ -132,7 +143,9 @@
         
         <select id="ajaxAnswerList" parameterType="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" resultMap="answer">
         	<![CDATA[ 
-        		SELECT * FROM 
+        		SELECT 
+        			* 
+        		FROM 
         			EZ_DIARY_ASK_ANSWER
         		WHERE
         			ASK_IDX = #{ask_idx} + 1
@@ -143,7 +156,9 @@
 		
 		<select id="myAjaxAnswer" parameterType="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" resultMap="answer">
         	<![CDATA[ 
-        		SELECT * FROM 
+        		SELECT 
+        			* 
+        		FROM 
         			EZ_DIARY_ASK_ANSWER
         		WHERE
         			ASK_IDX = #{ask_idx}
@@ -155,23 +170,44 @@
         <insert id="insertMyAnswer">
         	INSERT INTO
         		EZ_DIARY_USER_ANSWER
-        			(user_idx, ask_idx, answer_idx, answer_cntnt)
+        			(user_idx, ask_idx, answer_idx ,answer_cntnt)
         		VALUES
-        			(#{user_idx},#{ask_idx}, #{answer_idx}, #{answer_cntnt})
+        			(#{user_idx},#{ask_idx}, #{answer_idx} ,#{answer_cntnt})
         </insert>
         
 		<select id="myAnswer" parameterType="com.ezen.ezdiary.user.dto.MyAnswerDTO" resultMap="myAnswer">
-			SELECT * FROM
+			SELECT 
+				* 
+			FROM
 				EZ_DIARY_USER_ANSWER
 			WHERE 
 				user_idx = #{user_idx}
 		</select>
 		
+		<select id="mySurveyList" parameterType="int" resultMap="myAnswer">
+			SELECT 
+				edua.ANSWER_CNTNT ,
+				eda.ASK_CNTNT 
+			FROM 
+				EZ_DIARY_USER_ANSWER edua 
+					INNER JOIN 
+						EZ_DIARY_ASK eda 
+							ON (edua.ASK_IDX = eda.ASK_IDX)
+					INNER JOIN 
+						EZ_DIARY_ASK_ANSWER edaa 
+							ON ( eda.ASK_IDX = edaa.ASK_IDX AND edua.ANSWER_IDX = edaa.ANSWER_IDX )
+					INNER JOIN 
+						EZ_DIARY_USER edu 
+							ON (edua.USER_IDX = edu.USER_IDX)
+			WHERE
+				edua.USER_IDX = #{user_idx}
+		</select>
+		
 		<insert id="insertMsg">
 			INSERT INTO 
 				 EZ_DIARY_USER_MSG
-					(MSG_IDX, USER_IDX, MSG_CNTNT, STATUS, WRITER, WRITE_DATE, EDITOR, EDIT_DATE)
+					(MSG_IDX, USER_IDX, USER_NICK , MSG_CNTNT, STATUS, WRITER, WRITE_DATE, EDITOR, EDIT_DATE)
 				 VALUES
-					(userMsg_idx_s.nextval, #{user_idx}, #{msg_cntnt}, 'C', #{user_idx}, sysdate , #{user_idx}, sysdate)
+					(userMsg_idx_s.nextval, #{user_idx}, #{user_nick} ,#{msg_cntnt}, 'C', #{user_nick}, sysdate , #{user_nick}, sysdate)
 		</insert>
 </mapper>

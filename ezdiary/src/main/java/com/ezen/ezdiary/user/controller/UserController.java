@@ -24,24 +24,12 @@ public interface UserController {
 	/* 닉네임 등록 페이지 */
 	public String registNickPage() throws Exception;
 	
-	/* 닉네임 등록 */			    /* @ModelAttribute("nick") jsp에서 값을 불러올때 "nick"로 불러올 수 있음 */
-//	public ModelAndView registNick(@ModelAttribute("nick") UserDTO userDTO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	/* 닉네임 등록 */
 	public String registNick(UserDTO userDTO, MyAnswerDTO myAnswerDTO ,HttpServletRequest request, RedirectAttributes rAttr) throws Exception;
-	
-//	public String selectAsk(Model model) throws Exception;
-	
-	/* 설문조사 페이지 */
-//	public String surveyPage() throws Exception;
+
 	/* 설문조사 질문리스트 가져오기 */
 	public String surveyAskList(MyAnswerDTO myAnswerDTO, UserDTO userDTO, AdminAskDTO askDTO, AdminAnswerDTO answerDTO, Model model, HttpServletRequest request) throws Exception;
-	
-	/* 설문조사 답변리스트 가져오기 */
-//	public String surveyAnswerList(Model model, @RequestParam(value = "answer_idx" , required = false)int answer_idx, AdminAnswerDTO answerDTO) throws Exception;
-	
-	/* 내가 선택한 질문지 , 선택지 */
-//	public String myAnswer(AdminAskDTO askDTO, AdminAnswerDTO answerDTO , MyAnswerDTO myAnswerDTO, HttpServletRequest request, Model model) throws Exception;
-	
+
 	/* 설문조사 결과 로딩페이지 */
 	public String loadingPage() throws Exception;
 	
@@ -49,10 +37,10 @@ public interface UserController {
 	public String resultPage() throws Exception;
 	
 	/* 하고싶은말 등록 페이지 */
-	public String msgPage() throws Exception;
+	public String msgPage(MyAnswerDTO myAnswerDTO, Model model, HttpServletRequest request) throws Exception;
 	
 	/* 하고싶은말 등록 */ 			
-	public String sendMsg(UserMsgDTO userMsgDTO, HttpSession session) throws Exception; 
+	public String sendMsg(UserMsgDTO userMsgDTO, HttpServletRequest request) throws Exception; 
 	
 	/* ajax 통신 */
 	public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO, UserDTO userDTO) throws Exception;
