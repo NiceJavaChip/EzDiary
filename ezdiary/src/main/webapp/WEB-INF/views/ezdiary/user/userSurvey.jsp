@@ -24,7 +24,7 @@
          </div>
          
          <%-- <input id="ask_idx" type="hidden" value="${ask[0].ask_idx }"/> --%>
-         
+         <!-- TEST  -->
       </div>
    </div>
    

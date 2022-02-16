@@ -6,30 +6,14 @@
 			<div class="my_answer">
 				<span>내가 한 답변</span>
 			</div>
-			<div class="my_questions">
-				<p>1. 취업이 안 되는 코로나 시기... 
-				아이러니 하게도 이 시기에 코딩 열풍이다
-				현재 내 상태는?</p>
-			</div>
-			<div class="answer_items">
-				<button class="answer_btn" type="button">코딩과 1도 관련 없는 비전공자 취준생</button>
-			</div>
-			<div class="my_questions">
-				<p>1. 취업이 안 되는 코로나 시기... 
-				아이러니 하게도 이 시기에 코딩 열풍이다
-				현재 내 상태는?</p>
-			</div>
-			<div class="answer_items">
-				<button class="answer_btn" type="button">코딩과 1도 관련 없는 비전공자 취준생</button>
-			</div>
-			<div class="my_questions">
-				<p>1. 취업이 안 되는 코로나 시기... 
-				아이러니 하게도 이 시기에 코딩 열풍이다
-				현재 내 상태는?</p>
-			</div>
-			<div class="answer_items">
-				<button class="answer_btn" type="button">코딩과 1도 관련 없는 비전공자 취준생</button>
-			</div>
+			<c:forEach var="mySurveyList" items="${mySurveyList}">
+				<div class="my_questions">
+					<p><c:out value="${mySurveyList.ask_cntnt }"/></p>
+				</div>
+				<div class="answer_items">
+					<button class="answer_btn" type="button"><c:out value="${mySurveyList.answer_cntnt}"/></button>
+				</div>
+			</c:forEach>
 			<form action="msg" method="post">
 				<div class="msg">
 					<span>학원 & 강사님에게 하고 싶은 말</span>

@@ -17,6 +17,7 @@ public class UserMsgDTO {
 	
 	private int msg_idx;
 	private int user_idx;
+	private String user_nick;
 	private String msg_cntnt;
 	private String status;
 	private String writer;
@@ -72,11 +73,20 @@ public class UserMsgDTO {
 	public void setEdit_date(Date edit_date) {
 		this.edit_date = edit_date;
 	}
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
+	
 	@Override
 	public String toString() {
-		return "UserMsgDTO [msg_idx=" + msg_idx + ", user_idx=" + user_idx + ", msg_cntnt=" + msg_cntnt + ", status="
-				+ status + ", writer=" + writer + ", write_date=" + write_date + ", editor=" + editor + ", edit_date="
-				+ edit_date + "]";
+		return "UserMsgDTO [msg_idx=" + msg_idx + ", user_idx=" + user_idx + ", user_nick=" + user_nick + ", msg_cntnt="
+				+ msg_cntnt + ", status=" + status + ", writer=" + writer + ", write_date=" + write_date + ", editor="
+				+ editor + ", edit_date=" + edit_date + "]";
 	}
+	
+	
 	
 }
