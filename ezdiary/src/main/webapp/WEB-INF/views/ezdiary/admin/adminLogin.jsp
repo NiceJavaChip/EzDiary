@@ -4,7 +4,7 @@
 <%@ include file="../layout/adminHeader.jsp" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container">
-			<div class="content_title">
+			<div class="content_title margin_top_add">
 				<h1>관리자용 로그인</h1>
 			</div>
 			<form name="frmLogin" id="frmLogin" method="post">

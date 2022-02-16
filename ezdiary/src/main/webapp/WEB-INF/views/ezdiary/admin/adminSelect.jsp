@@ -3,7 +3,7 @@
 <%@ include file="../layout/adminHeader.jsp" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container">
-			<div class="content_title">
+			<div class="content_title margin_top_add">
 			<h1>EZ DIARY</h1>
 			</div>
 			<div class="contents_warpper">

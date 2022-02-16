@@ -37,7 +37,7 @@
 				<div class="content_btn_wrapper right_align">
 					<button class="content_btn">저장</button>
 					<!-- 저장시 어느 페이지로 넘어가는 지. -->
-					<button class="content_btn color_change" onclick="location.href='${path}/adminQuesList'">취소</button>
+					<button type="button" class="content_btn color_change" onclick="location.href='${path}/adminQuesList'">취소</button>
 					<!-- 취소가 되면 질문지 LIST로 넘어가야 하는 것이 아닌지 -->
 				</div>			
 			</form>
