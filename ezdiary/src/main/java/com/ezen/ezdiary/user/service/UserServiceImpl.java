@@ -29,6 +29,11 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public int selectUser(UserDTO userDTO) throws Exception {
+		return userDAO.selectUser(userDTO);
+	}
+	
+	@Override
 	public List<AdminAskDTO> selectAsk() throws Exception {
 		return userDAO.selectAsk();
 	}
@@ -55,8 +60,23 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public List<AdminAnswerDTO> myAnswer(AdminAnswerDTO answerDTO) throws Exception {
+		return userDAO.myAnswer(answerDTO);
+	}
+	
+	@Override
 	public List<AdminAnswerDTO> ajaxAnswer(AdminAnswerDTO answerDTO) throws Exception {
 		return userDAO.ajaxAnswer(answerDTO);
+	}
+	
+	@Override
+	public List<MyAnswerDTO> mySurveyList(MyAnswerDTO myAsnwerDTO) throws Exception {
+		return userDAO.mySurveyList(myAsnwerDTO);
+	}
+	
+	@Override
+	public int registMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception {
+		 return userDAO.insertMyAnswer(myAnswerDTO);
 	}
 	
 	@Override
