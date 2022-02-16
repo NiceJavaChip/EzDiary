@@ -28,6 +28,11 @@ public class UserDAOImpl implements UserDAO {
     	
     }
     
+    @Override
+	public int selectUser(UserDTO userDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectUser", userDTO);
+	}
+    
 	@Override
 	public List<AdminAskDTO> selectAsk() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"selectAsk");
@@ -59,10 +64,24 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList(NAMESPACE+"ajaxAnswerList", answerDTO);
 	}
 	
+	@Override
+	public List<AdminAnswerDTO> myAnswer(AdminAnswerDTO answerDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"myAjaxAnswer",answerDTO);
+	}
+	
+	@Override
+	public int insertMyAnswer(MyAnswerDTO myAnswerDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"insertMyAnswer", myAnswerDTO);
+	}
+	
+	@Override
+	public List<MyAnswerDTO> mySurveyList(MyAnswerDTO myAnswerDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"mySurveyList", myAnswerDTO);
+	}
+	
 	private int selectMsgNo() throws Exception {
 	
 		return sqlSession.selectOne("");
-		
 
 	}
 
