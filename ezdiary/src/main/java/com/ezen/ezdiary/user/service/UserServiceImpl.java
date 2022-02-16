@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
 import com.ezen.ezdiary.user.dao.UserDAO;
+import com.ezen.ezdiary.user.dto.MyAnswerDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
@@ -61,6 +62,30 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void sendMsg(UserMsgDTO msgDTO) throws Exception {
 		userDAO.insertMsg(msgDTO);
+	}
+
+	@Override
+	public List<MyAnswerDTO> getUserAnswer() throws Exception {
+	
+		return userDAO.getUserAnswer();
+	}
+
+	@Override
+	public int getAnswerCount(int ask_idx,int answer_idx) throws Exception {
+		
+		return userDAO.getAnswerCount(ask_idx,answer_idx);
+	}
+
+	@Override
+	public int getAnswerCount(Map answerInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getAnswerCount(answerInfo);
+	}
+
+	@Override
+	public int lastAskNO() throws Exception {
+		
+		return userDAO.lastAskNO();
 	}
 
 

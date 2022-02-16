@@ -11,11 +11,11 @@
 	         </c:forEach>
          </div>
 
-         <c:forEach var="answer" items="${answer}">
+         <c:forEach var="answer" items="${answer}" varStatus="status">
 	         <div class="select_items">
 	         	<input id="answer_idx" value="${answer.answer_idx }">
 	         	<%-- <input id="answer_cntnt" value="${answer.answer_cntnt }"> --%>
-	            <button class="btn items_btn" id="start_btn1" type="button"><c:out value="${answer.answer_cntnt }"/></button>
+	            <button class="btn items_btn" id="start_btn${status.count }" type="button"><c:out value="${answer.answer_cntnt }"/></button>
 	         </div>
 	     </c:forEach>
 	     
@@ -43,11 +43,13 @@ function loginButtonClick() {
 answer_cntnt.addEventListener("click", loginButtonClick); */
 
 $(document).ready(function(){
-$(".items_btn").click(function(){
+$("#start_btn1").click(function(){
 	
 	var form = {
-			answer_idx : $('#answer_cntnt').val(),
-	    };
+			ask_idx : $('#ask_idx').val(),
+	    }
+	
+	console.log(form);
 	
 	$.ajax({
         type: "post", 
@@ -58,11 +60,63 @@ $(".items_btn").click(function(){
         	alert("success!");
         },
         error : function() {
-    		alert("error");
+    		alert("error발생1");
     	}
     });
 	
+});
+
+$("#start_btn2").click(function(){
 	
+	var form = {
+			answer_idx : $('#answer_idx').val(),
+	    }
+	
+	console.log(form);
+	
+	$.ajax({
+        type: "post", 
+        url: "survey3", 
+        dataType: "json", 
+        data: form,
+        success : function() {
+        	alert("success!");
+        },
+        error : function() {
+    		alert("error발생2");
+    	}
+    });
+	
+});
+$("#start_btn3").click(function(){
+	
+	var form = {
+			answer_idx : $('#answer_idx').val(),
+	    }
+	
+	console.log(form);
+	
+	$.ajax({
+        type: "post", 
+        url: "survey4", 
+        dataType: "json", 
+        data: form,
+        success : function() {
+        	alert("success!");
+        },
+        error : function() {
+    		alert("error발생3");
+    	}
+    });
+	
+});
+
+
+
+
+
+
+}); 
 	
 
         /* // json 형식으로 데이터 set
@@ -143,7 +197,6 @@ $(".items_btn").click(function(){
 
             }
         }); */
-    });
-}); 
+
 </script>
 <%@ include file="../layout/userFooter.jsp" %>

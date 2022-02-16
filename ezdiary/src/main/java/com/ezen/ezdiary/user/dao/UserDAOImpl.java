@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.user.dto.MyAnswerDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 import com.ezen.ezdiary.user.dto.UserMsgDTO;
 
@@ -69,6 +70,31 @@ public class UserDAOImpl implements UserDAO {
 	public int insertMsg(UserMsgDTO msgDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"insertMsg", msgDTO);
 	}
+
+	@Override
+	public List<MyAnswerDTO> getUserAnswer() throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+"getUserAnswer");
+	}
+
+	@Override
+	public int getAnswerCount(int ask_idx, int answer_idx) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getAnswerCount", answer_idx);
+	}
+
+	@Override
+	public int getAnswerCount(Map answerInfo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"getAnswerCount", answerInfo);
+	}
+
+	@Override
+	public int lastAskNO() throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"lastAskNO");
+	}
+
 
 
 

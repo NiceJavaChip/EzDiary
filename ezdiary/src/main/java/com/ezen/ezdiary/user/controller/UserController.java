@@ -41,7 +41,7 @@ public interface UserController {
 	public String loadingPage() throws Exception;
 	
 	/* 설문조사 결과페이지 */
-	public String resultPage() throws Exception;
+	public String resultPage(Model model) throws Exception;
 	
 	/* 하고싶은말 등록 페이지 */
 	public String msgPage() throws Exception;
@@ -50,9 +50,9 @@ public interface UserController {
 	public String sendMsg(UserMsgDTO userMsgDTO, HttpSession session) throws Exception; 
 	
 	/* ajax 통신 */
-	/*
-	 * public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO
-	 * askDTO) throws Exception;
-	 */
-	public void testAjax(@RequestParam("answer_idx") int answer_idx) throws Exception;
+	
+	  public Map<String, Object> testAjax(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO
+	  askDTO) throws Exception;
+	 
+	public void testAjax4(@RequestParam("answer_idx") int answer_idx) throws Exception;
 }
