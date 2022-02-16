@@ -24,7 +24,7 @@
 	<!-- ============================================================================================ -->
 	
 	<!--js파일 ======================================================================================= -->
-	<script type="text/javascript" src="${path}/resources/js/admin/adminSearch.js?after"></script>
+	<script type="text/javascript" src="${path}/resources/js/admin/adminSearch.js?1"></script>
 	<script
             src="https://kit.fontawesome.com/6478f529f2.js"
             crossorigin="anonymous">

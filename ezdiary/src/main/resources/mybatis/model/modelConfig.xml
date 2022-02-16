@@ -7,11 +7,13 @@
 	<typeAliases>
 		<typeAlias type="com.ezen.ezdiary.user.dto.UserDTO" alias="userDTO"/>
 		<typeAlias type="com.ezen.ezdiary.user.dto.UserMsgDTO" alias="userMsgDTO"/>
+		<typeAlias type="com.ezen.ezdiary.user.dto.MyAnswerDTO" alias="myAnswerDTO"/>
 		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminMemberDTO" alias="adminMemberDTO"/>
 		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminAskDTO" alias="adminAskDTO"/>
 		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminAnswerDTO" alias="adminAnswerDTO"/>
 		<typeAlias type="com.ezen.ezdiary.admin.dto.AdminBoardDTO" alias="adminBoardDTO"/>
 		<typeAlias type="com.ezen.ezdiary.admin.dto.BoardPageDTO" alias="boardPageDTO"/>
+		<typeAlias type="com.ezen.ezdiary.admin.dto.UserJoinDTO" alias="userJoinDTO"/>
 	</typeAliases>
 </configuration>  
 

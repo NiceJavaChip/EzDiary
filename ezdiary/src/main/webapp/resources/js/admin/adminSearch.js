@@ -21,25 +21,38 @@ $(document).ready(function() {
 /*AdminQuesList 상세보기 페이지 넘어가기*/
 
 let moveForm = $("#moveForm");
+let msgMoveForm = $("#msgMoveForm");
 
-
-
- $(document).ready(function() {
+/* $(document).ready(function() {
  
  let moveForm = $("#moveForm");
  
- $(".search_wrapper #search").keydown(function(key) {
-      if (key.keyCode == 13) {
-		
+$(".search_wrapper #search").on("onkeypress",function(e) {
+	let search = $("#search");
+
+	  e.preventDefault();
+      alert(e.keyCode);
+      if (e.keyCode == 13) {
+      	alert(search);
+		/*alert(2);
         let val = $("input[name='search']").val();
         console.log(val);
-        moveForm.find("input[name='search']").val(val);
+        //moveForm.find("input[name='search']").val(val);
+        console.log(moveForm.find("input[name='search']").val());
         moveForm.find("input[name='pageNum']").val(1);
-        moveForm.submit();
+        //moveForm.submit();
                 }
             });
 	
-        });
+        });*/
+        
+$(".moveMsgView").on("click",function(e){
+	e.preventDefault();
+	
+	msgMoveForm.append("<input type='hidden' name='user_idx' value='"+ $(this).attr("href")+"'>");
+	msgMoveForm.attr("action", "${path}/userMsgView");
+	msgMoveForm.submit();
+});
 
 $(".move").on("click",function(e){
 	e.preventDefault();
@@ -50,7 +63,6 @@ $(".move").on("click",function(e){
 });
 
 let moveModForm = $("#moveModForm");
-let removeForm = $("#removeForm");
 
 $("#moveModFormBtn").on("click",function(e){
 	e.preventDefault();

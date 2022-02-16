@@ -15,18 +15,20 @@ body, html {
 	/* border: 1px solid white; */
 	color: white;
     height: 100%;
-    max-width: 400px;
+    max-width: 560px;
     text-align: center;
     margin: auto;
   	display: flex;
     flex-direction: column;
 }
 
-
-
 .content_title{
-	margin-top: 50px;
+	margin-top: 90px;
 	margin-bottom: 20px;
+}
+
+.margin_top_add{
+	margin-top: 190px;
 }
 
 .contents_warpper{

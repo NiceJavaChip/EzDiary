@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.user.dto.MyAnswerDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 import com.ezen.ezdiary.user.dto.UserMsgDTO;
 import com.ezen.ezdiary.user.service.UserService;
@@ -114,22 +115,76 @@ public class UserControllerImpl implements UserController {
 		return "/ezdiary/user/userSurvey";
 	}
 
+	
+	  @Override
+	  @ResponseBody
+	  @RequestMapping(value = "/survey2" , method = RequestMethod.POST) 
+	  public Map<String, Object> testAjax(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO)
+	  throws Exception {
+		  
+		System.out.println("ask_idx : "+ ask_idx);  
+	  
+	  System.out.println("ajax 컨트롤러 접근");
+	  
+	  Map<String, Object> result = new HashMap<String,Object>();
+	  
+	  System.out.println(userService.ajaxAsk(askDTO));
+	  System.out.println(userService.ajaxAnswer(answerDTO));
+	  
+	  result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+	  result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
+	  
+	  return result; 
+	  
+	  }
+	  @ResponseBody
+	  @RequestMapping(value = "/survey3" , method = RequestMethod.POST) 
+	  public Map<String, Object> testAjax7(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO)
+			  throws Exception {
+		  
+		  System.out.println("ask_idx : "+ ask_idx);  
+		  
+		  System.out.println("ajax 컨트롤러 접근");
+		  
+		  Map<String, Object> result = new HashMap<String,Object>();
+		  
+		  System.out.println(userService.ajaxAsk(askDTO));
+		  System.out.println(userService.ajaxAnswer(answerDTO));
+		  
+		  result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+		  result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
+		  
+		  return result; 
+		  
+	  }
+	 
+	
 	@Override
 	@ResponseBody
-	@RequestMapping(value = "/survey2" , method = RequestMethod.POST)
-	public Map<String, Object> testAjax(AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception {
+	@RequestMapping(value = "/survey5" , method = RequestMethod.POST)
+	public void testAjax4(@RequestParam("answer_idx") int answer_idx) throws Exception {
 		
-		System.out.println("ajax 컨트롤러 접근");
+		System.out.println("survey2");
 		
-		Map<String, Object> result = new HashMap<String,Object>();
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/survey6" , method = RequestMethod.POST)
+	public void testAjax1(@RequestParam("answer_idx") int answer_idx) throws Exception {
 		
-		System.out.println(userService.ajaxAsk(askDTO));
-		System.out.println(userService.ajaxAnswer(answerDTO));
+		System.out.println("survey3");
 		
-		result.put("ajaxAsk",userService.ajaxAsk(askDTO));
-		result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
 		
-		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/survey7" , method = RequestMethod.POST)
+	public void testAjax2(@RequestParam("answer_idx") int answer_idx) throws Exception {
+		
+		System.out.println("survey4");
+		
+		
 	}
 
 	
@@ -145,7 +200,57 @@ public class UserControllerImpl implements UserController {
 	/* 결과페이지 */
 	@Override
 	@RequestMapping(value = "/result" , method = RequestMethod.GET)
-	public String resultPage() throws Exception {
+	public String resultPage(Model model) throws Exception {
+		
+		
+  		List<MyAnswerDTO> answerDTO =  userService.getUserAnswer();	
+  		
+  		System.out.println("answerDTO.size : " + answerDTO.size());
+  		System.out.println("answerDTO : " + answerDTO);
+  		answerDTO.get(0).getAsk_idx();
+  		
+  		int lastAskNO = userService.lastAskNO();
+  		
+  		List<Integer> getAnswerCnt = new ArrayList<>();
+  		
+  		Map answerInfo = new HashMap<>();
+  		
+  		for(int i = 0; i<lastAskNO; i++) {
+  			
+  			int ask_idx = answerDTO.get(i).getAnswer_idx();
+  			
+  			System.out.println(1);
+  			System.out.println(ask_idx);
+  			
+  			for(int j = 0; j<3; j++) {
+
+  			  int answer_idx = answerDTO.get(j).getAnswer_idx();
+  			  
+  			  System.out.println(2);
+  			  System.out.println("answer_idx : " + answer_idx);
+  			  
+  			  answerInfo.put("ask_idx", ask_idx);
+  			  answerInfo.put("answer_idx", answer_idx);
+  			  
+  			  System.out.println(3);
+  			  System.out.println("answerInfo : "+answerInfo);
+  			  
+  			  int answerCount = userService.getAnswerCount(answerInfo);
+  			  
+  			  System.out.println(4);
+  			  System.out.println("answerCount" + answerCount);
+  			  
+  			  getAnswerCnt.add(answerCount);
+  			  System.out.println(5);
+  			  System.out.println("answerCnt : "+getAnswerCnt);
+  			}
+			 
+  		}
+
+		System.out.println(getAnswerCnt);
+  		
+		model.addAttribute("answerInfo", answerDTO); 
+		model.addAttribute("answerCnt", getAnswerCnt); 
 		
 		log.info("결과페이지 진입!");
 		return "/ezdiary/user/userResult";

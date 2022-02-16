@@ -1,5 +1,7 @@
 package com.ezen.ezdiary.admin.dto;
 
+
+
 public class BoardPageDTO {
 
     private int startPage;

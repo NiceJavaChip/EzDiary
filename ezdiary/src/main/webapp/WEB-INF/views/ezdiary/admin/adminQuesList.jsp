@@ -38,7 +38,7 @@
 				</table>
 				<form method="get" id="moveForm">
 					<input type="hidden" name="pageNum" value="${boardPage.boardDTO.pageNum}"> 
-					 <input type="hidden" name="search" value="${boardPage.boardDTO.search}">
+					 <%-- <input type="hidden" name="search" value="${boardPage.boardDTO.search}"> --%>
 				</form>
 				<div class="pagging_box">
 					<div class="pagging_tab">
@@ -59,10 +59,14 @@
 						</ul>
 					</div>
 				</div>
+				<form method="get" id="moveForm">
 				<div class="search_wrapper">
+				<input type="hidden" name="pageNum" value="${boardPage.boardDTO.pageNum}"> 
 					<input id="search" type="text" class="search_input_box"
 								placeholder="검색어 입력" name="search" value="${boardPage.boardDTO.search}"/>
 				</div>
+				</form>
+				<!-- 만약 검색 게시글이 10개 이상이 되면 어떻게 될까? -->
 				<div class="content_btn_wrapper margin_top_less align_right list_view">
 					<button class="content_btn" onclick="location.href='${path}/adminselect'">이전</button>
 					<button class="content_btn width_add" onclick="location.href='${path}/quesWrite'">질문추가</button>

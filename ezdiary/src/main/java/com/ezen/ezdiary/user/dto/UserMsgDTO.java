@@ -23,6 +23,7 @@ public class UserMsgDTO {
 	private Date write_date;
 	private String editor;
 	private Date edit_date;
+	
 	public int getMsg_idx() {
 		return msg_idx;
 	}
