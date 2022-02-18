@@ -40,16 +40,14 @@ public interface UserController {
 	/* 하고싶은말 등록 */ 			
 	public String sendMsg(UserMsgDTO userMsgDTO, HttpServletRequest request) throws Exception; 
 	
+	/* ajax 통신 */
+	public Map<String, Object> testAjax(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception;
+
 	/* ajax 통신2 */
-//	public int myAnswerRegist(AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO, HttpServletRequest request) throws Exception;
-	
 	public int myAnswerRegist1(@RequestParam("ask_idx")int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO, HttpServletRequest request) throws Exception;
 	public int myAnswerRegist2(@RequestParam("ask_idx")int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO, HttpServletRequest request) throws Exception;
 	public int myAnswerRegist3(@RequestParam("ask_idx")int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO, MyAnswerDTO myAnswerDTO, HttpServletRequest request) throws Exception;
 	
-	/* ajax 통신 */
-	
-	  public Map<String, Object> testAjax(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO
-	  askDTO) throws Exception;
-	 
+	/* ajax프로그래스바 */ 
+	public Map<String, Object> prograssBar(AdminAskDTO askDTO) throws Exception;
 }

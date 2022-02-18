@@ -133,10 +133,10 @@
 					ORDER BY 
 						ask_idx ASC 
 					) 
-				    WHERE 
-				    	rownum = 1
-				    AND 
-				    	ask_idx > #{ask_idx} 	
+			    WHERE 
+			    	rownum = 1
+			    AND 
+			    	ask_idx > #{ask_idx} 	
         	]]>        	
         </select>
         
