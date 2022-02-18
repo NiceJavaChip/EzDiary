@@ -17,11 +17,11 @@
 			</div>
 		</div>
          <div class="upper_title">
-         			<!-- items = ${ask} ->컨트롤러에서 정한 model.addAttribute("ask", askDTO); 의 "ask" -->
-	         <c:forEach var="ask" items="${ask}">
-	            <p><c:out value="${ask.ask_cntnt}"/></p>
-	            <input id="ask_idx" type="hidden" value="${ask.ask_idx}"/>  
-	         </c:forEach>
+                  <!-- items = ${ask} ->컨트롤러에서 정한 model.addAttribute("ask", askDTO); 의 "ask" -->
+            <c:forEach var="ask" items="${ask}">
+               <p><c:out value="${ask.ask_cntnt}"/></p>
+               <input id="ask_idx" type="hidden" value="${ask.ask_idx}"/>  
+            </c:forEach>
          </div>
 
          <c:forEach var="answer" items="${answer}" varStatus="status">
@@ -30,7 +30,7 @@
 <%-- 	            <input id="answer_idx" type="hidden" value="${answer.answer_idx }"/> --%>
 	         </div>
 	     </c:forEach>
-	     
+         
          <div class="prev_btn" id="prev_btn_fadeout">
             <button type="button" onclick="location.href='regist'">이 전</button>
          </div>
@@ -45,7 +45,7 @@
    
 <script type="text/javascript">
 $(document).ready(function(){
-	
+
 	$("#start_btn1").click(function(){
 		   
 		   var form = {
@@ -196,7 +196,7 @@ $(".items_btn").click(function(){
                    													//															  res.ajaxAnswer[2].answer_cntnt
                    													//															 text 내용을 바꿔준다
                 });
-
+                
                 
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
