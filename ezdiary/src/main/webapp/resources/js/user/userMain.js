@@ -1,24 +1,24 @@
 
 // 엔터키 이벤트(닉네임 페이지) && 유효성검사  userNick.jsp에서 사용
 function enter() {
-	if(event.keyCode==13) {	
-		if($("#nick").val() == "") {
-	 	    alert("닉네임을 입력해주세요.");
-	   	    $("#nick").focus();   	    
-	  	  return false;	
-		} else {
-			console.log(1);
-			 regist.submit();
-			 console.log(2);
-			 //location.href='${path}/survey?ask_idx=<c:out value="${answer.ask_idx}" />'	
-		}
-	} 
+   if(event.keyCode==13) {   
+      if($("#nick").val() == "") {
+           alert("닉네임을 입력해주세요.");
+             $("#nick").focus();          
+          return false;   
+      } else {
+         console.log(1);
+          regist.submit();
+          console.log(2);
+          //location.href='${path}/survey?ask_idx=<c:out value="${answer.ask_idx}" />'   
+      }
+   } 
 }
 
 
 function click() {
-	var link = 'userResultloading.jsp';
-		location.href=link;
+   var link = 'userResultloading.jsp';
+      location.href=link;
 }
 
 //'request'라는 id를 가진 버튼 클릭 시 실행.
@@ -26,7 +26,7 @@ $("#request").click(function(){
 
         // json 형식으로 데이터 set
         var params = {
-        		user_nick  : $("#user_nick").val()
+              user_nick  : $("#user_nick").val()
         }
             
         // ajax 통신
@@ -56,34 +56,42 @@ $(document).ready(function() {
     });
 });
 
+// resultloading.jsp div fade in fade out 기능
+$(document).ready(function() {
+   $(".typing_txt").fadeOut(500).delay(500).fadeIn(500);
+   $(".typing_txt").fadeOut(500).delay(500).fadeIn(500);
+   $(".typing_txt").fadeOut(500).delay(500).fadeIn(500);
+});
+
+
 // userSurvey.jsp div fade in fade out 기능
 /*$(function () {
-	$(".items_btn").on("click", function() { 
-		$("#divBox").fadeOut(2000);
-			if ($("#divBox2").css("display") == "none") {
-				$("#divBox2").delay(2000).fadeIn(2000);
-			}
-	});
-	$(".items_btn2").on("click", function() { 
-		$("#divBox2").fadeOut(2000);
-			if ($("#divBox3").css("display") == "none") {
-				$("#divBox3").delay(2000).fadeIn(2000);
-			}
-	});
-	$(".items_btn3").on("click", function() { 
-		$("#divBox3").fadeOut(2000);
-			if ($("#divBox4").css("display") == "none") {
-				$("#divBox4").delay(2000).fadeIn(2000);
-			}
-	});
+   $(".items_btn").on("click", function() { 
+      $("#divBox").fadeOut(2000);
+         if ($("#divBox2").css("display") == "none") {
+            $("#divBox2").delay(2000).fadeIn(2000);
+         }
+   });
+   $(".items_btn2").on("click", function() { 
+      $("#divBox2").fadeOut(2000);
+         if ($("#divBox3").css("display") == "none") {
+            $("#divBox3").delay(2000).fadeIn(2000);
+         }
+   });
+   $(".items_btn3").on("click", function() { 
+      $("#divBox3").fadeOut(2000);
+         if ($("#divBox4").css("display") == "none") {
+            $("#divBox4").delay(2000).fadeIn(2000);
+         }
+   });
 });*/
 
 
 $(function() { 
-	$("#fadeToggleBtn").on("click", function() { 
-	// id가 "divBox"인 요소를 1초에 걸쳐 점점 나타나게 하거나 사라지게 함. 
-	$("#divBox").fadeToggle(1000); 
-	}); 
+   $("#fadeToggleBtn").on("click", function() { 
+   // id가 "divBox"인 요소를 1초에 걸쳐 점점 나타나게 하거나 사라지게 함. 
+   $("#divBox").fadeToggle(1000); 
+   }); 
 });
 
 //loding

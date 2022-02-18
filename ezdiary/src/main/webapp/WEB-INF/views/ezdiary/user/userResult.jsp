@@ -25,21 +25,82 @@
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
 				<div class="chart_title">해당 차트에 대한 제목</div>
-				<div class="chart_field">차트영역</div>
+				<div class="chart_field">
+					<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart3"></canvas>
+				</div>
+			</div>
 			</div>
 			<div class="result_chart">		
 				<div class="chart_title">해당 차트에 대한 제목</div>
-				<div class="chart_field">차트영역</div>
+				<div class="chart_field">
+					<div class="chart_field">
+					<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart4"></canvas>
+					</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
 				<div class="chart_title">해당 차트에 대한 제목</div>
-				<div class="chart_field">차트영역</div>
+				<div class="chart_field">
+				<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart5"></canvas>
+				</div>
+				</div>
 			</div>
 			<div class="result_chart">		
 				<div class="chart_title">해당 차트에 대한 제목</div>
-				<div class="chart_field">차트영역</div>
+				<div class="chart_field">
+					<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart6"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="resultContent_wrapper">
+			<div class="result_chart">		
+				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_field">
+				<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart7"></canvas>
+				</div>
+				</div>
+			</div>
+			<div class="result_chart">		
+				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_field">
+					<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart8"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="resultContent_wrapper">
+			<div class="result_chart">		
+				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_field">
+				<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart9"></canvas>
+				</div>
+				</div>
+			</div>
+			<div class="result_chart">		
+				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_field">
+					<div style="width: 400px; height: 200px;">
+					<!--차트가 그려질 부분-->
+					<canvas id="myChart10"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -178,6 +239,14 @@
 
 			chartTest('myChart','${answerCnt[0]}','${answerCnt[1]}','${answerCnt[2]}');
 			chartTest('myChart2','${answerCnt[3]}','${answerCnt[4]}','${answerCnt[5]}');
+			chartTest('myChart3','${answerCnt[6]}','${answerCnt[7]}','${answerCnt[8]}');
+			chartTest('myChart4','${answerCnt[9]}','${answerCnt[10]}','${answerCnt[11]}');
+			chartTest('myChart5','${answerCnt[12]}','${answerCnt[13]}','${answerCnt[14]}');
+			chartTest('myChart6','${answerCnt[15]}','${answerCnt[16]}','${answerCnt[17]}');
+			chartTest('myChart7','${answerCnt[18]}','${answerCnt[19]}','${answerCnt[20]}');
+			chartTest('myChart8','${answerCnt[21]}','${answerCnt[22]}','${answerCnt[23]}');
+			chartTest('myChart9','${answerCnt[24]}','${answerCnt[25]}','${answerCnt[26]}');
+			chartTest('myChart10','${answerCnt[27]}','${answerCnt[28]}','${answerCnt[29]}');
             
             function chartTest(id, data1, data2, data3){
             	var context = document
