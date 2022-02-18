@@ -3,11 +3,12 @@
 * {
    margin: 0;
    padding: 0;
+   font-family: 'Nanum Pen Script', cursive;
 }
 
 body, html {
     width: 100%;
-    height: 100%;
+    height: 86%;
    background-color: #004f32;
 }
 
@@ -50,13 +51,21 @@ body, html {
 .upper_title {
 /*    border: solid 1px white; */
    font-size: 40px;
-   margin-top: 190px;
+   margin-top: 120px;
    margin-bottom: 18px;
+}
+
+.add_margin_top{
+	margin-top: 170px;
+}
+
+.add_margin_top_loding{
+	margin-top: 300px;
 }
 
 .main_title {
 /*    border: solid 1px white; */
-   font-size: 50px;
+   font-size: 64px;
    margin-top: 50px;
 }
 
@@ -70,11 +79,22 @@ body, html {
     width: 140px;
     height: 70px;
     border-radius: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
+
+.start_btn img{
+	display: block;
+    width: 90%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
 
 .bottom_title {
 /*    border: solid 1px white; */
-   font-size: 20px;
+   font-size: 40px;
    margin-top: 50px;
 }
 
@@ -96,7 +116,7 @@ body, html {
 
 input::placeholder {
    text-align: center;
-   font-size: 15px;
+   font-size: 24px;
 }
 
 /* ============================userSurvey.jsp css============================================ */
@@ -161,8 +181,7 @@ progress {
 .select_items button {
    border: solid 1px white;
    cursor: pointer;
-   font-family: NanumSquare;
-   font-size: 20px;
+  font-size: 32px;
    color: white;
     background-color: transparent;
    width: 500px;
@@ -182,11 +201,29 @@ progress {
 .prev_btn button {
    border: solid 1px white;
     cursor: pointer;
-    font-family: NanumSquare;
-    font-size: 20px;
+    font-size: 32px;
     color: white;
     background-color: transparent;
     width: 150px;
     height: 60px;
     margin-bottom: 18px;
+}
+
+/* ============================loding.jsp css============================================ */
+p.typing-txt{
+  display: none;
+}
+
+.typing {  
+/*position: absolute;*/ 
+  display: inline-block; 
+  animation-name: cursor; 
+  animation-duration: 0.3s; 
+  animation-iteration-count: infinite; 
+ } 
+
+@keyframes cursor{ 
+  0%{border-right: 1px solid #fff} 
+  50%{border-right: 1px solid #000} 
+  100%{border-right: 1px solid #fff} 
 }

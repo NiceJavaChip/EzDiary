@@ -22,8 +22,11 @@ body, html {
     flex-direction: column;
 }
 
+.admin_contents_container{
+	box-sizing: border-box;
+}
+
 .content_title{
-	margin-top: 90px;
 	margin-bottom: 20px;
 }
 

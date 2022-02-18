@@ -12,7 +12,9 @@
 				<p>EZDIARY 설문조사</p>
 			</div>
 			<div class="start">
-				<button class="start_btn" type="button" onclick="location.href='regist'">시작하기</button>
+				<button class="start_btn" type="button" onclick="location.href='regist'">
+				<img src="${path}/resources/image/start.png" alt="시작하기" />
+				</button>
 			</div>
 			<div class="bottom_title">
 				<p>20분에 캡춰하겠습니다</p>
