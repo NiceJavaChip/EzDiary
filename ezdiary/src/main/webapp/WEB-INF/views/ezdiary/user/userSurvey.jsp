@@ -3,6 +3,19 @@
 <%@ include file="../layout/userHeader.jsp" %>
    <div class="usermain_wrapper survey">
       <div class="content_wrapper" id="divBox">
+<!-- 		    <div class="prog"> -->
+<!-- 		        <div class="progs" id="progressing">5%</div> -->
+<!-- 		    </div> -->
+<!-- 	      	<button onClick="moveBtn()">클릭해주세요</button> -->
+<!-- 	      	<div> -->
+<!-- 	 		 	<progress max="10" id="lb"></progress> -->
+<!-- 			</div> -->
+		<div class="progress-bar">
+			<div class="index">
+				<img src="${path}/resources/image/ball.png">
+				<span class="ball-num">1</span>
+			</div>
+		</div>
          <div class="upper_title">
          			<!-- items = ${ask} ->컨트롤러에서 정한 model.addAttribute("ask", askDTO); 의 "ask" -->
 	         <c:forEach var="ask" items="${ask}">
@@ -36,7 +49,6 @@ $(document).ready(function(){
 	$("#start_btn1").click(function(){
 		   
 		   var form = {
-// 		         answer_idx : $('#answer_idx1').val()
 					ask_idx  : $('#ask_idx').val()
 		       }
 		   
@@ -58,7 +70,6 @@ $(document).ready(function(){
 		$("#start_btn2").click(function(){
 		   
 		   var form = {
-// 		         answer_idx : $('#answer_idx2').val(),
 				ask_idx  : $('#ask_idx').val()
 		       }
 		   
@@ -80,7 +91,6 @@ $(document).ready(function(){
 		$("#start_btn3").click(function(){
 		   
 		   var form = {
-// 		         answer_idx : $('#answer_idx3').val(),
 				ask_idx  : $('#ask_idx').val()
 		       }
 		   
@@ -100,53 +110,43 @@ $(document).ready(function(){
 		    });
 		   
 		});
-	
+
+var px = 0;
+$(".index").css('left', px);
+//         if(px < 430) {
+//       	  px += 43;
+//         	  $(".index").css('left', px);
+//          }
+//           console.log(px+px);		
 	
 $(".items_btn").click(function(){
-
+	$('.index').each(function(index, item){
+		$(".index").css('left', (px+=43)+'px');
+		return false;
+	});
         // json 형식으로 데이터 set
         var params = {
-              ask_idx  : $('#ask_idx').val()
+            ask_idx  : $('#ask_idx').val()
         }
-     /*    var params2 = [
-        	
-			{answer_idx : $('#answer_idx1').val()},
-			{answer_idx : $('#answer_idx2').val()},
-			{answer_idx : $('#answer_idx3').val()}
-        ]
         
-        
-        jQuery.ajaxSettings.traditional = true; // 배열데이터 직렬화
-        console.log("answer_cntnt : " + ${answer[0].answer_idx });
-      		console.log("answer_idx : ",  params2);
-        // ajax 통신
-       $.ajax({
-            type : "POST",            // HTTP method type(GET, POST) 형식이다.
-            url : "myAsk2",      // 컨트롤러에서 대기중인 URL 주소이다.
-            data : params2,            // Json 형식의 데이터이다.
-            dataType : "json",
-            async : false,
-            success : function(res1){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-            	console.log("====================")
-            	console.log(1);
-					alert("success");
-					console.log(res1);
-					console.log(${answer[0].answer_idx });
-					console.log(${answer[1].answer_idx });
-					console.log(${answer[2].answer_idx });
-					
-					
-					
-					
-//                 });
-            },
-            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-               console.log(2);
-                alert("에러ㅓㅓㅓㅓㅓㅓㅓㅓㅓ"); // 실패 시 처리
-
+        var params2 = {
+                ask_idx  : $('#ask_idx').val()
             }
-        });     */             
-        
+        $.ajax({
+            type: "post", 
+            url: "bar", 
+            dataType: "json", 
+            data: params2,
+            success : function(res) {
+   	            $.each(res.ajaxAsk,function(key,val){		// 반복문  
+	       			$(".ball-num").text(val.ask_idx);
+	       			
+	            });
+            },
+            error : function() {
+              alert("progress error");
+           }
+        });
         // ajax 통신
         $.ajax({
             type : "POST",            // HTTP method type(GET, POST) 형식이다.
@@ -195,9 +195,6 @@ $(".items_btn").click(function(){
                    													//															  res.ajaxAnswer[1].answer_cntnt, 
                    													//															  res.ajaxAnswer[2].answer_cntnt
                    													//															 text 내용을 바꿔준다
-					
-                   	console.log("==============================================")												
-                	console.log($('.items_btn').eq(key).val(val.answer_cntnt));
                 });
 
                 

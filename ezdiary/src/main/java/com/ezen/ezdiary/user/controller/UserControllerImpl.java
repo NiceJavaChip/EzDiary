@@ -139,6 +139,22 @@ public class UserControllerImpl implements UserController {
 		return "/ezdiary/user/userSurvey";
 	}
 
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/bar" , method = RequestMethod.POST)
+	public Map<String, Object> prograssBar(AdminAskDTO askDTO) throws Exception {
+		
+		System.out.println("Bar ajax 접근");
+		
+		Map<String, Object> result = new HashMap<String,Object>();
+		
+		result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+		
+		System.out.println("===============ajaxAsk=============" + userService.ajaxAsk(askDTO));
+		
+		return result;
+	}
+
 	
 	  @Override
 	  @ResponseBody
@@ -161,6 +177,9 @@ public class UserControllerImpl implements UserController {
 	  return result; 
 	  
 	  }
+	  
+	  
+	  
 	  @ResponseBody
 	  @RequestMapping(value = "/survey3" , method = RequestMethod.POST) 
 	  public Map<String, Object> testAjax7(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO)
@@ -406,6 +425,7 @@ public class UserControllerImpl implements UserController {
 		
 		return result;
 	}
+
 
 	
 }
