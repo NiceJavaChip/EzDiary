@@ -1,23 +1,26 @@
 @charset "UTF-8";
 
 .my_answer {
-    margin-top: 80px;
+    margin-top: 40px;
     margin-bottom: 10px;
 }
 
 .my_answer span {
-	font-size:30px;
+	font-size:40px;
 }
 
 .my_questions {
 	margin-bottom: 10px;
 }
 
+.my_questions{
+	font-size: 32px;
+}
+
 .answer_btn {
 	border: solid 1px white;
 /* 	cursor: pointer; */
-	font-family: NanumSquare;
-	font-size: 20px;
+	font-size: 24px;
 	color: white;
     background-color: transparent;
 	width: 500px;
@@ -35,21 +38,34 @@
 }
 
 .msg {
+	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+.msg span{
+	font-size: 32px;
 }
 
 textarea::placeholder {
 	text-align: center;
-	font-size: 15px;
+	font-size: 32px;
+}
+
+textarea{
+	font-size: 24px;
+	width: 500px;
+    height: 200px; 
 }
 
 .submit_btn {
     border-radius: 10px;
     width: 130px;
     height: 40px;
+    font-size: 20px;
 }
 
 .text_cnt {
     text-align: right;
     width: 532px;
+    font-size: 20px;
 }
