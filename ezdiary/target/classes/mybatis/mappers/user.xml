@@ -107,6 +107,8 @@
 	        		EZ_DIARY_ASK 
         		WHERE 
         			ASK_IDX = #{ask_idx}
+        		ORDER BY
+        			ASK_IDX ASC
         	]]>
         </select>
         
@@ -149,8 +151,7 @@
         			EZ_DIARY_ASK_ANSWER
         		WHERE
         			ASK_IDX = #{ask_idx} + 1
-        		ORDER BY 
-        			ANSWER_CNTNT
+
         	]]>        	
         </select>
 		
@@ -162,8 +163,8 @@
         			EZ_DIARY_ASK_ANSWER
         		WHERE
         			ASK_IDX = #{ask_idx}
-        		ORDER BY 
-        			ANSWER_CNTNT
+				ORDER BY
+					ANSWER_IDX
         	]]> 		
 		</select>
 		
@@ -201,6 +202,8 @@
 							ON (edua.USER_IDX = edu.USER_IDX)
 			WHERE
 				edua.USER_IDX = #{user_idx}
+			ORDER BY
+				edua.ASK_IDX ASC
 		</select>
 		
 		<insert id="insertMsg">

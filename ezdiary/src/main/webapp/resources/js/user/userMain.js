@@ -56,6 +56,14 @@ $(document).ready(function() {
     });
 });
 
+// resultloading.jsp div fade in fade out 기능
+$(document).ready(function() {
+	$(".typing_txt").fadeOut(500).delay(500).fadeIn(500);
+	$(".typing_txt").fadeOut(500).delay(500).fadeIn(500);
+	$(".typing_txt").fadeOut(500).delay(500).fadeIn(500);
+});
+
+
 // userSurvey.jsp div fade in fade out 기능
 /*$(function () {
 	$(".items_btn").on("click", function() { 

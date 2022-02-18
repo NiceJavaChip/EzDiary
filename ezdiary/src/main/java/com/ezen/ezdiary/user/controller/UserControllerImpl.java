@@ -75,10 +75,10 @@ public class UserControllerImpl implements UserController {
 		
 		session = request.getSession(); 
 		List<AdminAskDTO> askDTO = userService.selectAsk(); 
-		System.out.println("askDTO : " + askDTO.get(0).getAsk_idx());
+//		System.out.println("askDTO : " + askDTO.get(0).getAsk_idx());
 		  
 		  List<AdminAnswerDTO> answerDTO = userService.selectAnswer();
-		  System.out.println("answerDTO : " + answerDTO.get(0).getAsk_idx());
+//		  System.out.println("answerDTO : " + answerDTO.get(0).getAsk_idx());
 		  
 		  userService.registNick(userDTO);
 		  
@@ -122,7 +122,7 @@ public class UserControllerImpl implements UserController {
 		myAnswerDTO.setUser_idx(nickIdx);
 		myAnswerDTO.setAnswer_idx(answerIdx);
 		
-		System.out.println("user session확인 : " + nickIdx);
+//		System.out.println("user session확인 : " + nickIdx);
 		System.out.println("myAnswerDTO : " + myAnswerDTO);
 		
 		List<AdminAskDTO> askListDTO = userService.askList(askDTO);
@@ -134,7 +134,7 @@ public class UserControllerImpl implements UserController {
 		System.out.println("answer_idx : " + answerListDTO);
 		
 		
-		System.out.println("myAnswerDTO 정보 : " + myAnswerDTO);
+//		System.out.println("myAnswerDTO 정보 : " + myAnswerDTO);
 		
 		return "/ezdiary/user/userSurvey";
 	}
@@ -180,26 +180,29 @@ public class UserControllerImpl implements UserController {
 	  
 	  
 	  
-	  @ResponseBody
-	  @RequestMapping(value = "/survey3" , method = RequestMethod.POST) 
-	  public Map<String, Object> testAjax7(@RequestParam("ask_idx") int ask_idx, AdminAnswerDTO answerDTO, AdminAskDTO askDTO)
-			  throws Exception {
-		  
-		  System.out.println("ask_idx : "+ ask_idx);  
-		  
-		  System.out.println("ajax 컨트롤러 접근");
-		  
-		  Map<String, Object> result = new HashMap<String,Object>();
-		  
-		  System.out.println(userService.ajaxAsk(askDTO));
-		  System.out.println(userService.ajaxAnswer(answerDTO));
-		  
-		  result.put("ajaxAsk",userService.ajaxAsk(askDTO));
-		  result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
-		  
-		  return result; 
-		  
-	  }
+		/*
+		 * @ResponseBody
+		 * 
+		 * @RequestMapping(value = "/survey3" , method = RequestMethod.POST) public
+		 * Map<String, Object> testAjax7(@RequestParam("ask_idx") int ask_idx,
+		 * AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception {
+		 * 
+		 * System.out.println("ask_idx : "+ ask_idx);
+		 * 
+		 * System.out.println("ajax 컨트롤러 접근");
+		 * 
+		 * Map<String, Object> result = new HashMap<String,Object>();
+		 * 
+		 * System.out.println(userService.ajaxAsk(askDTO));
+		 * System.out.println(userService.ajaxAnswer(answerDTO));
+		 * 
+		 * result.put("ajaxAsk",userService.ajaxAsk(askDTO));
+		 * result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
+		 * 
+		 * return result;
+		 * 
+		 * }
+		 */
 
 	/* 결과 로딩페이지 */
 	@Override
@@ -281,12 +284,12 @@ public class UserControllerImpl implements UserController {
 		
 		int userIdx = userDTO.getUser_idx();
 		
-		System.out.println("=======하고싶은말 등록 페이지 userIdx======= : " + userIdx);
+//		System.out.println("=======하고싶은말 등록 페이지 userIdx======= : " + userIdx);
 		
 		myAnswerDTO.setUser_idx(userIdx);
 		
 		List<MyAnswerDTO> mySurveyList = userService.mySurveyList(myAnswerDTO);
-		System.out.println("=======mySurveyList======= : " + mySurveyList);
+//		System.out.println("=======mySurveyList======= : " + mySurveyList);
 		model.addAttribute("mySurveyList", mySurveyList);
 		
 		
@@ -305,13 +308,13 @@ public class UserControllerImpl implements UserController {
 		int userIdx = userDTO.getUser_idx();
 		String userNick = userDTO.getUser_nick();
 		
-		System.out.println("메세지 작성 useridx : " + userIdx);
+//		System.out.println("메세지 작성 useridx : " + userIdx);
 		userMsgDTO.setUser_idx(userIdx);
 		userMsgDTO.setUser_nick(userNick);
 		
 		userService.sendMsg(userMsgDTO);
 		
-		System.out.println(userMsgDTO);
+//		System.out.println(userMsgDTO);
 		
 		return "redirect:/result";
 	}
@@ -339,7 +342,9 @@ public class UserControllerImpl implements UserController {
 		answerIdx.get(0).getAnswer_idx();
 //		askCntnt.get(0).getAsk_cntnt();
 		System.out.println("============================");
-		System.out.println("answerCntnt값 : " + answerCntnt.get(0).getAnswer_cntnt());
+		System.out.println("answerCntnt값 : " + answerCntnt.get(0).getAnswer_cntnt());		//3
+
+		
 		answerCntnt.get(0).getAnswer_cntnt();
 		
 		
