@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/userHeader.jsp" %>
-   <div class="usermain_wrapper survey">
+   <div class="usermain_wrapper_survey survey">
       <div class="content_wrapper" id="divBox">
 <!-- 		    <div class="prog"> -->
 <!-- 		        <div class="progs" id="progressing">5%</div> -->
@@ -124,6 +124,7 @@ $(".items_btn").click(function(){
 		$(".index").css('left', (px+=43)+'px');
 		return false;
 	});
+
         // json 형식으로 데이터 set
         var params = {
             ask_idx  : $('#ask_idx').val()
@@ -154,6 +155,7 @@ $(".items_btn").click(function(){
             data : params,           // Json 형식의 데이터이다.
             dataType : "json",
             success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+            	
                 console.log(res.ajaxAsk.length);
                 console.log(res.ajaxAnswer.length);
                 console.log(res.ajaxAnswer);
@@ -182,8 +184,8 @@ $(".items_btn").click(function(){
 //                  $('.items_btn').eq(0).text(res.ajaxAnswer[0].answer_cntnt);
 //                  $('.items_btn').eq(1).text(res.ajaxAnswer[1].answer_cntnt);
 //                  $('.items_btn').eq(2).text(res.ajaxAnswer[2].answer_cntnt);
-                
                 $.each(res.ajaxAsk,function(key,val){		// 반복문  
+//                 $("#divBox").fadeOut(1000);
 //                    console.log("key : " + key + " val.ask_cntnt : " + val.ask_cntnt );
                    $('.upper_title > p').eq(key).text(val.ask_cntnt);	// class가 upper_title 안에있는 p태그에 val.ask_cntnt의 내용을 텍스트로 넣어준다. 여기서 val = res.ajaxAsk
                   });
@@ -196,8 +198,7 @@ $(".items_btn").click(function(){
                    													//															  res.ajaxAnswer[2].answer_cntnt
                    													//															 text 내용을 바꿔준다
                 });
-                
-                
+//                 $("#divBox").fadeIn(500);
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
                console.log(2);

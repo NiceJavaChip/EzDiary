@@ -34,5 +34,5 @@
 </head>
 <body>
 	<div class="header">
-		header입니다
+		<span class="header_logo">EzDiary</span>
 	</div>

@@ -1,11 +1,19 @@
 @charset "UTF-8";
 
+/* 정범 추가 */
+.header_logo {
+	margin-left: 10px;
+    color: white;
+    font-size: 45px;
+}
+
 .header{
 	height: 50px;
 }
 
 .footer{
 	border-top: 1px solid white;
+	
 	height: 140px;
 	border: none;
 }
