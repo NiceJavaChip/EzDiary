@@ -11,6 +11,18 @@ body, html {
 	background-color: #004f32;
 }
 
+/* 정범 추가 */
+.admin_wrapper_ques {
+	/* border: 1px solid white; */
+	color: white;
+/*     height: 100%; */
+    max-width: 560px;
+    text-align: center;
+    margin: auto;
+  	display: flex;
+    flex-direction: column;
+}
+
 .admin_wrapper{
 	/* border: 1px solid white; */
 	color: white;

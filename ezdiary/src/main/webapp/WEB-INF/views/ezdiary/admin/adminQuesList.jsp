@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/adminHeader.jsp" %>
-	<div class="admin_wrapper">
+	<div class="admin_wrapper_ques"> <!-- 정범 수정 class명에 _ques 추가 -->
 		<div class="admin_contents_container">
 			<div class="content_title">
 				<h1>질문지 LIST</h1>

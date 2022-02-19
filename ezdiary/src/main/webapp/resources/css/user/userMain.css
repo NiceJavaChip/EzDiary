@@ -12,6 +12,12 @@ body, html {
    background-color: #004f32;
 }
 
+.header_logo {
+	margin-left: 10px;
+    color: white;
+    font-size: 45px;
+}
+
 /* .usermain_wrapper {
    overflow: hidden;
     color: white;
@@ -120,7 +126,13 @@ input::placeholder {
 }
 
 /* ============================userSurvey.jsp css============================================ */
-
+.usermain_wrapper_survey {
+	color: white;
+    /* height: 100%; */
+    width: 680px;
+    text-align: center;
+    margin: auto;
+}
 /* .conatiner{ */
 /*     margin: 200px 50px; */
 /*     background: rgb(255, 254, 254); */
@@ -212,6 +224,14 @@ progress {
 /* ============================loding.jsp css============================================ */
 p.typing-txt{
   display: none;
+}
+
+.usermain_wrapper_loading {
+	color: white;
+    height: 100%;
+    width: 680px;
+    text-align: center;
+    margin: auto;
 }
 
 .typing {  
