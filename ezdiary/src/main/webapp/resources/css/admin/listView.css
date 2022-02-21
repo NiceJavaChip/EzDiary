@@ -83,8 +83,10 @@ tr td a:hover{
 
 /* adminQuesList의 질문추가
 	userMsgView, quesWrite, adminMod 에 해당  */
+
+
 .content_btn:nth-child(2){
-	margin-right: 30px;
+	margin-right: 110px;
 }
 
 

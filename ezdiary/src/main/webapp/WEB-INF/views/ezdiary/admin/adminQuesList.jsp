@@ -69,7 +69,7 @@
 				<!-- 만약 검색 게시글이 10개 이상이 되면 어떻게 될까? -->
 				<div class="content_btn_wrapper margin_top_less align_right list_view">
 					<button class="content_btn" onclick="location.href='${path}/adminselect'">이전</button>
-					<button class="content_btn width_add" onclick="location.href='${path}/quesWrite'">질문추가</button>
+					<button class="content_btn_ques_add width_add" onclick="location.href='${path}/quesWrite'">질문추가</button>
 				</div>
 			</div>
 		</div>
