@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/adminHeader.jsp" %>
 	<div class="admin_wrapper">
-		<div class="admin_contents_container">
+		<div class="admin_contents_container margin_bottom_add">
 			<div class="content_title margin_top_add">
 			<h1>EZ DIARY</h1>
 			</div>

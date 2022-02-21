@@ -3,7 +3,7 @@
 <%@ include file="../layout/adminHeader.jsp" %>
 <%-- <c:set var="userMsgList" value="${userMap.userMsgList}"/>
 <c:set var="userName" value="${userMap.user}"/> --%>
-	<div class="admin_wrapper">
+	<div class="admin_wrapper_ques">
 		<div class="admin_contents_container">
 			<div class="content_title">
 				<h1>수강생들의 이야기</h1>
