@@ -10,7 +10,8 @@
 		</div>
 		<div class="border"></div>
 		<div class="border_shadow"></div>
-		<div class="wood"></div>
+		<div class="wood">
+		</div>
 	</div> 
 </body>
 </html>

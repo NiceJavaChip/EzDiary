@@ -26,4 +26,4 @@
 			</form>
 		</div>
 	</div>
-<%@ include file="../layout/userFooter.jsp" %>
+<%@ include file="../layout/userFooter2.jsp" %>

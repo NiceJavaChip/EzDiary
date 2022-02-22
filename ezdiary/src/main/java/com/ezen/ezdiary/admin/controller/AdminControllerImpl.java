@@ -426,4 +426,19 @@ public class AdminControllerImpl implements AdminController {
 		return mav;
 	}
 
+	@Override
+	public ModelAndView userTotalCount() throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		  int userCount = adminService.userTotalCount();
+		  
+		  mav.addObject("userCount", userCount);
+		  System.out.println("userCount : "+userCount);
+		  mav.setViewName("ezdiary/layout/userFooter2");
+		 
+		
+		return mav;
+	}
+
 }

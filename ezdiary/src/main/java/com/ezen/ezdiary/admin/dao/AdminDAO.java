@@ -59,6 +59,8 @@ public interface AdminDAO {
 	public void removeUser(Map<String, Object> articleMap)throws Exception;
 
 	public void removeMsg(Map<String, Object> articleMap) throws Exception;
+
+	public int userTotalCount() throws Exception;
 	
 	
 }

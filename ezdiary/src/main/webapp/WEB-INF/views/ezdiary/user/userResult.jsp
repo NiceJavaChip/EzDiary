@@ -104,6 +104,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<script type="text/javascript">
             /* var context = document
                 .getElementById('myChart')
@@ -313,4 +314,4 @@
             });
             }
         </script>
-<%@ include file="../layout/userFooter.jsp" %>
+<%@ include file="../layout/userFooter2.jsp" %>

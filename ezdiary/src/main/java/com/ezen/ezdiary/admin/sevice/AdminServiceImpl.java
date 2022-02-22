@@ -147,5 +147,11 @@ public class AdminServiceImpl implements AdminService{
 		adminDAO.removeMsg(articleMap);
 	}
 
+	@Override
+	public int userTotalCount() throws Exception {
+		
+		return adminDAO.userTotalCount();
+	}
+
 
 }
