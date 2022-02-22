@@ -155,14 +155,18 @@ $(".items_btn").click(function(){
             data : params,           // Json 형식의 데이터이다.
             dataType : "json",
             success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-            	
-                console.log(res.ajaxAsk.length);
-                console.log(res.ajaxAnswer.length);
-                console.log(res.ajaxAnswer);
+//             	console.log("----------ajaxAsk.status-------" , res.ajaxAsk.status);
+//                 console.log(res.ajaxAsk.length);
+                console.log("res.ajaxAnswer.length 값 : " , res.ajaxAnswer.length);
+                console.log("$('input#ask_idx').val() 값 : " , $('input#ask_idx').val());
+                console.log("res.ajaxAsk.length 값 : " , res.ajaxAsk.length);
+//                 console.log(res.ajaxAnswer);
 //                	$(".items_btn").click(function(){
+					
              		if(res.ajaxAnswer.length == 0) {
              			location.href = "loading";
              		}
+
 //                	});	
                 $('input#ask_idx').val(res.ajaxAsk[0].ask_idx);	// 컨트롤러에서 ajaxAsk이름으로 put 해준 첫번째의 ask_idx를 <input id="ask_idx">태그에 그 값을 넣어준다 (2)
 //             	console.log( $('input#ask_idx').val());	
