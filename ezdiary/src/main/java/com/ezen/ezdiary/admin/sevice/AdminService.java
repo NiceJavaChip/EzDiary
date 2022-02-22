@@ -60,5 +60,7 @@ public interface AdminService {
 
 	public void removeMsg(Map<String, Object> articleMap) throws Exception;
 
+	public int userTotalCount() throws Exception;
+
 
 }

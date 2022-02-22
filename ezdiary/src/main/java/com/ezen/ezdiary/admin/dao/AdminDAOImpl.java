@@ -166,6 +166,12 @@ public class AdminDAOImpl implements AdminDAO {
 	
 		sqlSession.update(NAMESPACE+"removeMsg", articleMap);
 	}
+
+	@Override
+	public int userTotalCount() throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"userTotalCount");
+	}
 	
 	
 
