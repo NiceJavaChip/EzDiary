@@ -4,7 +4,7 @@
 	<div class="resultPage_wrapper">
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">수강생들의 첫 수업, 마음 가짐</div>
 				<div class="chart_field">
 					<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">1주일 차 java에 대한 호감도</div>
 				<div class="chart_field">
 					<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -24,7 +24,7 @@
 		</div>
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">학생들의 에러 해결 방식</div>
 				<div class="chart_field">
 					<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -33,7 +33,7 @@
 			</div>
 			</div>
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">수강생의 문제 해결 방식</div>
 				<div class="chart_field">
 					<div class="chart_field">
 					<div style="width: 400px; height: 200px;">
@@ -46,7 +46,7 @@
 		</div>
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">수강생이 생각한 spring framework의 난이도</div>
 				<div class="chart_field">
 				<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -55,7 +55,7 @@
 				</div>
 			</div>
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">팀 프로젝트 편성 후 수강생의 생각</div>
 				<div class="chart_field">
 					<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -66,7 +66,7 @@
 	</div>
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">프로젝트 내 나의 포지션</div>
 				<div class="chart_field">
 				<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -75,7 +75,7 @@
 				</div>
 			</div>
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">프로젝트 중간 단계 중 진행상태</div>
 				<div class="chart_field">
 					<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -86,7 +86,7 @@
 	</div>
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">프로젝트의 막바지, 수강생의 생각</div>
 				<div class="chart_field">
 				<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -95,7 +95,7 @@
 				</div>
 			</div>
 			<div class="result_chart">		
-				<div class="chart_title">해당 차트에 대한 제목</div>
+				<div class="chart_title">수강생들은 과연 어떻게 행동할까?</div>
 				<div class="chart_field">
 					<div style="width: 400px; height: 200px;">
 					<!--차트가 그려질 부분-->
@@ -262,7 +262,7 @@
                     ],
                     datasets: [
                         { //데이터
-                            label: '질문 1에 대한 통계', //차트 제목
+                            label: '　', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
                                 //19,25,20,23,26,25 //x축 label에 대응되는 데이터 값 -> ajax로 조회된 카운팅 쿼리 내용을 가져온다(콤마형태)
@@ -305,7 +305,7 @@
                             {
                                 ticks: {
                                     beginAtZero: true,
-                                    stepSize : 1
+                                    stepSize : 3
                                 }
                             }
                         ]

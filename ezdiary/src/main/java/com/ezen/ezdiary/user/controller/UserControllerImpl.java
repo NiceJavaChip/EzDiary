@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.ezdiary.admin.dto.AdminAnswerDTO;
 import com.ezen.ezdiary.admin.dto.AdminAskDTO;
+import com.ezen.ezdiary.admin.sevice.AdminService;
 import com.ezen.ezdiary.user.dto.MyAnswerDTO;
 import com.ezen.ezdiary.user.dto.UserDTO;
 import com.ezen.ezdiary.user.dto.UserMsgDTO;
@@ -43,6 +44,8 @@ public class UserControllerImpl implements UserController {
 	private UserService userService;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private AdminService adminService;
 	
 	/* 유저 메인페이지 */
 	@Override
@@ -264,6 +267,9 @@ public class UserControllerImpl implements UserController {
   		}
 
 		System.out.println(getAnswerCnt);
+		int userCount = adminService.userTotalCount();
+		 model.addAttribute("userCount", userCount);
+		 System.out.println("userCount : "+userCount);
   		
 		model.addAttribute("answerInfo", answerDTO); 
 		model.addAttribute("answerCnt", getAnswerCnt); 
@@ -291,6 +297,10 @@ public class UserControllerImpl implements UserController {
 		List<MyAnswerDTO> mySurveyList = userService.mySurveyList(myAnswerDTO);
 //		System.out.println("=======mySurveyList======= : " + mySurveyList);
 		model.addAttribute("mySurveyList", mySurveyList);
+		
+		int userCount = adminService.userTotalCount();
+		 model.addAttribute("userCount", userCount);
+		 System.out.println("userCount : "+userCount);
 		
 		
 		return "/ezdiary/user/userMsg";

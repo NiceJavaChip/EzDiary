@@ -245,7 +245,7 @@
   		
   		<select id="userTotalCount" resultType="int">
   		<![CDATA[	
-  			SELECT COUNT(USER_IDX) FROM EZ_DIARY_USER edu;  
+  			SELECT COUNT(USER_IDX) FROM EZ_DIARY_USER edu  
   		]]>
   		</select>
   		
