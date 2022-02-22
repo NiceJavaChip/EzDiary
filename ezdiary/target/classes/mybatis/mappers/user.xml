@@ -79,11 +79,15 @@
 						ASK_IDX 
 					FROM 
 						EZ_DIARY_ASK 
+					WHERE
+						NOT 
+							STATUS = 'd'
 					ORDER BY 
 						ASK_IDX ASC
 				  )
 			WHERE
 				ROWNUM = 1
+				
 		</select>
 		
 		<select id="selectAnswer" resultMap="answer">
@@ -106,7 +110,7 @@
 	        	FROM 
 	        		EZ_DIARY_ASK 
         		WHERE 
-        			ASK_IDX = #{ask_idx}
+        			ASK_IDX = #{ask_idx} AND NOT STATUS = 'D'
         		ORDER BY
         			ASK_IDX ASC
         	]]>
@@ -138,7 +142,8 @@
 			    WHERE 
 			    	rownum = 1
 			    AND 
-			    	ask_idx > #{ask_idx} 	
+			    	(ask_idx > #{ask_idx} AND NOT status = 'D')
+
         	]]>        	
         </select>
         
@@ -150,7 +155,7 @@
         		FROM 
         			EZ_DIARY_ASK_ANSWER
         		WHERE
-        			ASK_IDX = #{ask_idx} + 1
+        			ASK_IDX = #{ask_idx} + 1 AND NOT STATUS = 'D'
 
         	]]>        	
         </select>
@@ -162,7 +167,7 @@
         		FROM 
         			EZ_DIARY_ASK_ANSWER
         		WHERE
-        			ASK_IDX = #{ask_idx}
+        			ASK_IDX = #{ask_idx} AND NOT STATUS = 'D'
 				ORDER BY
 					ANSWER_IDX
         	]]> 		
