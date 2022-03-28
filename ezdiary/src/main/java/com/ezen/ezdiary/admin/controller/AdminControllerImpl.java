@@ -426,5 +426,14 @@ public class AdminControllerImpl implements AdminController {
 		return mav;
 	}
 
+	@Override
+	@RequestMapping(value = "board")
+	public String board() throws Exception {
+
+		return "board/board";
+	}
+	
+	
+
 
 }

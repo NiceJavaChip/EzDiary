@@ -39,5 +39,7 @@ public interface AdminController {
 	public ModelAndView userMsgView(@RequestParam("user_idx") int user_idx) throws Exception;
 	public ModelAndView userMsgRemove(UserDTO userDTO, UserMsgDTO msgDTO, HttpServletRequest request) throws Exception;
 	
+	public String board() throws Exception;
+	
 }
 

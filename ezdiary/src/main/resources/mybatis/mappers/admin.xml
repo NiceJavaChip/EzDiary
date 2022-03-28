@@ -135,6 +135,7 @@
 		]]>	
   		</select> -->
   		
+  		<!-- 여기서 왜 parameterType="int" 사용했을까 -->
   		<select id="selectAnswerList" parameterType="int" resultMap="adminAnswer">
   		<![CDATA[
   			select * from EZ_DIARY_ASK_ANSWER where ASK_IDX = #{ask_idx} order by answer_idx

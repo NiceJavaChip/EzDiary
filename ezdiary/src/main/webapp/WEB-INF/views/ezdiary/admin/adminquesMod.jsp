@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader.jsp" %>
+<%@ include file="../layout/adminHeader2.jsp" %>
 <c:set var="askInfo" value="${articleMap.getAskInfo}"/>
 <c:set var="answerInfo" value="${articleMap.answerInfoList}"/>
 	<div class="admin_wrapper">

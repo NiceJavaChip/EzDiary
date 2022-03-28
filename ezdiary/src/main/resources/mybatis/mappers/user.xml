@@ -210,7 +210,9 @@
 			ORDER BY
 				edua.ASK_IDX ASC
 		</select>
-		
+		<!-- 내가 선택한 질문지와 선택한 답변 가져오는 쿼리 -> EZ_DIARY_USER_ANSWER 테이블에 ask의 cntnt가 없어서 
+		ask_cntnt 가져오려고 join함 
+		inner Join 1, 2번에 ask_idx는 중복 제거 하려고 두 번 사용한 것-->		
 		<insert id="insertMsg">
 			INSERT INTO 
 				 EZ_DIARY_USER_MSG
@@ -221,19 +223,36 @@
 		
 		<select id="getUserAnswer" resultMap="myAnswer">
 		<![CDATA[ 
-			SELECT ASK_IDX, ANSWER_IDX, COUNT(ANSWER_IDX) FROM EZ_DIARY_USER_ANSWER GROUP BY ASK_IDX, ANSWER_IDX ORDER BY ASK_IDX
+			SELECT 
+				ASK_IDX, ANSWER_IDX, COUNT(ANSWER_IDX) 
+			FROM 
+				EZ_DIARY_USER_ANSWER 
+			GROUP BY 
+				ASK_IDX, ANSWER_IDX 
+			ORDER BY 
+				ASK_IDX
 		]]>  
 		</select>
 		
 		<select id="getAnswerCount" resultType="int">
 		<![CDATA[ 
-			SELECT nvl(max(COUNT(ANSWER_IDX)),0) FROM EZ_DIARY_USER_ANSWER WHERE ASK_IDX = #{ask_idx} and ANSWER_IDX = #{answer_idx} GROUP BY ASK_IDX, ANSWER_IDX
+			SELECT 
+				nvl(max(COUNT(ANSWER_IDX)),0) 
+			FROM 
+				EZ_DIARY_USER_ANSWER 
+			WHERE 
+				ASK_IDX = #{ask_idx} and ANSWER_IDX = #{answer_idx}
+			GROUP BY 
+				ASK_IDX, ANSWER_IDX
 		]]>  
 		</select>
 		
 		<select id="lastAskNO" resultType="int">
 		<![CDATA[ 
-			select nvl(max(ask_idx),0) from EZ_DIARY_USER_ANSWER
+			select 
+				nvl(max(ask_idx),0) 
+			from 
+				EZ_DIARY_USER_ANSWER
 		]]>  
 		</select>
 </mapper>
