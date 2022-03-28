@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader.jsp" %>
+<%@ include file="../layout/adminHeader2.jsp" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container margin_bottom_add">
 			<div class="content_title margin_top_add">

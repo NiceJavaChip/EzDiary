@@ -11,6 +11,36 @@
 	height: 50px;
 }
 
+.header2{
+	height: 50px;
+	display: flex;
+	justify-content: space-between;	
+}
+
+.header_colum:last-child{
+	display: flex;
+	justify-content: center;
+}
+
+.header_colum:last-child button{
+    margin-right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: white;
+}
+
+.header_content:first-child{
+	margin-right: 10px;
+	color: white;
+    padding-top: 3px;	
+}
+
+.header_colum:last-child button:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 .footer{
 	border-top: 1px solid white;
 	

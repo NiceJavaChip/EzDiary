@@ -222,11 +222,10 @@ public class UserControllerImpl implements UserController {
 	public String resultPage(Model model) throws Exception {
 		
 		
-  		List<MyAnswerDTO> answerDTO =  userService.getUserAnswer();	
+  		List<MyAnswerDTO> answerDTO =  userService.getUserAnswer();
   		
   		System.out.println("answerDTO.size : " + answerDTO.size());
   		System.out.println("answerDTO : " + answerDTO);
-  		answerDTO.get(0).getAsk_idx();
   		
   		int lastAskNO = userService.lastAskNO();
   		
@@ -238,30 +237,17 @@ public class UserControllerImpl implements UserController {
   			
   			int ask_idx = answerDTO.get(i).getAnswer_idx();
   			
-  			System.out.println(1);
-  			System.out.println(ask_idx);
-  			
   			for(int j = 0; j<3; j++) {
 
   			  int answer_idx = answerDTO.get(j).getAnswer_idx();
   			  
-  			  System.out.println(2);
-  			  System.out.println("answer_idx : " + answer_idx);
-  			  
   			  answerInfo.put("ask_idx", ask_idx);
   			  answerInfo.put("answer_idx", answer_idx);
   			  
-  			  System.out.println(3);
-  			  System.out.println("answerInfo : "+answerInfo);
-  			  
   			  int answerCount = userService.getAnswerCount(answerInfo);
-  			  
-  			  System.out.println(4);
-  			  System.out.println("answerCount" + answerCount);
-  			  
+	  
   			  getAnswerCnt.add(answerCount);
-  			  System.out.println(5);
-  			  System.out.println("answerCnt : "+getAnswerCnt);
+  		
   			}
 			 
   		}

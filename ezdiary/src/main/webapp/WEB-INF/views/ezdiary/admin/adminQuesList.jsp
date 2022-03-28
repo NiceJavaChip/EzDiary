@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader.jsp" %>
+<%@ include file="../layout/adminHeader2.jsp" %>
 	<div class="admin_wrapper_ques"> <!-- 정범 수정 class명에 _ques 추가 -->
 		<div class="admin_contents_container">
 			<div class="content_title">

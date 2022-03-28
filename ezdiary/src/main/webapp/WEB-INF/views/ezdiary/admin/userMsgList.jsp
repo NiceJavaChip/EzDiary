@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader.jsp" %>
+<%@ include file="../layout/adminHeader2.jsp" %>
 <%-- <c:set var="userMsgList" value="${userMap.userMsgList}"/>
 <c:set var="userName" value="${userMap.user}"/> --%>
 	<div class="admin_wrapper_ques">
