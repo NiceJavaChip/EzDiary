@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/userHeader.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="usermain_wrapper_msg">
 		<div class="content_wrapper">
 			<div class="my_answer">
@@ -26,4 +26,3 @@
 			</form>
 		</div>
 	</div>
-<%@ include file="../layout/userFooter2.jsp" %>

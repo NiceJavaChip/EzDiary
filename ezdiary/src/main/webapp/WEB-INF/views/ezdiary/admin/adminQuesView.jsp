@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader2.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="askInfo" value="${articleMap.getAskInfo}"/>
 <c:set var="answerInfo" value="${articleMap.answerInfoList}"/>
 	<div class="admin_wrapper">
@@ -72,4 +72,3 @@
 	</div>
 	<form method="get" id="moveModForm"></form>
 	<form method="post" id="removeForm"></form>
-<%@ include file="../layout/adminFooter.jsp" %>

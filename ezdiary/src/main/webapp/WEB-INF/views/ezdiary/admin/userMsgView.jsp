@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader2.jsp" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container">
 			<div class="content_title">
@@ -33,4 +32,3 @@
 		</form>
 		</div>
 	</div>
-<%@ include file="../layout/adminFooter.jsp" %>

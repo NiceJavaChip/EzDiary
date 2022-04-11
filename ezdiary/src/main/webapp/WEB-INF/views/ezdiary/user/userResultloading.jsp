@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <meta http-equiv="refresh" content="4; url=http://localhost:8080/ezdiary/msgPage">
-<%@ include file="../layout/userHeader.jsp" %>
 	<div class="usermain_wrapper_loading">
 		<div class="content_wrapper">
 			<div class="upper_title add_margin_top_loding">
@@ -9,4 +8,3 @@
 			</div>
 		</div>
 	</div>
-<%@ include file="../layout/userFooter.jsp" %>

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader2.jsp" %>
-<%-- <c:set var="userMsgList" value="${userMap.userMsgList}"/>
-<c:set var="userName" value="${userMap.user}"/> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="admin_wrapper_ques">
 		<div class="admin_contents_container">
 			<div class="content_title">
@@ -71,6 +69,3 @@
 			</div>
 		</div>
 	</div>
-
-
-<%@ include file="../layout/adminFooter.jsp" %>

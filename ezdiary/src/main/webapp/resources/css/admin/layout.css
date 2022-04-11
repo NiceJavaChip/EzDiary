@@ -48,6 +48,34 @@
 	border: none;
 }
 
+.stick_container{
+    background-color: #004f32;
+}
+
+.stick_flex_container{
+	margin: auto;
+    width: 90px;
+    gap: 6px;
+    position: relative;
+    left: -60px;
+    display: flex;
+}
+
+.stick{
+	position: relative;
+    width: 47px;
+    height: 8px;
+    border-radius: 3px;
+}
+
+.pink{
+	background: #fab2c1;
+}
+
+.white{
+	background: #fff;
+}
+
 .wood{
 	height: 100%;
 	background-image: url(../../image/wood.png);
