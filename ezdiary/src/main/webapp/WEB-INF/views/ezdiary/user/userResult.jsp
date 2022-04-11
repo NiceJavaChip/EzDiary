@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/userHeader.jsp" %>
 	<div class="resultPage_wrapper">
 		<div class="resultContent_wrapper">
 			<div class="result_chart">		
@@ -314,4 +313,3 @@
             });
             }
         </script>
-<%@ include file="../layout/userFooter2.jsp" %>

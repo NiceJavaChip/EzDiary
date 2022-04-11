@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/userHeader.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <div class="usermain_wrapper_survey survey">
       <div class="content_wrapper" id="divBox">
 <!-- 		    <div class="prog"> -->
@@ -213,4 +213,3 @@ $(".items_btn").click(function(){
     });
 });
 </script>
-<%@ include file="../layout/userFooter.jsp" %>

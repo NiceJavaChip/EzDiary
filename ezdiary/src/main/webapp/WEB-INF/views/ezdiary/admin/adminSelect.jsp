@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../layout/adminHeader2.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container margin_bottom_add">
 			<div class="content_title margin_top_add">
@@ -29,4 +29,3 @@
 			</div>
 		</div>
 	</div>
-<%@ include file="../layout/adminFooter.jsp" %>

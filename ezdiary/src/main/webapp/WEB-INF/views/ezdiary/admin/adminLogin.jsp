@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ include file="../layout/adminHeader.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="admin_wrapper">
 		<div class="admin_contents_container">
 			<div class="content_title margin_top_add">
@@ -30,10 +29,3 @@
 			</form>
 		</div>
 	</div>
-	<!-- <script>
-		$(".login_btn").click(function(){
-			alert("로그인 버튼 작동");
-		});
-	</script> -->
-
-<%@ include file="../layout/adminFooter.jsp" %>

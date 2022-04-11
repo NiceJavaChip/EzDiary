@@ -4,15 +4,56 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  
 <tiles-definitions>
-	<!-- main layout -->
-	<definition name="layout-tiles" template="/WEB-INF/views/tiles/tiles-layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/tiles/headerTemplate.jsp" />
+	<!-- user layout -->
+	<definition name="layout-tiles_user" template="/WEB-INF/views/tiles/tiles-layout_user.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/ezdiary/layout/userHeader.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="foot" value="/WEB-INF/views/tiles/footerTemplate.jsp" />
+		<put-attribute name="foot" value="/WEB-INF/views/ezdiary/layout/userFooter.jsp" />
+	</definition>
+
+	<definition name="layout-tiles_user2" template="/WEB-INF/views/tiles/tiles-layout_user.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/ezdiary/layout/userHeader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="foot" value="/WEB-INF/views/ezdiary/layout/userFooter2.jsp" />
 	</definition>
 	
-	<definition name="*/*" extends="layout-tiles">
-		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-		<put-attribute name="title" value="게시판" />
+	<definition name="ezdiary/user/*" extends="layout-tiles_user">
+		<put-attribute name="title" value="ezdiary 메인 페이지" />		
+		<put-attribute name="body" value="/WEB-INF/views/ezdiary/user/{1}.jsp" />
 	</definition>
+	
+	<definition name="ezdiary/user/userMsg" extends="layout-tiles_user2">
+		<put-attribute name="title" value="ezdiary 메인 페이지" />		
+		<put-attribute name="body" value="/WEB-INF/views/ezdiary/user/userMsg.jsp" />
+	</definition>
+	
+	<definition name="ezdiary/user/userResult" extends="layout-tiles_user2">
+		<put-attribute name="title" value="ezdiary 메인 페이지" />		
+		<put-attribute name="body" value="/WEB-INF/views/ezdiary/user/userResult.jsp" />
+	</definition>
+	
+	<!-- admin layout -->
+	
+	<definition name="layout-tiles_admin" template="/WEB-INF/views/tiles/tiles-layout_admin.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/ezdiary/layout/adminHeader2.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="foot" value="/WEB-INF/views/ezdiary/layout/adminFooter.jsp" />
+	</definition>
+
+	<definition name="layout-tiles_admin2" template="/WEB-INF/views/tiles/tiles-layout_admin.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/ezdiary/layout/adminHeader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="foot" value="/WEB-INF/views/ezdiary/layout/adminFooter.jsp" />
+	</definition>
+	
+	<definition name="ezdiary/admin/*" extends="layout-tiles_admin">
+		<put-attribute name="title" value="ezdiary 관리자 페이지" />		
+		<put-attribute name="body" value="/WEB-INF/views/ezdiary/admin/{1}.jsp" />
+	</definition>
+	
+	<definition name="ezdiary/admin/adminLogin" extends="layout-tiles_admin2">
+		<put-attribute name="title" value="ezdiary 관리자 페이지" />		
+		<put-attribute name="body" value="/WEB-INF/views/ezdiary/admin/adminLogin.jsp" />
+	</definition>
+	
 </tiles-definitions>

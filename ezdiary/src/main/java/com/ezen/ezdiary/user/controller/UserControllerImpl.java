@@ -53,7 +53,7 @@ public class UserControllerImpl implements UserController {
 	public String mainPage() throws Exception {
 		
 		log.info("메인페이지 진입!");
-		return "/ezdiary/user/userMain";
+		return "ezdiary/user/userMain";
 		
 	}
 	
@@ -63,7 +63,7 @@ public class UserControllerImpl implements UserController {
 	public String registNickPage() throws Exception {
 		
 		log.info("닉네임 등록페이지 진입!");
-		return "/ezdiary/user/userNick";
+		return "ezdiary/user/userNick";
 	}
 	
 	/* 닉네임 등록 */
@@ -78,18 +78,12 @@ public class UserControllerImpl implements UserController {
 		
 		session = request.getSession(); 
 		List<AdminAskDTO> askDTO = userService.selectAsk(); 
-//		System.out.println("askDTO : " + askDTO.get(0).getAsk_idx());
 		  
 		  List<AdminAnswerDTO> answerDTO = userService.selectAnswer();
-//		  System.out.println("answerDTO : " + answerDTO.get(0).getAsk_idx());
 		  
 		  userService.registNick(userDTO);
 		  
 		  userDTO.setUser_idx(userService.selectUser(userDTO));
-		  
-//		  userService.selectUser(userDTO);
-//		  System.out.println("userDTO : " + userDTO);
-		  
 		  
 		  log.info("UserDTO : " + userDTO); log.info("닉네임 등록 성공");
 		  
@@ -124,8 +118,7 @@ public class UserControllerImpl implements UserController {
 		myAnswerDTO.setUser_nick(userInfo);
 		myAnswerDTO.setUser_idx(nickIdx);
 		myAnswerDTO.setAnswer_idx(answerIdx);
-		
-//		System.out.println("user session확인 : " + nickIdx);
+
 		System.out.println("myAnswerDTO : " + myAnswerDTO);
 		
 		List<AdminAskDTO> askListDTO = userService.askList(askDTO);
@@ -136,10 +129,7 @@ public class UserControllerImpl implements UserController {
 		model.addAttribute("answer", answerListDTO);
 		System.out.println("answer_idx : " + answerListDTO);
 		
-		
-//		System.out.println("myAnswerDTO 정보 : " + myAnswerDTO);
-		
-		return "/ezdiary/user/userSurvey";
+		return "ezdiary/user/userSurvey";
 	}
 
 	@Override
@@ -180,32 +170,6 @@ public class UserControllerImpl implements UserController {
 	  return result; 
 	  
 	  }
-	  
-	  
-	  
-		/*
-		 * @ResponseBody
-		 * 
-		 * @RequestMapping(value = "/survey3" , method = RequestMethod.POST) public
-		 * Map<String, Object> testAjax7(@RequestParam("ask_idx") int ask_idx,
-		 * AdminAnswerDTO answerDTO, AdminAskDTO askDTO) throws Exception {
-		 * 
-		 * System.out.println("ask_idx : "+ ask_idx);
-		 * 
-		 * System.out.println("ajax 컨트롤러 접근");
-		 * 
-		 * Map<String, Object> result = new HashMap<String,Object>();
-		 * 
-		 * System.out.println(userService.ajaxAsk(askDTO));
-		 * System.out.println(userService.ajaxAnswer(answerDTO));
-		 * 
-		 * result.put("ajaxAsk",userService.ajaxAsk(askDTO));
-		 * result.put("ajaxAnswer",userService.ajaxAnswer(answerDTO));
-		 * 
-		 * return result;
-		 * 
-		 * }
-		 */
 
 	/* 결과 로딩페이지 */
 	@Override
@@ -213,7 +177,7 @@ public class UserControllerImpl implements UserController {
 	public String loadingPage() throws Exception {
 
 		log.info("결과 로딩페이지 진입!");
-		return "/ezdiary/user/userResultloading";
+		return "ezdiary/user/userResultloading";
 	}
 	
 	/* 결과페이지 */
@@ -261,7 +225,7 @@ public class UserControllerImpl implements UserController {
 		model.addAttribute("answerCnt", getAnswerCnt); 
 		
 		log.info("결과페이지 진입!");
-		return "/ezdiary/user/userResult";
+		return "ezdiary/user/userResult";
 	}
 	
 	/* 하고싶은말 등록 페이지 */
@@ -276,12 +240,9 @@ public class UserControllerImpl implements UserController {
 		
 		int userIdx = userDTO.getUser_idx();
 		
-//		System.out.println("=======하고싶은말 등록 페이지 userIdx======= : " + userIdx);
-		
 		myAnswerDTO.setUser_idx(userIdx);
 		
 		List<MyAnswerDTO> mySurveyList = userService.mySurveyList(myAnswerDTO);
-//		System.out.println("=======mySurveyList======= : " + mySurveyList);
 		model.addAttribute("mySurveyList", mySurveyList);
 		
 		int userCount = adminService.userTotalCount();
@@ -289,7 +250,7 @@ public class UserControllerImpl implements UserController {
 		 System.out.println("userCount : "+userCount);
 		
 		
-		return "/ezdiary/user/userMsg";
+		return "ezdiary/user/userMsg";
 	}
 	
 	/* 하고싶은말 작성 */

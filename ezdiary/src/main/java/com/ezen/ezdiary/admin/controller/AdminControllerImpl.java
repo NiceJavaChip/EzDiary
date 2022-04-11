@@ -106,12 +106,8 @@ public class AdminControllerImpl implements AdminController {
 		ModelAndView mav = new ModelAndView();
 
 		String search = request.getParameter("search");
-
-		System.out.println("search = " + search);
-
+		
 		boardDTO.setSearch(search);
-
-		System.out.println("뭘까요? = " + boardDTO.getSearch());
 
 		mav.addObject("quesList", adminService.getQuesListPaging(boardDTO));
 		System.out.println("전달된 데이터 " + boardDTO);
@@ -216,8 +212,6 @@ public class AdminControllerImpl implements AdminController {
 			RedirectAttributes rttr) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
-//		session = request.getSession();
-//		memberDTO = (AdminMemberDTO) session.getAttribute("member");
 		String writer = memberDTO.getWriter();
 
 		if (writer != null) {
@@ -271,11 +265,7 @@ public class AdminControllerImpl implements AdminController {
 	public ModelAndView quesWriteRemove(AdminAskDTO askDTO, AdminAnswerDTO answerDTO, HttpServletRequest request)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
-
-		/*
-		 * session = request.getSession(); memberDTO = (AdminMemberDTO)
-		 * session.getAttribute("member");
-		 */
+		
 		String writer = memberDTO.getWriter();
 
 		if (writer != null) {
